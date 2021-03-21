@@ -28,6 +28,8 @@ namespace TrabalhoCurriculo.Classes
                 dao.Alterar(CurriculoNovo);
 
             VerificarFormacaoAcademica();
+            VerificarIdiomas();
+            VerificarHabilidades();
 
 
         }
