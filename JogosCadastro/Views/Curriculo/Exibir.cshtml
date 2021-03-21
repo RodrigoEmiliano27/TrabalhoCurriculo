@@ -2,18 +2,95 @@
     Layout = null;
 }
 
-<div >
-    <div style="margin-right:20px;  width: 25%; float:left; background:gray; height:100% ">
-        <img src="~/Images/Avatar.png" class="ImagemRedonda" />
-        <h2>Nome do fulano</h2>
-        <h2>CPF</h2>
-        <h2>Endereço</h2>
-        <h2>Telefone</h2>
-        <h2>email</h2>
-        <h2>Cargo Pretendido</h2>
-        <h2>Instagram</h2>
-        <h2>Linkdin</h2>
-        <h2>Facebook</h2>
+
+<html>
+<head>
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Holtwood+One+SC&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a42a254279.js" crossorigin="anonymous"></script>
+
+</head>
+
+
+<div>
+    <!-- style=" "-->
+    <div class="quadro-esquerdo">
+        <div class="foto-container">
+            <img src="https://julianafonte.com.br/wp-content/uploads/2018/02/dermato-estetica-macas-do-rosto.jpg" class="ImagemRedonda" />
+        </div>
+        <section class="nome-container">
+            <h1>Nome do fulano</h1>
+
+        </section>
+        <section class="dados-pessoais-conatiner">
+
+            <section class="dados-pessoais-item">
+                <span class="material-icons">account_box</span>
+
+                <label class="mdc-text-field mdc-text-field--filled">
+                    <span class="mdc-text-field__ripple"></span>
+                    <span class="mdc-floating-label" id="my-label-id">CPF</span>
+                    <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+                    <span class="mdc-line-ripple"></span>
+                </label>
+            </section>
+
+            <section class="dados-pessoais-item">
+                <span class="material-icons">home</span>
+                <label class="mdc-text-field mdc-text-field--filled">
+                    <span class="mdc-text-field__ripple"></span>
+                    <span class="mdc-floating-label" id="my-label-id">Endereco</span>
+                    <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+                    <span class="mdc-line-ripple"></span>
+                </label>
+            </section>
+
+
+            <section class="dados-pessoais-item">
+                <span class="material-icons">phone</span>
+
+                <label class="mdc-text-field mdc-text-field--filled">
+                    <span class="mdc-text-field__ripple"></span>
+                    <span class="mdc-floating-label" id="my-label-id">Telefone</span>
+                    <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+                    <span class="mdc-line-ripple"></span>
+                </label>
+
+            </section>
+
+
+            <section class="dados-pessoais-item">
+                <span class="material-icons">email</span>
+
+                <label class="mdc-text-field mdc-text-field--filled">
+                    <span class="mdc-text-field__ripple"></span>
+                    <span class="mdc-floating-label" id="my-label-id">Email</span>
+                    <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+                    <span class="mdc-line-ripple"></span>
+                </label>
+
+            </section>
+
+        </section>
+
+
+        <section class="cargo-container">
+            <h2>Cargo Pretendido</h2>
+        </section>
+
+        <section class="midias-sociais-container">
+            <i class="fab fa-facebook fa-2x"></i>
+            <i class="fab fa-linkedin fa-2x"></i>
+            <i class="fab fa-instagram-square fa-2x"></i>
+
+        </section>
+
     </div>
     <div style="margin-left: 20px; width: 55%; float: left; background: yellow; ">
         <div class="SobreMIM">
@@ -55,4 +132,56 @@
         </div>
     </div>
 </div>
+
+<script>
+    const textFields = document.querySelectorAll('.mdc-text-field');
+
+    for (const textField of textFields) {
+        mdc.textField.MDCTextField.attachTo(textField);
+    }
+
+</script>
+
+
+<style>
+    h1 {
+        font-family: 'Holtwood One SC', serif;
+    }
+
+    p {
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .quadro-esquerdo {
+        width: 24%;
+        float: left;
+        height: 100%;
+        display: flex;
+        background-color: #eeeeee;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .foto-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ImagemRedonda {
+        border-color: black;
+        border-width: 4px;
+        border-style: solid;
+        border-radius: 50%;
+        max-width: 80%;
+    }
+
+    .dados-pessoais-item span {
+        vertical-align: middle;
+        margin-right: 8px;
+    }
+</style>
+</html>
 
