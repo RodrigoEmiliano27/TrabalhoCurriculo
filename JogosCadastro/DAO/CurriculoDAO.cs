@@ -10,35 +10,34 @@ namespace JogosCadastro.DAO
 {
     public class CurriculoDAO
     {
-        public void Inserir(CurriculoViewModel jogo)
+        public void Inserir(CurriculoViewModel Curriculo)
         {
             string sql =
-            "insert into jogos(id, descricao, valor_locacao, data_aquisicao, categoriaID)" +
-            "values ( @id, @descricao, @valor_locacao, @data_aquisicao, @categoriaID)";
-            HelperDAO.ExecutaSQL(sql, CriaParametros(jogo));
+            "insert into Curriculos(id, nome, telefone, email, cargoPretendido)" +
+            "values ( @id, @nome, @telefone, @email, @cargoPretendido)";
+            HelperDAO.ExecutaSQL(sql, CriaParametros(Curriculo));
         }
-        public void Alterar(CurriculoViewModel jogo)
+        public void Alterar(CurriculoViewModel Curriculo)
         {
             string sql =
-            "update jogos set descricao = @descricao, " +
-            "valor_locacao = @valor_locacao, " +
-            "data_aquisicao = @data_aquisicao," +
-            "categoriaID = @categoriaID where id = @id";
-            HelperDAO.ExecutaSQL(sql, CriaParametros(jogo));
+            "update Curriculos set nome = @nome, " +
+            "telefone = @telefone, " +
+            "email = @email," +
+            "cargoPretendido = @cargoPretendido where id = @id";
+            HelperDAO.ExecutaSQL(sql, CriaParametros(Curriculo));
         }
-        private SqlParameter[] CriaParametros(CurriculoViewModel jogo)
+        private SqlParameter[] CriaParametros(CurriculoViewModel Curriculo)
         {
-            SqlParameter[] parametros = new SqlParameter[5];
-            parametros[0] = new SqlParameter("id", jogo.Id);
-            parametros[1] = new SqlParameter("descricao", jogo.Descricao);
-            parametros[2] = new SqlParameter("valor_locacao", jogo.Valor_Locacao);
-            parametros[3] = new SqlParameter("data_aquisicao", jogo.Data_Aquisicao);
-            parametros[4] = new SqlParameter("categoriaID", jogo.Categoria);
+            SqlParameter[] parametros = new SqlParameter[4];
+            parametros[1] = new SqlParameter("nome", Curriculo.Nome);
+            parametros[2] = new SqlParameter("telefone", Curriculo.Telefone);
+            parametros[3] = new SqlParameter("email", Curriculo.Email);
+            parametros[4] = new SqlParameter("cargoPretendido", Curriculo.Cargo_Pretendido);
             return parametros;
         }
         public void Excluir(int id)
         {
-            string sql = "delete jogos where id =" + id;
+            string sql = "delete Curriculos where id =" + id;
             HelperDAO.ExecutaSQL(sql, null);
         }
         public int ProximoId()
@@ -47,7 +46,7 @@ namespace JogosCadastro.DAO
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             return Convert.ToInt32(tabela.Rows[0]["MAIOR"]);
         }
-        private CurriculoViewModel MontaAluno(DataRow registro)
+        private CurriculoViewModel MontaCurriculo(DataRow registro)
         {
             CurriculoViewModel a = new CurriculoViewModel();
             a.Id = Convert.ToInt32(registro["id"]);
@@ -65,7 +64,7 @@ namespace JogosCadastro.DAO
             if (tabela.Rows.Count == 0)
                 return null;
             else
-                return MontaAluno(tabela.Rows[0]);
+                return MontaCurriculo(tabela.Rows[0]);
         }
         public List<CurriculoViewModel> Listagem()
         {
@@ -73,7 +72,7 @@ namespace JogosCadastro.DAO
             string sql = "select * from jogos order by descricao";
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             foreach (DataRow registro in tabela.Rows)
-                lista.Add(MontaAluno(registro));
+                lista.Add(MontaCurriculo(registro));
             return lista;
         }
     }
