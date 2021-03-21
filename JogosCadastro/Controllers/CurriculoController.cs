@@ -12,17 +12,17 @@ namespace JogosCadastro.Controllers
     {
         public IActionResult Index()
         {
-            JogoDAO dao = new JogoDAO();
-            List<JogoViewModel> lista = dao.Listagem();
+            CurriculoDAO dao = new CurriculoDAO();
+            List<CurriculoViewModel> lista = dao.Listagem();
             return View(lista);
         }
 
         public IActionResult Create(int id)
         {
-            JogoViewModel jogo = new JogoViewModel();
+            CurriculoViewModel jogo = new CurriculoViewModel();
             jogo.Data_Aquisicao = DateTime.Now;
 
-            JogoDAO dao = new JogoDAO();
+            CurriculoDAO dao = new CurriculoDAO();
             jogo.Id = dao.ProximoId();
 
             return View("Form", jogo);
@@ -31,8 +31,8 @@ namespace JogosCadastro.Controllers
         {
             try
             {
-                JogoDAO dao = new JogoDAO();
-                JogoViewModel jogo = dao.Consulta(id);
+                CurriculoDAO dao = new CurriculoDAO();
+                CurriculoViewModel jogo = dao.Consulta(id);
                 if (jogo == null)
                     return RedirectToAction("index");
                 else
@@ -44,11 +44,11 @@ namespace JogosCadastro.Controllers
             }
         }
 
-        public IActionResult Salvar(JogoViewModel jogo)
+        public IActionResult Salvar(CurriculoViewModel jogo)
         {          
             try
             {
-                JogoDAO dao = new JogoDAO();
+                CurriculoDAO dao = new CurriculoDAO();
                 if (dao.Consulta(jogo.Id) == null)
                     dao.Inserir(jogo);
                 else
@@ -65,7 +65,7 @@ namespace JogosCadastro.Controllers
         {
             try
             {
-                JogoDAO dao = new JogoDAO();
+                CurriculoDAO dao = new CurriculoDAO();
                 dao.Excluir(id);
                 return RedirectToAction("index");
             }

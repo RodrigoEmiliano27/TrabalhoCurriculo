@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 
 namespace JogosCadastro.Models
 {
-    public class JogoViewModel
+    public class CurriculoViewModel
     {
         public int Id { get; set; }
-        public string Descricao { get; set; }
-        public double Valor_Locacao { get; set; }
+        public string Nome { get; set; }
+        public string Telefone { get; set; }
+        public string Email { get; set; }
+        public string Cargo_Pretendido { get; set; }
         public int Categoria { get; set; }
         public DateTime Data_Aquisicao { get; set; }
     }

@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace JogosCadastro.DAO
 {
-    public class JogoDAO
+    public class CurriculoDAO
     {
-        public void Inserir(JogoViewModel jogo)
+        public void Inserir(CurriculoViewModel jogo)
         {
             string sql =
             "insert into jogos(id, descricao, valor_locacao, data_aquisicao, categoriaID)" +
             "values ( @id, @descricao, @valor_locacao, @data_aquisicao, @categoriaID)";
             HelperDAO.ExecutaSQL(sql, CriaParametros(jogo));
         }
-        public void Alterar(JogoViewModel jogo)
+        public void Alterar(CurriculoViewModel jogo)
         {
             string sql =
             "update jogos set descricao = @descricao, " +
@@ -26,7 +26,7 @@ namespace JogosCadastro.DAO
             "categoriaID = @categoriaID where id = @id";
             HelperDAO.ExecutaSQL(sql, CriaParametros(jogo));
         }
-        private SqlParameter[] CriaParametros(JogoViewModel jogo)
+        private SqlParameter[] CriaParametros(CurriculoViewModel jogo)
         {
             SqlParameter[] parametros = new SqlParameter[5];
             parametros[0] = new SqlParameter("id", jogo.Id);
@@ -47,9 +47,9 @@ namespace JogosCadastro.DAO
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             return Convert.ToInt32(tabela.Rows[0]["MAIOR"]);
         }
-        private JogoViewModel MontaAluno(DataRow registro)
+        private CurriculoViewModel MontaAluno(DataRow registro)
         {
-            JogoViewModel a = new JogoViewModel();
+            CurriculoViewModel a = new CurriculoViewModel();
             a.Id = Convert.ToInt32(registro["id"]);
             a.Descricao = registro["descricao"].ToString();
             a.Valor_Locacao = Convert.ToDouble(registro["valor_locacao"]);
@@ -58,7 +58,7 @@ namespace JogosCadastro.DAO
             return a;
         }
 
-        public JogoViewModel Consulta(int id)
+        public CurriculoViewModel Consulta(int id)
         {
             string sql = "select * from jogos where id = " + id;
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
@@ -67,9 +67,9 @@ namespace JogosCadastro.DAO
             else
                 return MontaAluno(tabela.Rows[0]);
         }
-        public List<JogoViewModel> Listagem()
+        public List<CurriculoViewModel> Listagem()
         {
-            List<JogoViewModel> lista = new List<JogoViewModel>();
+            List<CurriculoViewModel> lista = new List<CurriculoViewModel>();
             string sql = "select * from jogos order by descricao";
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             foreach (DataRow registro in tabela.Rows)
