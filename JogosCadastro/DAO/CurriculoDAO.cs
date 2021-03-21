@@ -14,8 +14,8 @@ namespace TrabalhoCurriculo.DAO
         public void Inserir(CurriculoViewModel Curriculo)
         {
             string sql =
-            "insert into Curriculos( nome, telefone,cpf, email, cargoPretendido)" +
-            "values ( @nome, @telefone,@cpf, @email, @cargoPretendido)";
+            "insert into Curriculos( nome, telefone,cpf, email, cargoPretendido,Cep,rua,Bairro,Cidade,Estado)" +
+            "values ( @nome, @telefone,@cpf, @email, @cargoPretendido,@Cep,@rua,@Bairro,@Cidade,@Estado)";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Curriculo));
         }
         public void Alterar(CurriculoViewModel Curriculo)
@@ -25,17 +25,29 @@ namespace TrabalhoCurriculo.DAO
             "telefone = @telefone, " +
             "cpf = @cpf, " +
             "email = @email," +
-            "cargoPretendido = @cargoPretendido where id = @id";
+            "cargoPretendido = @cargoPretendido"+
+            "Cep = @Cep, " +
+            "rua = @rua, " +
+            "Bairro = @Bairro, " +
+            "Cidade = @Cidade, " +
+            "Estado = @Estado, " +
+            " where id = @id";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Curriculo));
         }
         private SqlParameter[] CriaParametros(CurriculoViewModel Curriculo)
         {
-            SqlParameter[] parametros = new SqlParameter[5];
+            SqlParameter[] parametros = new SqlParameter[10];
             parametros[0] = new SqlParameter("nome", Curriculo.Nome);
             parametros[1] = new SqlParameter("telefone", Curriculo.Telefone);
             parametros[2] = new SqlParameter("cpf", Curriculo.CPF);
             parametros[3] = new SqlParameter("email", Curriculo.Email);
             parametros[4] = new SqlParameter("cargoPretendido", Curriculo.Cargo_Pretendido);
+            parametros[5] = new SqlParameter("Cep", Curriculo.CEP);
+            parametros[6] = new SqlParameter("rua", Curriculo.Rua);
+            parametros[7] = new SqlParameter("Bairro", Curriculo.Bairro);
+            parametros[8] = new SqlParameter("Cidade", Curriculo.Cidade);
+            parametros[9] = new SqlParameter("Estado", Curriculo.Estado);
+            
             return parametros;
         }
         public void Excluir(int id)
@@ -58,6 +70,11 @@ namespace TrabalhoCurriculo.DAO
             a.CPF = registro["cpf"].ToString();
             a.Email = registro["email"].ToString();
             a.Cargo_Pretendido = registro["cargoPretendido"].ToString();
+            a.CEP = registro["Cep"].ToString();
+            a.Rua = registro["rua"].ToString();
+            a.Bairro = registro["Bairro"].ToString();
+            a.Cidade = registro["Cidade"].ToString();
+            a.Estado = registro["Estado"].ToString();
             return a;
         }
 
@@ -74,7 +91,6 @@ namespace TrabalhoCurriculo.DAO
                 c.Formacao = (new FormacaoDAO()).Consulta(c.Id);
                 c.Idiomas = (new IdiomaDAO()).Consulta(c.Id);
                 c.Habilidades = (new HabilidadesDAO()).Consulta(c.Id);
-                c.Endereco = (new EnderecoDAO()).Consulta(c.Id);
                 return c;
                 
 
