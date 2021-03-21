@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TrabalhoCurriculo.Models;
 
 namespace JogosCadastro.Models
 {
@@ -12,7 +13,9 @@ namespace JogosCadastro.Models
         public string Telefone { get; set; }
         public string Email { get; set; }
         public string Cargo_Pretendido { get; set; }
-        public int Categoria { get; set; }
-        public DateTime Data_Aquisicao { get; set; }
+        public EnderecoViewModel Endereco { get; set; }
+        public IdiomaViewModel Idiomas { get; set; }
+        public FormacaoViewModel Formacao { get; set; }
+
     }
 }
