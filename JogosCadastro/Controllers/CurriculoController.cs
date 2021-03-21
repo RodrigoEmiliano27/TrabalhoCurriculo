@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TrabalhoCurriculo.Classes;
 
 namespace TrabalhoCurriculo.Controllers
 {
@@ -34,6 +35,7 @@ namespace TrabalhoCurriculo.Controllers
             {
                 CurriculoDAO dao = new CurriculoDAO();
                 CurriculoViewModel cur = dao.Consulta(id);
+                OldCurriculo = cur;
                 if (cur == null)
                     return RedirectToAction("index");
                 else
@@ -77,11 +79,11 @@ namespace TrabalhoCurriculo.Controllers
                         Hdao.Inserir(h);
                     }
 
-
-
                 }
                 else
                 {
+                    CompareCurriculos Compare = new CompareCurriculos(OldCurriculo, cur);
+                    Compare.CompararCurriculo();
                     dao.Alterar(cur);
 
                 }

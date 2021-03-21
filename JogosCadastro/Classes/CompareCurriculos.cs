@@ -22,6 +22,8 @@ namespace TrabalhoCurriculo.Classes
             if (CadastroCurriculoChanged())
                 dao.Alterar(CurriculoNovo);
 
+            VerificarFormacaoAcademica();
+
 
         }
         private bool CadastroCurriculoChanged()
@@ -51,8 +53,9 @@ namespace TrabalhoCurriculo.Classes
         }
         private void VerificarFormacaoAcademica()
         {
+            bool achou = false;
             FormacaoDAO formDao = new FormacaoDAO();
-            //Se o curriculo 
+            //Se o curriculo estava sem formação academica todos os dados devem ser inseridos
             if (CurriculoVelho.Formacao.Count == 0 && CurriculoNovo.Formacao.Count > 0)
             {
                 foreach (FormacaoViewModel form in CurriculoNovo.Formacao)
@@ -60,10 +63,54 @@ namespace TrabalhoCurriculo.Classes
 
                 return;
             }
+            //Verifica uma exclusão de formação
             foreach (FormacaoViewModel form in CurriculoVelho.Formacao)
             {
-                
+                foreach (FormacaoViewModel form2 in CurriculoNovo.Formacao)
+                {
+                    if (form2.Id == form.Id)
+                    {
+                        achou = true;
+                        if (FormacaoChanged(form, form2))
+                            formDao.Alterar(form);
+                        break;
+                    }      
+                }
+                // o Id não foi encontrado logo terá que ser excluido
+                if (!achou)
+                    formDao.Excluir(form.Id, form.IdCurriculo);
+                achou = false;     
             }
+            achou = false;
+            //verifica inserção de dados
+            foreach (FormacaoViewModel form2 in CurriculoNovo.Formacao)
+            {
+                foreach (FormacaoViewModel form in CurriculoVelho.Formacao)
+                {
+                    if (form2.Id == form.Id)
+                    {
+                        achou = true;
+                        break;
+                    }
+                }
+                form2.IdCurriculo = CurriculoNovo.Id;
+                if (!achou)
+                    formDao.Inserir(form2);
+
+            }
+        }
+        private bool FormacaoChanged(FormacaoViewModel fold,FormacaoViewModel fnew)
+        {
+            if (fold.Descricao == fnew.Descricao)
+                return true;
+            else if (fold.Instituicao == fnew.Instituicao)
+                return true;
+            else if (fold.Inicio == fnew.Inicio)
+                return true;
+            else if (fold.Fim == fnew.Fim)
+                return true;
+
+            return false;
         }
     }
 }

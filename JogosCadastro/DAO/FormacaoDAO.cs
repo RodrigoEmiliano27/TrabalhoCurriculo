@@ -13,14 +13,15 @@ namespace TrabalhoCurriculo.DAO
         public void Inserir(FormacaoViewModel Formacao)
         {
             string sql =
-            "insert into FormacaoAcademica(idCurriculo, instituicao, inicio, fim)" +
-            "values (@idCurriculo @instituicao, @inicio, @fim)";
+            "insert into FormacaoAcademica(idCurriculo,Descricao, instituicao, inicio, fim)" +
+            "values (@idCurriculo,@Descricao,@instituicao, @inicio, @fim)";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Formacao));
         }
         public void Alterar(FormacaoViewModel Formacao)
         {
             string sql =
-            "update FormacaoAcademica set instituicao = @instituicao, " +
+            "update FormacaoAcademica set Descricao = @Descricao, " +
+            "instituicao = @instituicao, " +
             "inicio = @inicio, " +
             "fim = @fim," +
             "where id = @id and idCurriculo=@idCurriculo";
@@ -28,12 +29,13 @@ namespace TrabalhoCurriculo.DAO
         }
         private SqlParameter[] CriaParametros(FormacaoViewModel Formacao)
         {
-            SqlParameter[] parametros = new SqlParameter[5];
+            SqlParameter[] parametros = new SqlParameter[6];
             parametros[0] = new SqlParameter("id", Formacao.Id);
             parametros[1] = new SqlParameter("idCurriculo", Formacao.IdCurriculo);
-            parametros[2] = new SqlParameter("instituicao", Formacao.Instituicao);
-            parametros[3] = new SqlParameter("inicio", Formacao.Inicio);
-            parametros[4] = new SqlParameter("fim", Formacao.Fim);
+            parametros[2] = new SqlParameter("Descricao", Formacao.Descricao);
+            parametros[3] = new SqlParameter("instituicao", Formacao.Instituicao);
+            parametros[4] = new SqlParameter("inicio", Formacao.Inicio);
+            parametros[5] = new SqlParameter("fim", Formacao.Fim);
             return parametros;
         }
         public void Excluir(int id, int idCurriculo)
@@ -52,6 +54,7 @@ namespace TrabalhoCurriculo.DAO
             FormacaoViewModel a = new FormacaoViewModel();
             a.Id = Convert.ToInt32(registro["id"]);
             a.IdCurriculo = Convert.ToInt32(registro["idCurriculo"]);
+            a.Descricao = registro["Descricao"].ToString();
             a.Instituicao = registro["instituicao"].ToString();
             a.Inicio = Convert.ToDateTime(registro["inicio"]);
             a.Fim = Convert.ToDateTime(registro["fim"]);
