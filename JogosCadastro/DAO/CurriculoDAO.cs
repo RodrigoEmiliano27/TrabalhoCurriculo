@@ -31,7 +31,7 @@ namespace TrabalhoCurriculo.DAO
             "Bairro = @Bairro, " +
             "Cidade = @Cidade, " +
             "Estado = @Estado, " +
-            " where id = @id";
+            "where id = @id";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Curriculo));
         }
         private SqlParameter[] CriaParametros(CurriculoViewModel Curriculo)
