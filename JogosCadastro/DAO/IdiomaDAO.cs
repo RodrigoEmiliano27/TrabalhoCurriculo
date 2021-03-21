@@ -52,6 +52,7 @@ namespace TrabalhoCurriculo.DAO
             a.IdCurriculo = Convert.ToInt32(registro["idCurriculo"]);
             a.Idioma = registro["Idioma"].ToString();
             a.Nivel = registro["Nivel"].ToString();
+            a.Acoes = EnumAcoes.Nada;
             return a;
         }
 

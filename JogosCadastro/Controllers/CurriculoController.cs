@@ -10,6 +10,7 @@ namespace TrabalhoCurriculo.Controllers
 {
     public class CurriculoController : Controller
     {
+        CurriculoViewModel OldCurriculo = new CurriculoViewModel();
         public IActionResult Index()
         {
             CurriculoDAO dao = new CurriculoDAO();
@@ -19,24 +20,24 @@ namespace TrabalhoCurriculo.Controllers
 
         public IActionResult Create(int id)
         {
-            CurriculoViewModel jogo = new CurriculoViewModel();
+            CurriculoViewModel cur = new CurriculoViewModel();
            // jogo.Data_Aquisicao = DateTime.Now;
 
             CurriculoDAO dao = new CurriculoDAO();
             //jogo.Id = dao.ProximoId();
 
-            return View("Form", jogo);
+            return View("Form", cur);
         }
         public IActionResult Edit(int id)
         {
             try
             {
                 CurriculoDAO dao = new CurriculoDAO();
-                CurriculoViewModel jogo = dao.Consulta(id);
-                if (jogo == null)
+                CurriculoViewModel cur = dao.Consulta(id);
+                if (cur == null)
                     return RedirectToAction("index");
                 else
-                    return View("Exibir", jogo);
+                    return View("Exibir", cur);
             }
             catch (Exception erro)
             {
@@ -44,15 +45,46 @@ namespace TrabalhoCurriculo.Controllers
             }
         }
 
-        public IActionResult Salvar(CurriculoViewModel jogo)
-        {          
+        public IActionResult Salvar(CurriculoViewModel cur)
+        {
+            int id ;
             try
             {
                 CurriculoDAO dao = new CurriculoDAO();
-                if (dao.Consulta(jogo.Id) == null)
-                    dao.Inserir(jogo);
+                FormacaoDAO fdao = new FormacaoDAO();
+                IdiomaDAO Idao = new IdiomaDAO();
+                HabilidadesDAO Hdao = new HabilidadesDAO();
+                if (dao.Consulta(cur.Id) == null)
+                {
+                    id = dao.ProximoId();
+                    dao.Inserir(cur);
+
+                    foreach (FormacaoViewModel f in cur.Formacao)
+                    {
+                        f.IdCurriculo = id;
+                        fdao.Inserir(f);
+                    }
+
+                    foreach (IdiomaViewModel d in cur.Idiomas)
+                    {
+                        d.IdCurriculo = id;
+                        Idao.Inserir(d);
+                    }
+
+                    foreach (HabilidadesViewModel h in cur.Habilidades)
+                    {
+                        h.IdCurriculo = id;
+                        Hdao.Inserir(h);
+                    }
+
+
+
+                }
                 else
-                    dao.Alterar(jogo);
+                {
+                    dao.Alterar(cur);
+
+                }
 
                 return RedirectToAction("index");
             }
@@ -74,5 +106,6 @@ namespace TrabalhoCurriculo.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
+       
     }
 }

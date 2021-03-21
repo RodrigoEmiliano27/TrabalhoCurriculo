@@ -55,6 +55,7 @@ namespace TrabalhoCurriculo.DAO
             a.Instituicao = registro["instituicao"].ToString();
             a.Inicio = Convert.ToDateTime(registro["inicio"]);
             a.Fim = Convert.ToDateTime(registro["fim"]);
+            a.Acoes = EnumAcoes.Nada;
             return a;
         }
 

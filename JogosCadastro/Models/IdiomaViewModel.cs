@@ -11,6 +11,7 @@ namespace TrabalhoCurriculo.Models
         public int IdCurriculo { get; set; }
         public string Idioma { get; set; }
         public string Nivel { get; set; }
+        public EnumAcoes Acoes { get; set; }
 
     }
 }

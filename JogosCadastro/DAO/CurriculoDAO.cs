@@ -55,12 +55,12 @@ namespace TrabalhoCurriculo.DAO
             string sql = "delete Curriculos where id =" + id;
             HelperDAO.ExecutaSQL(sql, null);
         }
-       /* public int ProximoId()
+       public int ProximoId()
         {
-            string sql = "select isnull(max(id) +1, 1) as 'MAIOR' from jogos";
+            string sql = "select isnull(max(id) +1, 1) as 'MAIOR' from Curriculos";
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             return Convert.ToInt32(tabela.Rows[0]["MAIOR"]);
-        }*/
+        }
         private CurriculoViewModel MontaCurriculoSimples(DataRow registro)
         {
             CurriculoViewModel a = new CurriculoViewModel();
@@ -106,5 +106,6 @@ namespace TrabalhoCurriculo.DAO
                 lista.Add(MontaCurriculoSimples(registro));
             return lista;
         }
+        
     }
 }
