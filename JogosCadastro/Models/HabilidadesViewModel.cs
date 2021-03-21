@@ -12,7 +12,7 @@ namespace TrabalhoCurriculo.Models
         public string Descricao { get; set; }
         public int Nivel { get; set; }
 
-        public EnumAcoes Acoes { get; set; }
+
 
     }
 }
