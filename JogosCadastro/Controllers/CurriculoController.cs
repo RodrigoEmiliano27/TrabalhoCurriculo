@@ -1,12 +1,12 @@
-﻿using JogosCadastro.DAO;
-using JogosCadastro.Models;
+﻿using TrabalhoCurriculo.DAO;
+using TrabalhoCurriculo.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JogosCadastro.Controllers
+namespace TrabalhoCurriculo.Controllers
 {
     public class CurriculoController : Controller
     {

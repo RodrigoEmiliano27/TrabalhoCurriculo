@@ -1,12 +1,13 @@
-﻿using JogosCadastro.Models;
+﻿using TrabalhoCurriculo.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using TrabalhoCurriculo.Models;
 
-namespace JogosCadastro.DAO
+namespace TrabalhoCurriculo.DAO
 {
     public class CurriculoDAO
     {
@@ -46,33 +47,44 @@ namespace JogosCadastro.DAO
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             return Convert.ToInt32(tabela.Rows[0]["MAIOR"]);
         }
-        private CurriculoViewModel MontaCurriculo(DataRow registro)
+        private CurriculoViewModel MontaCurriculoSimples(DataRow registro)
         {
             CurriculoViewModel a = new CurriculoViewModel();
             a.Id = Convert.ToInt32(registro["id"]);
-            a.Descricao = registro["descricao"].ToString();
-            a.Valor_Locacao = Convert.ToDouble(registro["valor_locacao"]);
-            a.Data_Aquisicao = Convert.ToDateTime(registro["data_aquisicao"]);
-            a.Categoria = Convert.ToInt32(registro["categoriaID"]);
+            a.Nome = registro["nome"].ToString();
+            a.Telefone = registro["telefone"].ToString();
+            a.Email = registro["email"].ToString();
+            a.Cargo_Pretendido = registro["cargoPretendido"].ToString();
             return a;
         }
 
         public CurriculoViewModel Consulta(int id)
         {
-            string sql = "select * from jogos where id = " + id;
+            CurriculoViewModel c = new CurriculoViewModel();
+            string sql = "select * from Curriculos where id = " + id;
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             if (tabela.Rows.Count == 0)
                 return null;
             else
-                return MontaCurriculo(tabela.Rows[0]);
+            {
+                c= MontaCurriculoSimples(tabela.Rows[0]);
+                c.Formacao = (new FormacaoDAO()).Consulta(c.Id);
+                c.Idiomas = (new IdiomaDAO()).Consulta(c.Id);
+                c.Habilidades = (new HabilidadesDAO()).Consulta(c.Id);
+                c.Endereco = (new EnderecoDAO()).Consulta(c.Id);
+                return c;
+                
+
+            }
+                
         }
         public List<CurriculoViewModel> Listagem()
         {
             List<CurriculoViewModel> lista = new List<CurriculoViewModel>();
-            string sql = "select * from jogos order by descricao";
+            string sql = "select * from Curriculos order by Id";
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             foreach (DataRow registro in tabela.Rows)
-                lista.Add(MontaCurriculo(registro));
+                lista.Add(MontaCurriculoSimples(registro));
             return lista;
         }
     }
