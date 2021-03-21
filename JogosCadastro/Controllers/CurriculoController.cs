@@ -20,10 +20,10 @@ namespace TrabalhoCurriculo.Controllers
         public IActionResult Create(int id)
         {
             CurriculoViewModel jogo = new CurriculoViewModel();
-            jogo.Data_Aquisicao = DateTime.Now;
+           // jogo.Data_Aquisicao = DateTime.Now;
 
             CurriculoDAO dao = new CurriculoDAO();
-            jogo.Id = dao.ProximoId();
+            //jogo.Id = dao.ProximoId();
 
             return View("Form", jogo);
         }

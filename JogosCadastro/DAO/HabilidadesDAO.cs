@@ -13,8 +13,8 @@ namespace TrabalhoCurriculo.DAO
         public void Inserir(HabilidadesViewModel Habilidade)
         {
             string sql =
-            "insert into Habilidades(id,idCurriculo, Descricao, Nivel)" +
-            "values ( @id,@idCurriculo @Descricao, @Nivel)";
+            "insert into Habilidades(idCurriculo, Descricao, Nivel)" +
+            "values (@idCurriculo @Descricao, @Nivel)";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Habilidade));
         }
         public void Alterar(HabilidadesViewModel Habilidade)

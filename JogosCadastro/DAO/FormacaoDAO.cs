@@ -13,8 +13,8 @@ namespace TrabalhoCurriculo.DAO
         public void Inserir(FormacaoViewModel Formacao)
         {
             string sql =
-            "insert into FormacaoAcademica(id,idCurriculo, instituicao, inicio, fim)" +
-            "values ( @id,@idCurriculo @instituicao, @inicio, @fim)";
+            "insert into FormacaoAcademica(idCurriculo, instituicao, inicio, fim)" +
+            "values (@idCurriculo @instituicao, @inicio, @fim)";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Formacao));
         }
         public void Alterar(FormacaoViewModel Formacao)

@@ -9,7 +9,7 @@ namespace TrabalhoCurriculo.DAO
     public static class ConexaoBD
     {
         private static string servername = @"DESKTOP-G71U68M\WINCCPLUSMIG2014";
-        private static string database = "master";
+        private static string database = "CurriculosDudu";
         private static string server_login = "sa";
         private static string server_password = "123456";
         public static SqlConnection GetConexao()

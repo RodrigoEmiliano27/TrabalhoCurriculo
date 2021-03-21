@@ -13,8 +13,8 @@ namespace TrabalhoCurriculo.DAO
         public void Inserir(IdiomaViewModel Idioma)
         {
             string sql =
-            "insert into Idiomas(id,idCurriculo, Idioma, Nivel)" +
-            "values ( @id,@idCurriculo @Idioma, @Nivel)";
+            "insert into Idiomas(idCurriculo, Idioma, Nivel)" +
+            "values ( @idCurriculo @Idioma, @Nivel)";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Idioma));
         }
         public void Alterar(IdiomaViewModel Idioma)

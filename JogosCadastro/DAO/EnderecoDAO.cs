@@ -20,23 +20,25 @@ namespace TrabalhoCurriculo.DAO
         public void Alterar(EnderecoViewModel Endereco)
         {
             string sql =
-            "update Enderecos set Cep = @Cep, " +
+            "update Enderecos set idCurriculo=@idCurriculo, " +
+            "Cep = @Cep, "+
             "rua = @rua, " +
             "Bairro = @Bairro," +
             "Cidade = @Cidade," +
             "Estado = @Estado," +
-            "Where idCurriculo= @idCurriculo";
+            "Where id= @id";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Endereco));
         }
         private SqlParameter[] CriaParametros(EnderecoViewModel Endereco)
         {
-            SqlParameter[] parametros = new SqlParameter[6];
-            parametros[0] = new SqlParameter("idCurriculo", Endereco.IdCurriculo);
-            parametros[1] = new SqlParameter("Cep", Endereco.CEP);
-            parametros[2] = new SqlParameter("rua", Endereco.Rua);
-            parametros[3] = new SqlParameter("Bairro", Endereco.Bairro);
-            parametros[4] = new SqlParameter("Cidade", Endereco.Cidade);
-            parametros[5] = new SqlParameter("Estado", Endereco.Estado);
+            SqlParameter[] parametros = new SqlParameter[7];
+            parametros[0] = new SqlParameter("id", Endereco.Id);
+            parametros[1] = new SqlParameter("idCurriculo", Endereco.IdCurriculo);
+            parametros[2] = new SqlParameter("Cep", Endereco.CEP);
+            parametros[3] = new SqlParameter("rua", Endereco.Rua);
+            parametros[4] = new SqlParameter("Bairro", Endereco.Bairro);
+            parametros[5] = new SqlParameter("Cidade", Endereco.Cidade);
+            parametros[6] = new SqlParameter("Estado", Endereco.Estado);
             return parametros;
         }
         public void Excluir(int idCurriculo)
@@ -53,6 +55,7 @@ namespace TrabalhoCurriculo.DAO
         private EnderecoViewModel MontaEndereco(DataRow registro)
         {
             EnderecoViewModel a = new EnderecoViewModel();
+            a.Id = Convert.ToInt32(registro["id"]);
             a.IdCurriculo = Convert.ToInt32(registro["idCurriculo"]);
             a.CEP = registro["Cep"].ToString();
             a.Rua = registro["rua"].ToString();
