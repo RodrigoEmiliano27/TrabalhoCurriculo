@@ -28,6 +28,7 @@ namespace TrabalhoCurriculo.Controllers
             //jogo.Id = dao.ProximoId();
 
             return View("Form", cur);
+            //return View("Exibir", cur);
         }
         public IActionResult Edit(int id)
         {

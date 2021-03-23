@@ -2,3 +2,245 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+<html>
+<head>
+
+</head>
+    
+<body>
+    <form asp-action="Salvar" method="post">
+        <label for="nome" class="control-label">Nome</label>
+        <input type="text" Name="nome" value="@Model.Nome" class="form-control" />
+
+        <label for="telefone" class="control-label">Telefone</label>
+        <input type="text" Name="telefone" value="@Model.Telefone" class="form-control" />
+
+
+        <label for="cpf" class="control-label">CPF</label>
+        <input type="text" Name="telefone" value="@Model.CPF" class="form-control" />
+
+
+        <label for="email" class="control-label">E-Mail</label>
+        <input type="text" Name="telefone" value="@Model.Email" class="form-control" />
+
+
+        <label for="cargo_pretendido" class="control-label">Cargo Pretendido</label>
+        <input type="text" Name="cargo_pretendido" value="@Model.Cargo_Pretendido" class="form-control" />
+
+
+        <label for="cep" class="control-label">CEP</label>
+        <input type="text" Name="cep" value="@Model.CEP" class="form-control" />
+
+
+        <label for="rua" class="control-label">Rua</label>
+        <input type="text" Name="rua" value="@Model.Rua" class="form-control" />
+
+        <label for="bairro" class="control-label">Bairro</label>
+        <input type="text" Name="bairro" value="@Model.Bairro" class="form-control" />
+
+
+        <label for="cidade" class="control-label">Cidade</label>
+        <input type="text" Name="cidade" value="@Model.Cidade" class="form-control" />
+
+
+        <label for="estado" class="control-label">Estado</label>
+        <input type="text" Name="estado" value="@Model.Estado" class="form-control" />
+
+        <label for="estado" class="control-label">Estado</label>
+        <input type="text" Name="Formacao[0].Descricao" value="Descricao1" class="form-control" />
+
+        <div id="formacao_group">
+            <h3>Formações</h3>
+            <input type="button" id="btAddFormacao" value="Adcionar Formação" />
+        </div>
+
+
+        <div id="idiomas_group">
+            <h3>Idiomas</h3>
+            <input type="button" id="btAddIdioma" value="Adcionar Idioma" />
+        </div>
+
+        <div id="habilidades_group">
+            <h3>Habilidades</h3>
+            <input type="button" id="btAddHabilidade" value="Adcionar Habilidade" />
+        </div>
+
+        <input type="submit" value="Salvar dados" class="btn btn-info" />
+
+    </form>
+</body>
+
+<script>
+
+    var formacoes = 0;
+    var idiomas = 0;
+    var habilidades = 0;
+
+    divFormacao = document.getElementById("formacao_group");
+    btFormacao = document.getElementById("btAddFormacao");
+
+    btFormacao.onclick = adcionaFormacao;
+
+
+    divIdiomas = document.getElementById("idiomas_group");
+    btIdiomas = document.getElementById("btAddIdioma");
+
+    btIdiomas.onclick = adcionaIdioma;
+
+    divHabilidades = document.getElementById("habilidades_group");
+    btHabilidades = document.getElementById("btAddHabilidade");
+
+    btHabilidades.onclick = adcionaHabilidade;
+
+    function adcionaFormacao()
+    {
+ 
+        formacaoDiv = document.createElement("div")
+
+
+        // instituição
+
+        instituicaoLabel = document.createElement("label")
+        instituicaoLabel.setAttribute("for", `Formacao[${formacoes}].Instituicao`);
+        instituicaoLabel.innerHTML = "Instituicao";
+
+        formacaoDiv.appendChild(instituicaoLabel);
+
+        instituicaoInput = document.createElement("input");
+        instituicaoInput.setAttribute("type", "text");
+        instituicaoInput.setAttribute("name", `Formacao[${formacoes}].Instituicao`);
+
+        formacaoDiv.appendChild(instituicaoInput);
+
+
+        //descricao
+        descricaoLabel = document.createElement("label")
+        descricaoLabel.setAttribute("for", `Formacao[${formacoes}].Descricao`);
+        descricaoLabel.innerHTML = "Descrição";
+
+        formacaoDiv.appendChild(descricaoLabel);
+
+        descricaoInput = document.createElement("input");
+        descricaoInput.setAttribute("type", "text");
+        descricaoInput.setAttribute("name", `Formacao[${formacoes}].Descricao`);
+
+        formacaoDiv.appendChild(descricaoInput);
+
+
+        //Inicio
+        inicioLabel = document.createElement("label")
+        inicioLabel.setAttribute("for", `Formacao[${formacoes}].Inicio`);
+        inicioLabel.innerHTML = "Inicio";
+
+        formacaoDiv.appendChild(inicioLabel);
+
+        inicioInput = document.createElement("input");
+        inicioInput.setAttribute("type", "date");
+        inicioInput.setAttribute("name", `Formacao[${formacoes}].Inicio`);
+
+        formacaoDiv.appendChild(inicioInput);
+
+        //Fim
+        fimLabel = document.createElement("label")
+        fimLabel.setAttribute("for", `Formacao[${formacoes}].Fim`);
+        fimLabel.innerHTML = "Fim";
+
+        formacaoDiv.appendChild(fimLabel);
+
+        fimInput = document.createElement("input");
+        fimInput.setAttribute("type", "date");
+        fimInput.setAttribute("name", `Formacao[${formacoes}].Fim`);
+
+        formacaoDiv.appendChild(fimInput);
+
+
+        formacoes++;
+
+        divFormacao.appendChild(formacaoDiv);
+       
+    }
+
+    /*
+     public string Idioma { get; set; }
+     public string Nivel { get; set; }
+     */
+    function adcionaIdioma() {
+        idiomaDiv = document.createElement("div")
+
+
+        // idioma
+
+        idiomaLabel = document.createElement("label")
+        idiomaLabel.setAttribute("for", `Idiomas[${idiomas}].Idioma`);
+        idiomaLabel.innerHTML = "Idioma";
+
+        idiomaDiv.appendChild(idiomaLabel);
+
+        idiomaInput = document.createElement("input");
+        idiomaInput.setAttribute("type", "text");
+        idiomaInput.setAttribute("name", `Idiomas[${idiomas}].Idioma`);
+
+        idiomaDiv.appendChild(idiomaInput);
+
+        // nivel
+
+        nivelLabel = document.createElement("label")
+        nivelLabel.setAttribute("for", `Idiomas[${idiomas}].Nivel`);
+        nivelLabel.innerHTML = "Idioma";
+
+        idiomaDiv.appendChild(nivelLabel);
+
+        nivelInput = document.createElement("input");
+        nivelInput.setAttribute("type", "text");
+        nivelInput.setAttribute("name", `Idiomas[${idiomas}].Nivel`);
+
+        idiomaDiv.appendChild(nivelInput);
+
+        idiomas++;
+        divIdiomas.appendChild(idiomaDiv);
+
+    }
+
+    function adcionaHabilidade() {
+        habilidadeDiv = document.createElement("div")
+
+
+        // descricao
+
+        descricaoLabel = document.createElement("label")
+        descricaoLabel.setAttribute("for", `Habilidades[${habilidades}].Descricao`);
+        descricaoLabel.innerHTML = "Descrição";
+
+        habilidadeDiv.appendChild(descricaoLabel);
+
+        descricaoInput = document.createElement("input");
+        descricaoInput.setAttribute("type", "text");
+        descricaoInput.setAttribute("name", `Habilidades[${habilidades}].Descricao`);
+
+        habilidadeDiv.appendChild(descricaoInput);
+
+        // nivel
+
+        nivelLabel = document.createElement("label")
+        nivelLabel.setAttribute("for", `Habilidades[${habilidades}].Nivel`);
+        nivelLabel.innerHTML = "Nivel";
+
+        habilidadeDiv.appendChild(nivelLabel);
+
+        nivelInput = document.createElement("input");
+        nivelInput.setAttribute("type", "number");
+        nivelInput.setAttribute("name", `Habilidades[${habilidades}].Nivel`);
+
+        habilidadeDiv.appendChild(nivelInput);
+
+        habilidades++;
+
+        divHabilidades.appendChild(habilidadeDiv);
+    }
+
+
+</script>
+
+</html>
