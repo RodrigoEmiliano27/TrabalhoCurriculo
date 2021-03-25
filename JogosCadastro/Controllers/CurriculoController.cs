@@ -22,7 +22,8 @@ namespace TrabalhoCurriculo.Controllers
         public IActionResult Create(int id)
         {
             CurriculoViewModel cur = new CurriculoViewModel();
-           // jogo.Data_Aquisicao = DateTime.Now;
+            // jogo.Data_Aquisicao = DateTime.Now;
+            
 
             CurriculoDAO dao = new CurriculoDAO();
             //jogo.Id = dao.ProximoId();
@@ -40,7 +41,7 @@ namespace TrabalhoCurriculo.Controllers
                 if (cur == null)
                     return RedirectToAction("index");
                 else
-                    return View("Exibir", cur);
+                    return View("Form", cur);
             }
             catch (Exception erro)
             {

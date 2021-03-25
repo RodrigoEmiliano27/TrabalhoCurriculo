@@ -14,7 +14,7 @@ namespace TrabalhoCurriculo.DAO
         {
             string sql =
             "insert into Idiomas(idCurriculo, Idioma, Nivel)" +
-            "values ( @idCurriculo @Idioma, @Nivel)";
+            "values ( @idCurriculo, @Idioma, @Nivel)";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Idioma));
         }
         public void Alterar(IdiomaViewModel Idioma)
@@ -36,7 +36,7 @@ namespace TrabalhoCurriculo.DAO
         }
         public void Excluir(int id, int idCurriculo)
         {
-            string sql = "delete Idiomas where id =" + id + " idCurriculo=" + idCurriculo;
+            string sql = "delete Idiomas where id =" + id + "AND idCurriculo=" + idCurriculo;
             HelperDAO.ExecutaSQL(sql, null);
         }
         /*public int ProximoId()
@@ -61,7 +61,7 @@ namespace TrabalhoCurriculo.DAO
             string sql = "select * from Idiomas where idCurriculo = " + idCurriculo;
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             if (tabela.Rows.Count == 0)
-                return null;
+                return Lista;
             else
             {
                 for (int n = 0; n < tabela.Rows.Count; n++)

@@ -12,6 +12,7 @@ namespace TrabalhoCurriculo.DAO
     {
         public void Inserir(FormacaoViewModel Formacao)
         {
+            //validar data
             string sql =
             "insert into FormacaoAcademica(idCurriculo,Descricao, instituicao, inicio, fim)" +
             "values (@idCurriculo,@Descricao,@instituicao, @inicio, @fim)";
@@ -40,7 +41,7 @@ namespace TrabalhoCurriculo.DAO
         }
         public void Excluir(int id, int idCurriculo)
         {
-            string sql = "delete FormacaoAcademica where id =" + id + " idCurriculo="+idCurriculo;
+            string sql = "delete FormacaoAcademica where id =" + id + " AND idCurriculo="+idCurriculo;
             HelperDAO.ExecutaSQL(sql, null);
         }
         /*public int ProximoId()
@@ -68,7 +69,7 @@ namespace TrabalhoCurriculo.DAO
             string sql = "select * from FormacaoAcademica where idCurriculo = " + idCurriculo;
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             if (tabela.Rows.Count == 0)
-                return null;
+                return Lista;
             else
             {
                 for (int n = 0; n < tabela.Rows.Count; n++)

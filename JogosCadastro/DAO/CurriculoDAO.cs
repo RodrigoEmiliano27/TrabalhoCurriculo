@@ -25,18 +25,18 @@ namespace TrabalhoCurriculo.DAO
             "telefone = @telefone, " +
             "cpf = @cpf, " +
             "email = @email," +
-            "cargoPretendido = @cargoPretendido"+
+            "cargoPretendido = @cargoPretendido, "+
             "Cep = @Cep, " +
             "rua = @rua, " +
             "Bairro = @Bairro, " +
             "Cidade = @Cidade, " +
-            "Estado = @Estado, " +
+            "Estado = @Estado " +
             "where id = @id";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Curriculo));
         }
         private SqlParameter[] CriaParametros(CurriculoViewModel Curriculo)
         {
-            SqlParameter[] parametros = new SqlParameter[10];
+            SqlParameter[] parametros = new SqlParameter[11];
             parametros[0] = new SqlParameter("nome", Curriculo.Nome);
             parametros[1] = new SqlParameter("telefone", Curriculo.Telefone);
             parametros[2] = new SqlParameter("cpf", Curriculo.CPF);
@@ -47,7 +47,8 @@ namespace TrabalhoCurriculo.DAO
             parametros[7] = new SqlParameter("Bairro", Curriculo.Bairro);
             parametros[8] = new SqlParameter("Cidade", Curriculo.Cidade);
             parametros[9] = new SqlParameter("Estado", Curriculo.Estado);
-            
+            parametros[10] = new SqlParameter("id", Curriculo.Id);
+
             return parametros;
         }
         public void Excluir(int id)

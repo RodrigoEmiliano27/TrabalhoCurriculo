@@ -13,6 +13,7 @@ namespace TrabalhoCurriculo.Models
             Formacao = new List<FormacaoViewModel>();
             Idiomas = new List<IdiomaViewModel>();
             Habilidades = new List<HabilidadesViewModel>();
+            this.Id = -1;
         }
         public int Id { get; set; }
         public string Nome { get; set; }
