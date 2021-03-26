@@ -21,7 +21,7 @@ namespace TrabalhoCurriculo.DAO
         {
             string sql =
             "update Idiomas set Idioma = @Idioma, " +
-            "Nivel = @Nivel, " +
+            "Nivel = @Nivel " +
             "where id = @id and idCurriculo=@idCurriculo";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Idioma));
         }

@@ -20,8 +20,8 @@ namespace TrabalhoCurriculo.DAO
         public void Alterar(HabilidadesViewModel Habilidade)
         {
             string sql =
-            "update Idiomas set Descricao = @Descricao, " +
-            "Nivel = @Nivel, " +
+            "update Habilidades set Descricao = @Descricao, " +
+            "Nivel = @Nivel " +
             "where id = @id and idCurriculo=@idCurriculo";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Habilidade));
         }

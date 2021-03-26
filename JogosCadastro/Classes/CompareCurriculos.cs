@@ -92,6 +92,7 @@ namespace TrabalhoCurriculo.Classes
                         achou = true;
                         if (FormacaoChanged(form, form2))
                              formDao.Alterar(form2);
+                        break;
                         
                     }
                 }
@@ -137,6 +138,7 @@ namespace TrabalhoCurriculo.Classes
                         achou = true;
                         if (IdioChanged(form, form2))
                             IdiDao.Alterar(form2);
+                        break;
                        
                     }
                 }
@@ -183,6 +185,7 @@ namespace TrabalhoCurriculo.Classes
                         achou = true;
                         if (HabChanged(form, form2))
                             HabDao.Alterar(form2);
+                        break;
                         
                     }
                 }

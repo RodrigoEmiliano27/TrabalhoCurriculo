@@ -53,7 +53,7 @@ namespace TrabalhoCurriculo.DAO
         }
         public void Excluir(int id)
         {
-            string sql = "delete Curriculos where id =" + id;
+            string sql = "EXEC DeletarCurriculo @idCurriculo = " + id;
             HelperDAO.ExecutaSQL(sql, null);
         }
        public int ProximoId()
