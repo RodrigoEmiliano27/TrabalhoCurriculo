@@ -59,6 +59,8 @@ namespace TrabalhoCurriculo.Classes
                 return true;
             else if (CurriculoVelho.Estado != CurriculoNovo.Estado)
                 return true;
+            else if (CurriculoVelho.Numero_Endereco != CurriculoNovo.Numero_Endereco)
+                return true;
 
             return false;
         }

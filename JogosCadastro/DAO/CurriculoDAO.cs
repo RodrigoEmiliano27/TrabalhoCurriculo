@@ -14,8 +14,8 @@ namespace TrabalhoCurriculo.DAO
         public void Inserir(CurriculoViewModel Curriculo)
         {
             string sql =
-            "insert into Curriculos( nome, telefone,cpf, email, cargoPretendido,Cep,rua,Bairro,Cidade,Estado)" +
-            "values ( @nome, @telefone,@cpf, @email, @cargoPretendido,@Cep,@rua,@Bairro,@Cidade,@Estado)";
+            "insert into Curriculos( nome, telefone,cpf, email, cargoPretendido,Cep,rua,Bairro,Cidade,Estado,Numero)" +
+            "values ( @nome, @telefone,@cpf, @email, @cargoPretendido,@Cep,@rua,@Bairro,@Cidade,@Estado,@Numero)";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Curriculo));
         }
         public void Alterar(CurriculoViewModel Curriculo)
@@ -30,13 +30,14 @@ namespace TrabalhoCurriculo.DAO
             "rua = @rua, " +
             "Bairro = @Bairro, " +
             "Cidade = @Cidade, " +
-            "Estado = @Estado " +
+            "Estado = @Estado, " +
+            "Numero = @Numero " +
             "where id = @id";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Curriculo));
         }
         private SqlParameter[] CriaParametros(CurriculoViewModel Curriculo)
         {
-            SqlParameter[] parametros = new SqlParameter[11];
+            SqlParameter[] parametros = new SqlParameter[12];
             parametros[0] = new SqlParameter("nome", Curriculo.Nome);
             parametros[1] = new SqlParameter("telefone", Curriculo.Telefone);
             parametros[2] = new SqlParameter("cpf", Curriculo.CPF);
@@ -47,6 +48,7 @@ namespace TrabalhoCurriculo.DAO
             parametros[7] = new SqlParameter("Bairro", Curriculo.Bairro);
             parametros[8] = new SqlParameter("Cidade", Curriculo.Cidade);
             parametros[9] = new SqlParameter("Estado", Curriculo.Estado);
+            parametros[9] = new SqlParameter("Numero", Curriculo.Numero_Endereco);
             parametros[10] = new SqlParameter("id", Curriculo.Id);
 
             return parametros;
@@ -76,6 +78,7 @@ namespace TrabalhoCurriculo.DAO
             a.Bairro = registro["Bairro"].ToString();
             a.Cidade = registro["Cidade"].ToString();
             a.Estado = registro["Estado"].ToString();
+            a.Numero_Endereco = Convert.ToInt32(registro["Numero"]);
             return a;
         }
 

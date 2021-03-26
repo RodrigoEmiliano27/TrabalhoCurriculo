@@ -22,6 +22,7 @@ namespace TrabalhoCurriculo.Models
         public string Email { get; set; }
         public string Cargo_Pretendido { get; set; }
         public string CEP { get; set; }
+        public int Numero_Endereco { get; set; }
         public string Rua { get; set; }
         public string Bairro { get; set; }
         public string Cidade { get; set; }
