@@ -48,8 +48,8 @@ namespace TrabalhoCurriculo.DAO
             parametros[7] = new SqlParameter("Bairro", Curriculo.Bairro);
             parametros[8] = new SqlParameter("Cidade", Curriculo.Cidade);
             parametros[9] = new SqlParameter("Estado", Curriculo.Estado);
-            parametros[9] = new SqlParameter("Numero", Curriculo.Numero_Endereco);
-            parametros[10] = new SqlParameter("id", Curriculo.Id);
+            parametros[10] = new SqlParameter("Numero", Curriculo.Numero_Endereco);
+            parametros[11] = new SqlParameter("id", Curriculo.Id);
 
             return parametros;
         }
