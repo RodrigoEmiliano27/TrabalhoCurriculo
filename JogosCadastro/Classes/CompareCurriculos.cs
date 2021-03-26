@@ -73,7 +73,12 @@ namespace TrabalhoCurriculo.Classes
             if (CurriculoVelho.Formacao.Count == 0 && CurriculoNovo.Formacao.Count > 0)
             {
                 foreach (FormacaoViewModel form in CurriculoNovo.Formacao)
+                {
+                    form.IdCurriculo = CurriculoVelho.Id;
                     formDao.Inserir(form);
+
+                }
+                    
 
                 return;
             }
@@ -86,8 +91,8 @@ namespace TrabalhoCurriculo.Classes
                     {
                         achou = true;
                         if (FormacaoChanged(form, form2))
-                            formDao.Alterar(form);
-                        break;
+                             formDao.Alterar(form2);
+                        
                     }
                 }
                 // o Id não foi encontrado logo terá que ser excluido
@@ -99,17 +104,11 @@ namespace TrabalhoCurriculo.Classes
             //verifica inserção de dados
             foreach (FormacaoViewModel form2 in CurriculoNovo.Formacao)
             {
-                foreach (FormacaoViewModel form in CurriculoVelho.Formacao)
+                if (form2.Id == 0)
                 {
-                    if (form2.Id == form.Id)
-                    {
-                        achou = true;
-                        break;
-                    }
-                }
-                form2.IdCurriculo = CurriculoNovo.Id;
-                if (!achou)
+                    form2.IdCurriculo = CurriculoVelho.Id;
                     formDao.Inserir(form2);
+                }                            
 
             }
         }
@@ -121,7 +120,10 @@ namespace TrabalhoCurriculo.Classes
             if (CurriculoVelho.Idiomas.Count == 0 && CurriculoNovo.Idiomas.Count > 0)
             {
                 foreach (IdiomaViewModel form in CurriculoNovo.Idiomas)
+                {
+                    form.IdCurriculo = CurriculoVelho.Id;
                     IdiDao.Inserir(form);
+                }
 
                 return;
             }
@@ -134,8 +136,8 @@ namespace TrabalhoCurriculo.Classes
                     {
                         achou = true;
                         if (IdioChanged(form, form2))
-                            IdiDao.Alterar(form);
-                        break;
+                            IdiDao.Alterar(form2);
+                       
                     }
                 }
                 // o Id não foi encontrado logo terá que ser excluido
@@ -147,17 +149,11 @@ namespace TrabalhoCurriculo.Classes
             //verifica inserção de dados
             foreach (IdiomaViewModel form2 in CurriculoNovo.Idiomas)
             {
-                foreach (IdiomaViewModel form in CurriculoVelho.Idiomas)
+                if (form2.Id == 0)
                 {
-                    if (form2.Id == form.Id)
-                    {
-                        achou = true;
-                        break;
-                    }
-                }
-                form2.IdCurriculo = CurriculoNovo.Id;
-                if (!achou)
+                    form2.IdCurriculo = CurriculoVelho.Id;
                     IdiDao.Inserir(form2);
+                }
 
             }
 
@@ -170,7 +166,10 @@ namespace TrabalhoCurriculo.Classes
             if (CurriculoVelho.Habilidades.Count == 0 && CurriculoNovo.Habilidades.Count > 0)
             {
                 foreach (HabilidadesViewModel form in CurriculoNovo.Habilidades)
+                {
+                    form.IdCurriculo = CurriculoVelho.Id;
                     HabDao.Inserir(form);
+                }
 
                 return;
             }
@@ -183,8 +182,8 @@ namespace TrabalhoCurriculo.Classes
                     {
                         achou = true;
                         if (HabChanged(form, form2))
-                            HabDao.Alterar(form);
-                        break;
+                            HabDao.Alterar(form2);
+                        
                     }
                 }
                 // o Id não foi encontrado logo terá que ser excluido
@@ -196,50 +195,43 @@ namespace TrabalhoCurriculo.Classes
             //verifica inserção de dados
             foreach (HabilidadesViewModel form2 in CurriculoNovo.Habilidades)
             {
-                foreach (HabilidadesViewModel form in CurriculoVelho.Habilidades)
+                if (form2.Id == 0)
                 {
-                    if (form2.Id == form.Id)
-                    {
-                        achou = true;
-                        break;
-                    }
-                }
-                form2.IdCurriculo = CurriculoNovo.Id;
-                if (!achou)
+                    form2.IdCurriculo = CurriculoVelho.Id;
                     HabDao.Inserir(form2);
+                }
 
             }
-
         }
 
 
         private bool FormacaoChanged(FormacaoViewModel fold, FormacaoViewModel fnew)
         {
-            if (fold.Descricao == fnew.Descricao)
+            if (fold.Descricao!= fnew.Descricao)
                 return true;
-            else if (fold.Instituicao == fnew.Instituicao)
+            else if (fold.Instituicao != fnew.Instituicao)
                 return true;
-            else if (fold.Inicio == fnew.Inicio)
+            else if (fold.Inicio != fnew.Inicio)
                 return true;
-            else if (fold.Fim == fnew.Fim)
+            else if (fold.Fim != fnew.Fim)
                 return true;
 
             return false;
         }
         private bool IdioChanged(IdiomaViewModel Iold, IdiomaViewModel Inew)
         {
-            if (Iold.Idioma == Inew.Idioma)
+            if (Iold.Idioma != Inew.Idioma)
                 return true;
-            else if (Iold.Nivel == Inew.Nivel)
+            else if (Iold.Nivel != Inew.Nivel)
                 return true;
 
             return false;
         }
         private bool HabChanged(HabilidadesViewModel old, HabilidadesViewModel novo)
         {
-            if (old.Descricao == novo.Descricao)
+            if (old.Descricao != novo.Descricao)
                 return true;
-            else if (old.Nivel == novo.Nivel)
+            else if (old.Nivel != novo.Nivel)
                 return true;
 
             return false;

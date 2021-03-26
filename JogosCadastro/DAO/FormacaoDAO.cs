@@ -24,7 +24,7 @@ namespace TrabalhoCurriculo.DAO
             "update FormacaoAcademica set Descricao = @Descricao, " +
             "instituicao = @instituicao, " +
             "inicio = @inicio, " +
-            "fim = @fim," +
+            "fim = @fim  " +
             "where id = @id and idCurriculo=@idCurriculo";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Formacao));
         }
