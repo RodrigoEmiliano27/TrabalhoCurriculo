@@ -84,24 +84,21 @@ namespace TrabalhoCurriculo.Classes
 
                 return;
             }
-            //Verifica uma exclusão de formação
+            //Verifica uma exclusão de formação ou uma alteração
             foreach (FormacaoViewModel form in CurriculoVelho.Formacao)
             {
                 foreach (FormacaoViewModel form2 in CurriculoNovo.Formacao)
                 {
                     if (form2.Id == form.Id)
                     {
-                        achou = true;
-                        if (FormacaoChanged(form, form2))
-                             formDao.Alterar(form2);
+                        if(form2.IdCurriculo==-1)
+                            formDao.Excluir(form2.Id, form.IdCurriculo);
+                        else if (FormacaoChanged(form, form2))
+                            formDao.Alterar(form2);
                         break;
                         
                     }
                 }
-                // o Id não foi encontrado logo terá que ser excluido
-                if (!achou)
-                    formDao.Excluir(form.Id, form.IdCurriculo);
-                achou = false;
             }
             achou = false;
             //verifica inserção de dados
@@ -130,26 +127,24 @@ namespace TrabalhoCurriculo.Classes
 
                 return;
             }
-            //Verifica uma exclusão de Idiomas
+            //Verifica uma exclusão de Idiomas ou uma alteração
             foreach (IdiomaViewModel form in CurriculoVelho.Idiomas)
             {
                 foreach (IdiomaViewModel form2 in CurriculoNovo.Idiomas)
                 {
                     if (form2.Id == form.Id)
                     {
-                        achou = true;
-                        if (IdioChanged(form, form2))
+                        if (form2.IdCurriculo == -1)
+                            IdiDao.Excluir(form2.Id, form.IdCurriculo);
+                        else if (IdioChanged(form, form2))
                             IdiDao.Alterar(form2);
                         break;
-                       
+
                     }
                 }
                 // o Id não foi encontrado logo terá que ser excluido
-                if (!achou)
-                    IdiDao.Excluir(form.Id, form.IdCurriculo);
-                achou = false;
+
             }
-            achou = false;
             //verifica inserção de dados
             foreach (IdiomaViewModel form2 in CurriculoNovo.Idiomas)
             {
@@ -177,26 +172,23 @@ namespace TrabalhoCurriculo.Classes
 
                 return;
             }
-            //Verifica uma exclusão de Habilidades
+            //Verifica uma exclusão de Habilidades ou uma alteração
             foreach (HabilidadesViewModel form in CurriculoVelho.Habilidades)
             {
                 foreach (HabilidadesViewModel form2 in CurriculoNovo.Habilidades)
                 {
                     if (form2.Id == form.Id)
                     {
-                        achou = true;
-                        if (HabChanged(form, form2))
+                        if (form2.IdCurriculo == -1)
+                            HabDao.Excluir(form2.Id, form.IdCurriculo);
+                        else if (HabChanged(form, form2))
                             HabDao.Alterar(form2);
                         break;
-                        
+
                     }
                 }
-                // o Id não foi encontrado logo terá que ser excluido
-                if (!achou)
-                    HabDao.Excluir(form.Id, form.IdCurriculo);
-                achou = false;
+               
             }
-            achou = false;
             //verifica inserção de dados
             foreach (HabilidadesViewModel form2 in CurriculoNovo.Habilidades)
             {
