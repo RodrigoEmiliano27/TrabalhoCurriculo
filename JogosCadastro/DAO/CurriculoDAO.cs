@@ -14,8 +14,10 @@ namespace TrabalhoCurriculo.DAO
         public void Inserir(CurriculoViewModel Curriculo)
         {
             string sql =
-            "insert into Curriculos( nome, telefone,cpf, email, cargoPretendido,Cep,rua,Bairro,Cidade,Estado,Numero)" +
-            "values ( @nome, @telefone,@cpf, @email, @cargoPretendido,@Cep,@rua,@Bairro,@Cidade,@Estado,@Numero)";
+            "insert into Curriculos( nome, telefone,cpf, email, cargoPretendido,Cep,rua" +
+            ",Bairro,Cidade,Estado,Numero,Facebook,Linkdin,Instagram,SobreMim,Imagem)" +
+            "values ( @nome, @telefone,@cpf, @email, @cargoPretendido,@Cep,@rua,@Bairro" +
+            ",@Cidade,@Estado,@Numero,@Facebook,@Linkdin,@Instagram,@SobreMim,@Imagem)";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Curriculo));
         }
         public void Alterar(CurriculoViewModel Curriculo)
@@ -32,12 +34,21 @@ namespace TrabalhoCurriculo.DAO
             "Cidade = @Cidade, " +
             "Estado = @Estado, " +
             "Numero = @Numero " +
+            "Facebook = @Facebook, " +
+            "Linkdin = @Linkdin, " +
+            "Instagram = @Instagram, " +
+            "SobreMim = @SobreMim, " +
+            "Imagem = @Imagem " +
             "where id = @id";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Curriculo));
         }
         private SqlParameter[] CriaParametros(CurriculoViewModel Curriculo)
         {
-            SqlParameter[] parametros = new SqlParameter[12];
+            object imgByte = Curriculo.ImagemEmByte;
+            if (imgByte == null)
+                imgByte = DBNull.Value;
+
+            SqlParameter[] parametros = new SqlParameter[17];
             parametros[0] = new SqlParameter("nome", Curriculo.Nome);
             parametros[1] = new SqlParameter("telefone", Curriculo.Telefone);
             parametros[2] = new SqlParameter("cpf", Curriculo.CPF);
@@ -49,7 +60,12 @@ namespace TrabalhoCurriculo.DAO
             parametros[8] = new SqlParameter("Cidade", Curriculo.Cidade);
             parametros[9] = new SqlParameter("Estado", Curriculo.Estado);
             parametros[10] = new SqlParameter("Numero", Curriculo.Numero_Endereco);
-            parametros[11] = new SqlParameter("id", Curriculo.Id);
+            parametros[11] = new SqlParameter("Facebook", Curriculo.Facebook);
+            parametros[12] = new SqlParameter("Linkdin", Curriculo.Linkdin);
+            parametros[13] = new SqlParameter("Instagram", Curriculo.Instagram);
+            parametros[14] = new SqlParameter("SobreMim", Curriculo.SobreMim);
+            parametros[15] = new SqlParameter("Imagem", imgByte);
+            parametros[16] = new SqlParameter("id", Curriculo.Id);
 
             return parametros;
         }
@@ -79,6 +95,13 @@ namespace TrabalhoCurriculo.DAO
             a.Cidade = registro["Cidade"].ToString();
             a.Estado = registro["Estado"].ToString();
             a.Numero_Endereco = Convert.ToInt32(registro["Numero"]);
+            a.Facebook = registro["Facebook"].ToString();
+            a.Linkdin = registro["Linkdin"].ToString();
+            a.Instagram = registro["Instagram"].ToString();
+            a.SobreMim = registro["SobreMim"].ToString();
+
+            if (registro["imagem"] != DBNull.Value)
+                a.ImagemEmByte = registro["imagem"] as byte[];
             return a;
         }
 

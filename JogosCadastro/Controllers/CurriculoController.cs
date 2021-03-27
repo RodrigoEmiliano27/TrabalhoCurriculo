@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TrabalhoCurriculo.Classes;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace TrabalhoCurriculo.Controllers
 {
@@ -95,6 +97,22 @@ namespace TrabalhoCurriculo.Controllers
             {
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
+        }
+        /// <summary>
+        /// Converte a imagem recebida no form em um vetor de bytes
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        public byte[] ConvertImageToByte(IFormFile file)
+        {
+            if (file != null)
+                using (var ms = new MemoryStream())
+                {
+                    file.CopyTo(ms);
+                    return ms.ToArray();
+                }
+            else
+                return null;
         }
         public IActionResult Delete(int id)
         {
