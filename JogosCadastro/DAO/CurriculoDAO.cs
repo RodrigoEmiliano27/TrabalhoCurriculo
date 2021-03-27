@@ -33,7 +33,7 @@ namespace TrabalhoCurriculo.DAO
             "Bairro = @Bairro, " +
             "Cidade = @Cidade, " +
             "Estado = @Estado, " +
-            "Numero = @Numero " +
+            "Numero = @Numero, " +
             "Facebook = @Facebook, " +
             "Linkdin = @Linkdin, " +
             "Instagram = @Instagram, " +

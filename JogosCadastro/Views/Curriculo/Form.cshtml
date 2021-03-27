@@ -15,7 +15,7 @@
         @if (@Model.Id >= 0)
         {
             <label for="id" class="control-label">Id</label>
-            <input type="number" Name="id" value="@Model.Id" class="form-control" readonly/>
+            <input type="number" Name="id" value="@Model.Id" class="form-control" readonly />
         }
 
         <label for="nome" class="control-label">Nome</label>
@@ -55,7 +55,20 @@
         <label for="estado" class="control-label">Estado</label>
         <input type="text" Name="estado" value="@Model.Estado" class="form-control" />
 
-       
+
+        <label for="estado" class="control-label">Facebook</label>
+        <input type="text" Name="Facebook" value="@Model.Facebook" class="form-control" />
+
+        <label for="Linkdin" class="control-label">Linked in</label>
+        <input type="text" Name="Linkdin" value="@Model.Linkdin" class="form-control" />
+
+        <label for="Instagram" class="control-label">Instagram</label>
+        <input type="text" Name="Instagram" value="@Model.Instagram" class="form-control" />
+
+        <label for="SobreMim" class="control-label">Sobre mim</label>
+        <textarea type="text" Name="SobreMim" value="@Model.SobreMim" class="form-control"></textarea>
+
+
         <div id="formacao_group">
             <h3>Formações</h3>
             @if (@Model.Formacao != null && @Model.Formacao.Count > 0)
@@ -85,7 +98,7 @@
                         <label for="Formacao[@i].Fim" class="control-label">Fim</label>
                         <input type="date" Name="Formacao[@i].Fim" value="@Model.Formacao[i].Fim" class="form-control" />
 
-                        <input type="button" id="btRemoveFormacao @i" value="Remover" onclick="removeFormacao(this)"/>
+                        <input type="button" id="btRemoveFormacao @i" value="Remover" onclick="removeFormacao(this)" />
 
                     </div>
                 }
@@ -116,9 +129,9 @@
 
                         <label for="Idiomas[@i].Nivel" class="control-label">Nível</label>
                         <input type="text" Name="Idiomas[@i].Nivel" value="@Model.Idiomas[i].Nivel" class="form-control" />
-                    
-                    
-                        <input type="button" id="btRemoveIdioma @i" value="Remover" onclick="removeIdioma(this)"/>
+
+
+                        <input type="button" id="btRemoveIdioma @i" value="Remover" onclick="removeIdioma(this)" />
                     </div>
                 }
             }
@@ -152,8 +165,8 @@
                         <label for="Habilidades[@i].Nivel" class="control-label">Nivel</label>
                         <input type="number" Name="Habilidades[@i].Nivel" value="@Model.Habilidades[i].Nivel" class="form-control" />
 
-                        <input type="button" id="btRemoveHabilidade @i" value="Remover" onclick="removeIdioma(this)"/>
-                     </div>
+                        <input type="button" id="btRemoveHabilidade @i" value="Remover" onclick="removeIdioma(this)" />
+                    </div>
                 }
             }
 
@@ -371,6 +384,7 @@
         removeId = e.id.replace("btRemoveIdioma ","");
 
         //recupera a div que forma o container
+        console.log(document.getElementsByClassName(`idioma-item ${removeId}`));
         itemToRemove = document.getElementsByClassName(`idioma-item ${removeId}`)[0]
 
         //alterar o id do curriculo
@@ -388,6 +402,7 @@
         removeId = e.id.replace("btRemoveFormacao ","");
 
         //recupera a div que forma o container
+        console.log(document.getElementsByClassName(`formacao-item ${removeId}`));
         itemToRemove = document.getElementsByClassName(`formacao-item ${removeId}`)[0]
 
         //alterar o id do curriculo
