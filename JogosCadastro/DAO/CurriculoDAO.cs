@@ -14,10 +14,12 @@ namespace TrabalhoCurriculo.DAO
         public void Inserir(CurriculoViewModel Curriculo)
         {
             string sql =
-            "insert into Curriculos( nome, telefone,cpf, email, cargoPretendido,Cep,rua" +
+            "SET ANSI_WARNINGS  OFF " +
+            "insert into Curriculos(nome, telefone,cpf, email, cargoPretendido,Cep,rua" +
             ",Bairro,Cidade,Estado,Numero,Facebook,Linkdin,Instagram,SobreMim,Imagem)" +
             "values ( @nome, @telefone,@cpf, @email, @cargoPretendido,@Cep,@rua,@Bairro" +
-            ",@Cidade,@Estado,@Numero,@Facebook,@Linkdin,@Instagram,@SobreMim,@Imagem)";
+            ",@Cidade,@Estado,@Numero,@Facebook,@Linkdin,@Instagram,@SobreMim,@Imagem) " +
+            "SET ANSI_WARNINGS ON ";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Curriculo));
         }
         public void Alterar(CurriculoViewModel Curriculo)
@@ -46,7 +48,7 @@ namespace TrabalhoCurriculo.DAO
         {
             object imgByte = Curriculo.ImagemEmByte;
             if (imgByte == null)
-                imgByte = DBNull.Value;
+                imgByte = new byte[] { };
 
             SqlParameter[] parametros = new SqlParameter[17];
             parametros[0] = new SqlParameter("nome", Curriculo.Nome);
@@ -60,11 +62,12 @@ namespace TrabalhoCurriculo.DAO
             parametros[8] = new SqlParameter("Cidade", Curriculo.Cidade);
             parametros[9] = new SqlParameter("Estado", Curriculo.Estado);
             parametros[10] = new SqlParameter("Numero", Curriculo.Numero_Endereco);
-            parametros[11] = new SqlParameter("Facebook", Curriculo.Facebook);
-            parametros[12] = new SqlParameter("Linkdin", Curriculo.Linkdin);
-            parametros[13] = new SqlParameter("Instagram", Curriculo.Instagram);
-            parametros[14] = new SqlParameter("SobreMim", Curriculo.SobreMim);
+            parametros[11] = new SqlParameter("Facebook", Curriculo.Facebook != null ? Curriculo.Facebook:"");
+            parametros[12] = new SqlParameter("Linkdin", Curriculo.Linkdin != null ? Curriculo.Linkdin : "");
+            parametros[13] = new SqlParameter("Instagram", Curriculo.Instagram != null ? Curriculo.Instagram : "");
+            parametros[14] = new SqlParameter("SobreMim", Curriculo.SobreMim != null ? Curriculo.SobreMim : "");
             parametros[15] = new SqlParameter("Imagem", imgByte);
+
             parametros[16] = new SqlParameter("id", Curriculo.Id);
 
             return parametros;
