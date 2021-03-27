@@ -63,14 +63,14 @@
 
                 for (int i = 0; i < @Model.Formacao.Count; i++)
                 {
-                    <div class="formacao-item">
+                    <div class="formacao-item @i">
 
-                        <label for="Formacao[@i].Id" class="control-label">Id</label>
-                        <input type="text" Name="Formacao[@i].Id" value="@Model.Formacao[i].Id" class="form-control" readonly />
+                        <label for="Formacao[@i].Id" class="control-label hide">Id</label>
+                        <input type="text" Name="Formacao[@i].Id" value="@Model.Formacao[i].Id" class="form-control hide" readonly />
 
 
-                        <label for="Formacao[@i].IdCurriculo" class="control-label">Id Curriculo</label>
-                        <input type="text" Name="Formacao[@i].IdCurriculo" value="@Model.Formacao[i].IdCurriculo" class="form-control" readonly />
+                        <label for="Formacao[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
+                        <input type="text" Name="Formacao[@i].IdCurriculo" value="@Model.Formacao[i].IdCurriculo" class="form-control hide" readonly />
 
                         <label for="Formacao[@i].Instituicao" class="control-label">Instituição</label>
                         <input type="text" Name="Formacao[@i].Instituicao" value="@Model.Formacao[i].Instituicao" class="form-control" />
@@ -84,6 +84,8 @@
 
                         <label for="Formacao[@i].Fim" class="control-label">Fim</label>
                         <input type="date" Name="Formacao[@i].Fim" value="@Model.Formacao[i].Fim" class="form-control" />
+
+                        <input type="button" id="btRemoveFormacao @i" value="Remover" onclick="removeFormacao(this)"/>
 
                     </div>
                 }
@@ -99,7 +101,7 @@
             {
                 for (int i = 0; i < @Model.Idiomas.Count; i++)
                 {
-                    <div class="idioma-item">
+                    <div class="idioma-item @i">
                         <label for="Idiomas[@i].Id" class="control-label">Id</label>
                         <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control" readonly />
 
@@ -114,6 +116,9 @@
 
                         <label for="Idiomas[@i].Nivel" class="control-label">Nível</label>
                         <input type="text" Name="Idiomas[@i].Nivel" value="@Model.Idiomas[i].Nivel" class="form-control" />
+                    
+                    
+                        <input type="button" id="btRemoveIdioma @i" value="Remover" onclick="removeIdioma(this)"/>
                     </div>
                 }
             }
@@ -129,12 +134,12 @@
                 {
                     <div class="habilidade-item @i">
 
-                        <label for="Habilidades[@i].Id" class="control-label">Id</label>
-                        <input type="text" Name="Habilidades[@i].Id" value="@Model.Habilidades[i].Id" class="form-control" readonly />
+                        <label for="Habilidades[@i].Id" class="control-label hide">Id</label>
+                        <input type="text" Name="Habilidades[@i].Id" value="@Model.Habilidades[i].Id" class="form-control hide" readonly />
 
 
-                        <label for="Habilidades[@i].IdCurriculo" class="control-label">Id Curriculo</label>
-                        <input type="text" Name="Habilidades[@i].IdCurriculo" value="@Model.Habilidades[i].IdCurriculo" class="form-control" readonly />
+                        <label for="Habilidades[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
+                        <input type="text" Name="Habilidades[@i].IdCurriculo" value="@Model.Habilidades[i].IdCurriculo" class="form-control hide" readonly />
 
 
                         <label for="Habilidades[@i].Descricao" class="control-label">Descrição</label>
@@ -147,7 +152,7 @@
                         <label for="Habilidades[@i].Nivel" class="control-label">Nivel</label>
                         <input type="number" Name="Habilidades[@i].Nivel" value="@Model.Habilidades[i].Nivel" class="form-control" />
 
-                        <input type="button" id="btRemoveHabilidade @i" value="Remover" onclick="removeHabilidade(this)"/>
+                        <input type="button" id="btRemoveHabilidade @i" value="Remover" onclick="removeIdioma(this)"/>
                      </div>
                 }
             }
@@ -186,7 +191,27 @@
     {
 
         formacaoDiv = document.createElement("div");
-        formacaoDiv.setAttribute("class", "formacao-item");
+        formacaoDiv.setAttribute("class", `formacao-item ${formacoes}`);
+
+
+        //id
+        
+        idInput = document.createElement("input");
+        idInput.setAttribute("type", "text");
+        idInput.setAttribute("name", `Formacao[${formacoes}].Id`);
+        idInput.setAttribute("class", `form-control hide`);
+
+        formacaoDiv.appendChild(idInput);
+    
+
+        //id curriculo
+
+        idCurriculoInput = document.createElement("input");
+        idCurriculoInput.setAttribute("type", "text");
+        idCurriculoInput.setAttribute("name", `Formacao[${formacoes}].IdCurriculo`);
+        idCurriculoInput.setAttribute("class", `form-control hide`);
+
+        formacaoDiv.appendChild(idCurriculoInput);
 
         // instituição
 
@@ -243,6 +268,14 @@
 
         formacaoDiv.appendChild(fimInput);
 
+        buttonRemove = document.createElement("input");
+        buttonRemove.setAttribute("type","button");
+        buttonRemove.setAttribute("id", `btRemoveFormacao ${idiomas}`);
+        buttonRemove.setAttribute("value", `Remover`);
+        buttonRemove.setAttribute("onclick", `removeFormacao(this)`);
+    
+        formacaoDiv.appendChild(buttonRemove);
+
 
         formacoes++;
 
@@ -251,8 +284,27 @@
     }
 
     function adcionaIdioma() {
+
         idiomaDiv = document.createElement("div")
-        idiomaDiv.setAttribute("class","idioma-item");
+        idiomaDiv.setAttribute("class",`idioma-item ${idiomas}`);
+
+        //id
+
+        idInput = document.createElement("input");
+        idInput.setAttribute("type", "text");
+        idInput.setAttribute("name", `Idiomas[${idiomas}].Id`);
+        idInput.setAttribute("class","form-control hide")
+
+        idiomaDiv.appendChild(idInput);
+
+        //id curriculo
+        idCurriculoInput = document.createElement("input");
+        idCurriculoInput = document.createElement("input");
+        idCurriculoInput.setAttribute("type", "text");
+        idCurriculoInput.setAttribute("name", `Idiomas[${idiomas}].IdCurriculo`);
+        idCurriculoInput.setAttribute("class","form-control hide");
+
+        idiomaDiv.appendChild(idCurriculoInput);
 
         // idioma
 
@@ -280,7 +332,16 @@
         nivelInput.setAttribute("type", "text");
         nivelInput.setAttribute("name", `Idiomas[${idiomas}].Nivel`);
 
+        
         idiomaDiv.appendChild(nivelInput);
+
+        buttonRemove = document.createElement("input");
+        buttonRemove.setAttribute("type","button");
+        buttonRemove.setAttribute("id", `btRemoveIdioma ${idiomas}`);
+        buttonRemove.setAttribute("value", `Remover`);
+        buttonRemove.setAttribute("onclick", `removeIdioma(this)`);
+    
+        idiomaDiv.appendChild(buttonRemove);
 
         idiomas++;
         divIdiomas.appendChild(idiomaDiv);
@@ -296,17 +357,75 @@
         itemToRemove = document.getElementsByClassName(`habilidade-item ${removeId}`)[0]
 
         //alterar o id do curriculo
-        idCurriculoElement = itemToRemove.getElementsByClassName("form-control")[1]
+        idCurriculoElement = itemToRemove.getElementsByClassName("form-control hide")[1]
         idCurriculoElement.value = "-1"
+
+        //esconde a habilidade
+        itemToRemove.setAttribute("class", "hide");
         
+    }
+
+    function removeIdioma(e)
+    {
+        //recupera o id do container que envolve o elemento a ser excluido
+        removeId = e.id.replace("btRemoveIdioma ","");
+
+        //recupera a div que forma o container
+        itemToRemove = document.getElementsByClassName(`idioma-item ${removeId}`)[0]
+
+        //alterar o id do curriculo
+        idCurriculoElement = itemToRemove.getElementsByClassName("form-control hide")[1]
+        idCurriculoElement.value = "-1"
+
+        //esconde o idioma
+        itemToRemove.setAttribute("class", "hide");
 
     }
+
+    function removeFormacao(e)
+    {
+        //recupera o id do container que envolve o elemento a ser excluido
+        removeId = e.id.replace("btRemoveFormacao ","");
+
+        //recupera a div que forma o container
+        itemToRemove = document.getElementsByClassName(`formacao-item ${removeId}`)[0]
+
+        //alterar o id do curriculo
+        idCurriculoElement = itemToRemove.getElementsByClassName("form-control hide")[1]
+        idCurriculoElement.value = "-1"
+
+        //esconde a formacao
+        itemToRemove.setAttribute("class", "hide");
+
+    }
+
+
+
 
     function adcionaHabilidade()
     {
 
         habilidadeDiv = document.createElement("div")
         habilidadeDiv.setAttribute("class", `habilidade-item ${habilidades}`);
+
+        //id
+        
+        idInput = document.createElement("input");
+        idInput.setAttribute("type", "text");
+        idInput.setAttribute("name", `Habilidades[${habilidades}].Id`);
+        idInput.setAttribute("class","form-control hide");
+
+        habilidadeDiv.appendChild(idInput);
+        
+
+        //id curriculo
+
+        idCurriculoInput = document.createElement("input");
+        idCurriculoInput.setAttribute("type", "text");
+        idCurriculoInput.setAttribute("name", `Habilidades[${habilidades}].IdCurriculo`);
+        idCurriculoInput.setAttribute("class","form-control hide");
+
+        habilidadeDiv.appendChild(idCurriculoInput);
 
         // descricao
 
@@ -319,6 +438,7 @@
         descricaoInput = document.createElement("input");
         descricaoInput.setAttribute("type", "text");
         descricaoInput.setAttribute("name", `Habilidades[${habilidades}].Descricao`);
+        descricaoInput.setAttribute("class","form-control");
 
         habilidadeDiv.appendChild(descricaoInput);
 
@@ -333,7 +453,7 @@
         nivelInput = document.createElement("input");
         nivelInput.setAttribute("type", "number");
         nivelInput.setAttribute("name", `Habilidades[${habilidades}].Nivel`);
-
+        nivelInput.setAttribute("class","form-control");
         habilidadeDiv.appendChild(nivelInput);
 
         buttonRemove = document.createElement("input");
@@ -350,5 +470,13 @@
     }
 
 </script>
+
+<style>
+
+    .hide{
+           display:none;
+        }
+</style>
+
 
 </html>
