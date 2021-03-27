@@ -127,7 +127,7 @@
             {
                 for (int i = 0; i < Model.Habilidades.Count; i++)
                 {
-                    <div class="habilidade-item">
+                    <div class="habilidade-item @i">
 
                         <label for="Habilidades[@i].Id" class="control-label">Id</label>
                         <input type="text" Name="Habilidades[@i].Id" value="@Model.Habilidades[i].Id" class="form-control" readonly />
@@ -147,6 +147,7 @@
                         <label for="Habilidades[@i].Nivel" class="control-label">Nivel</label>
                         <input type="number" Name="Habilidades[@i].Nivel" value="@Model.Habilidades[i].Nivel" class="form-control" />
 
+                        <input type="button" id="btRemoveHabilidade @i" value="Remover" onclick="removeHabilidade(this)"/>
                      </div>
                 }
             }
@@ -286,10 +287,26 @@
 
     }
 
-    function adcionaHabilidade() {
+    function removeHabilidade(e)
+    {
+        //recupera o id do container que envolve o elemento a ser excluido
+        removeId = e.id.replace("btRemoveHabilidade ","");
+
+        //recupera a div que forma o containerr
+        itemToRemove = document.getElementsByClassName(`habilidade-item ${removeId}`)[0]
+
+        //alterar o id do curriculo
+        idCurriculoElement = itemToRemove.getElementsByClassName("form-control")[1]
+        idCurriculoElement.value = "-1"
+        
+
+    }
+
+    function adcionaHabilidade()
+    {
 
         habilidadeDiv = document.createElement("div")
-        habilidadeDiv.setAttribute("class", "habilidade-item");
+        habilidadeDiv.setAttribute("class", `habilidade-item ${habilidades}`);
 
         // descricao
 
@@ -318,6 +335,14 @@
         nivelInput.setAttribute("name", `Habilidades[${habilidades}].Nivel`);
 
         habilidadeDiv.appendChild(nivelInput);
+
+        buttonRemove = document.createElement("input");
+        buttonRemove.setAttribute("type","button");
+        buttonRemove.setAttribute("id", `btRemoveHabilidade ${habilidades}`);
+        buttonRemove.setAttribute("value", `Remover`);
+        buttonRemove.setAttribute("onclick", `removeHabilidade(this)`);
+    
+        habilidadeDiv.appendChild(buttonRemove);
 
         habilidades++;
 
