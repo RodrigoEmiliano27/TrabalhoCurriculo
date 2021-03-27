@@ -59,6 +59,7 @@ namespace TrabalhoCurriculo.Controllers
                 FormacaoDAO fdao = new FormacaoDAO();
                 IdiomaDAO Idao = new IdiomaDAO();
                 HabilidadesDAO Hdao = new HabilidadesDAO();
+                cur.ImagemEmByte = ConvertImageToByte(cur.Imagem);
                 if (dao.Consulta(cur.Id) == null)
                 {
                     id = dao.ProximoId();

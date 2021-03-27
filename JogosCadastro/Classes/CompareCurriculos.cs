@@ -61,6 +61,16 @@ namespace TrabalhoCurriculo.Classes
                 return true;
             else if (CurriculoVelho.Numero_Endereco != CurriculoNovo.Numero_Endereco)
                 return true;
+            else if (CurriculoVelho.Facebook != CurriculoNovo.Facebook)
+                return true;
+            else if (CurriculoVelho.Linkdin != CurriculoNovo.Linkdin)
+                return true;
+            else if (CurriculoVelho.Instagram != CurriculoNovo.Instagram)
+                return true;
+            else if (CurriculoVelho.SobreMim != CurriculoNovo.SobreMim)
+                return true;
+            else if (Enumerable.SequenceEqual(CurriculoVelho.ImagemEmByte,CurriculoNovo.ImagemEmByte))
+                return true;
 
             return false;
         }
