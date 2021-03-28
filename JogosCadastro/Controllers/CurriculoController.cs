@@ -59,6 +59,7 @@ namespace TrabalhoCurriculo.Controllers
                 FormacaoDAO fdao = new FormacaoDAO();
                 IdiomaDAO Idao = new IdiomaDAO();
                 HabilidadesDAO Hdao = new HabilidadesDAO();
+                //cur.Nascimento = Convert.ToDateTime("10/07/1997");
                 cur.ImagemEmByte = ConvertImageToByte(cur.Imagem);
                 if (dao.Consulta(cur.Id) == null)
                 {
@@ -88,8 +89,8 @@ namespace TrabalhoCurriculo.Controllers
                 {
                     CompareCurriculos Compare = new CompareCurriculos(dao.Consulta(cur.Id), cur);
                     Compare.CompararCurriculo();
-                    dao.Alterar(cur);
-
+                    if (ViewBag.EditarImagem == "Editar")
+                        dao.AlterarImagem(cur.ImagemEmByte, cur.Id);
                 }
 
                 return RedirectToAction("index");

@@ -69,9 +69,6 @@ namespace TrabalhoCurriculo.Classes
                 return true;
             else if (CurriculoVelho.SobreMim != CurriculoNovo.SobreMim)
                 return true;
-            else if (Enumerable.SequenceEqual(CurriculoVelho.ImagemEmByte,CurriculoNovo.ImagemEmByte))
-                return true;
-
             return false;
         }
         /// <summary>

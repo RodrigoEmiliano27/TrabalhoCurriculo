@@ -14,13 +14,12 @@ namespace TrabalhoCurriculo.DAO
         public void Inserir(CurriculoViewModel Curriculo)
         {
             string sql =
-            "SET ANSI_WARNINGS  OFF " +
-            "SET DATEFORMAT dmy  "+
+            "SET DATEFORMAT dmy  " +
             "insert into Curriculos(nome, telefone,cpf, email,DataNascimento, cargoPretendido,Cep,rua" +
-            ",Bairro,Cidade,Estado,Numero,Facebook,Linkdin,Instagram,SobreMim,Imagem)" +
+            ",Bairro,Cidade,Estado,Numero,Facebook,Linkdin,Instagram,SobreMim)" +
             "values ( @nome, @telefone,@cpf, @email,@DataNascimento, @cargoPretendido,@Cep,@rua,@Bairro" +
-            ",@Cidade,@Estado,@Numero,@Facebook,@Linkdin,@Instagram,@SobreMim,@Imagem) " +
-            "SET ANSI_WARNINGS ON ";
+            ",@Cidade,@Estado,@Numero,@Facebook,@Linkdin,@Instagram,@SobreMim) ";
+            
             HelperDAO.ExecutaSQL(sql, CriaParametros(Curriculo));
         }
         public void Alterar(CurriculoViewModel Curriculo)
@@ -42,11 +41,23 @@ namespace TrabalhoCurriculo.DAO
             "Facebook = @Facebook, " +
             "Linkdin = @Linkdin, " +
             "Instagram = @Instagram, " +
-            "SobreMim = @SobreMim, " +
-            "Imagem = @Imagem " +
+            "SobreMim = @SobreMim " +
             "where id = @id";
             HelperDAO.ExecutaSQL(sql, CriaParametros(Curriculo));
         }
+        public void AlterarImagem(byte[] Imagem,int id)
+        {
+            string sql =
+            "SET ANSI_WARNINGS  OFF " +
+            "update Curriculos set Imagem = @Imagem " +
+            "where id = @id" +
+            "SET ANSI_WARNINGS ON ";
+            SqlParameter[] parametros = new SqlParameter[2];
+            parametros[0] = new SqlParameter("Imagem", Imagem);
+            parametros[1] = new SqlParameter("id", id);
+            HelperDAO.ExecutaSQL(sql, parametros);
+        }
+
         private SqlParameter[] CriaParametros(CurriculoViewModel Curriculo)
         {
             object imgByte = Curriculo.ImagemEmByte;
