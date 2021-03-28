@@ -42,6 +42,7 @@ namespace TrabalhoCurriculo.Models
         public string Telefone { get; set; }
         public string CPF { get; set; }
         public string Email { get; set; }
+        public DateTime Nascimento { get; set; }
         public string Cargo_Pretendido { get; set; }
         public string CEP { get; set; }
         public int Numero_Endereco { get; set; }
