@@ -10,7 +10,9 @@
 </head>
     
 <body>
-    <form asp-action="Salvar" method="post">
+    <form asp-action="Salvar" method="post" enctype="multipart/form-data">
+
+
 
         @if (@Model.Id >= 0)
         {
@@ -18,162 +20,169 @@
             <input type="number" Name="id" value="@Model.Id" class="form-control" readonly />
         }
 
-        <label for="nome" class="control-label">Nome</label>
-        <input type="text" Name="nome" value="@Model.Nome" class="form-control" />
 
-        <label for="telefone" class="control-label">Telefone</label>
-        <input type="text" Name="telefone" value="@Model.Telefone" class="form-control" />
-
-
-        <label for="CPF" class="control-label">CPF</label>
-        <input type="text" Name="CPF" value="@Model.CPF" class="form-control" />
+        <input type ="file" name="Imagem" id="Imagem" onchange="exibirImagem()" class="btn btn-secondary">
+            <img id ="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive" width="100">
+                <span asp-validation-for ="Imagem" class="text-danger"></span></input>
 
 
-        <label for="Email" class="control-label">E-Mail</label>
-        <input type="text" Name="Email" value="@Model.Email" class="form-control" />
+                    <label for="nome" class="control-label">Nome</label>
+                    <input type="text" Name="nome" value="@Model.Nome" class="form-control" />
+
+                    <label for="telefone" class="control-label">Telefone</label>
+                    <input type="text" Name="telefone" value="@Model.Telefone" class="form-control" />
 
 
-        <label for="cargo_pretendido" class="control-label">Cargo Pretendido</label>
-        <input type="text" Name="cargo_pretendido" value="@Model.Cargo_Pretendido" class="form-control" />
+                    <label for="CPF" class="control-label">CPF</label>
+                    <input type="text" Name="CPF" value="@Model.CPF" class="form-control" />
 
 
-        <label for="cep" class="control-label">CEP</label>
-        <input type="text" Name="cep" value="@Model.CEP" class="form-control" />
+                    <label for="Email" class="control-label">E-Mail</label>
+                    <input type="text" Name="Email" value="@Model.Email" class="form-control" />
 
 
-        <label for="rua" class="control-label">Rua</label>
-        <input type="text" Name="rua" value="@Model.Rua" class="form-control" />
-
-        <label for="bairro" class="control-label">Bairro</label>
-        <input type="text" Name="bairro" value="@Model.Bairro" class="form-control" />
+                    <label for="cargo_pretendido" class="control-label">Cargo Pretendido</label>
+                    <input type="text" Name="cargo_pretendido" value="@Model.Cargo_Pretendido" class="form-control" />
 
 
-        <label for="cidade" class="control-label">Cidade</label>
-        <input type="text" Name="cidade" value="@Model.Cidade" class="form-control" />
+                    <label for="cep" class="control-label">CEP</label>
+                    <input type="text" Name="cep" value="@Model.CEP" class="form-control" />
 
 
-        <label for="estado" class="control-label">Estado</label>
-        <input type="text" Name="estado" value="@Model.Estado" class="form-control" />
+                    <label for="rua" class="control-label">Rua</label>
+                    <input type="text" Name="rua" value="@Model.Rua" class="form-control" />
+
+                    <label for="bairro" class="control-label">Bairro</label>
+                    <input type="text" Name="bairro" value="@Model.Bairro" class="form-control" />
 
 
-        <label for="estado" class="control-label">Facebook</label>
-        <input type="text" Name="Facebook" value="@Model.Facebook" class="form-control" />
-
-        <label for="Linkdin" class="control-label">Linked in</label>
-        <input type="text" Name="Linkdin" value="@Model.Linkdin" class="form-control" />
-
-        <label for="Instagram" class="control-label">Instagram</label>
-        <input type="text" Name="Instagram" value="@Model.Instagram" class="form-control" />
-
-        <label for="SobreMim" class="control-label">Sobre mim</label>
-        <textarea type="text" Name="SobreMim" value="@Model.SobreMim" class="form-control"></textarea>
+                    <label for="cidade" class="control-label">Cidade</label>
+                    <input type="text" Name="cidade" value="@Model.Cidade" class="form-control" />
 
 
-        <div id="formacao_group">
-            <h3>Formações</h3>
-            @if (@Model.Formacao != null && @Model.Formacao.Count > 0)
-            {
-
-                for (int i = 0; i < @Model.Formacao.Count; i++)
-                {
-                    <div class="formacao-item @i">
-
-                        <label for="Formacao[@i].Id" class="control-label hide">Id</label>
-                        <input type="text" Name="Formacao[@i].Id" value="@Model.Formacao[i].Id" class="form-control hide" readonly />
+                    <label for="estado" class="control-label">Estado</label>
+                    <input type="text" Name="estado" value="@Model.Estado" class="form-control" />
 
 
-                        <label for="Formacao[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
-                        <input type="text" Name="Formacao[@i].IdCurriculo" value="@Model.Formacao[i].IdCurriculo" class="form-control hide" readonly />
+                    <label for="estado" class="control-label">Facebook</label>
+                    <input type="text" Name="Facebook" value="@Model.Facebook" class="form-control" />
 
-                        <label for="Formacao[@i].Instituicao" class="control-label">Instituição</label>
-                        <input type="text" Name="Formacao[@i].Instituicao" value="@Model.Formacao[i].Instituicao" class="form-control" />
+                    <label for="Linkdin" class="control-label">Linked in</label>
+                    <input type="text" Name="Linkdin" value="@Model.Linkdin" class="form-control" />
 
-                        <label for="Formacao[@i].Descricao" class="control-label">Descrição</label>
-                        <input type="text" Name="Formacao[@i].Descricao" value="@Model.Formacao[i].Descricao" class="form-control" />
+                    <label for="Instagram" class="control-label">Instagram</label>
+                    <input type="text" Name="Instagram" value="@Model.Instagram" class="form-control" />
 
-                        <label for="Formacao[@i].Inicio" class="control-label">Inicio</label>
-                        <input type="date" Name="Formacao[@i].Inicio" value="@Model.Formacao[i].Inicio" class="form-control" />
+                    <label for="SobreMim" class="control-label">Sobre mim</label>
+                    <textarea type="text" Name="SobreMim" class="form-control">@Model.SobreMim</textarea>
 
 
-                        <label for="Formacao[@i].Fim" class="control-label">Fim</label>
-                        <input type="date" Name="Formacao[@i].Fim" value="@Model.Formacao[i].Fim" class="form-control" />
+                    <div id="formacao_group">
+                        <h3>Formações</h3>
+                        @if (@Model.Formacao != null && @Model.Formacao.Count > 0)
+                        {
 
-                        <input type="button" id="btRemoveFormacao @i" value="Remover" onclick="removeFormacao(this)" />
+                            for (int i = 0; i < @Model.Formacao.Count; i++)
+                            {
+                                <div class="formacao-item @i">
 
+                                    <label for="Formacao[@i].Id" class="control-label hide">Id</label>
+                                    <input type="text" Name="Formacao[@i].Id" value="@Model.Formacao[i].Id" class="form-control hide" readonly />
+
+
+                                    <label for="Formacao[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
+                                    <input type="text" Name="Formacao[@i].IdCurriculo" value="@Model.Formacao[i].IdCurriculo" class="form-control hide" readonly />
+
+                                    <label for="Formacao[@i].Instituicao" class="control-label">Instituição</label>
+                                    <input type="text" Name="Formacao[@i].Instituicao" value="@Model.Formacao[i].Instituicao" class="form-control" />
+
+                                    <label for="Formacao[@i].Descricao" class="control-label">Descrição</label>
+                                    <input type="text" Name="Formacao[@i].Descricao" value="@Model.Formacao[i].Descricao" class="form-control" />
+
+                                    <label for="Formacao[@i].Inicio" class="control-label">Inicio</label>
+                                    <input type="date" Name="Formacao[@i].Inicio" value="@Model.Formacao[i].Inicio.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+
+
+
+                                    <label for="Formacao[@i].Fim" class="control-label">Fim</label>
+                                    <input type="date" Name="Formacao[@i].Fim" value="@Model.Formacao[i].Fim.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+
+                                    <input type="button" id="btRemoveFormacao @i" value="Remover" onclick="removeFormacao(this)" />
+
+                                </div>
+                            }
+
+                        }
+                        <input type="button" id="btAddFormacao" value="Adcionar Formação" />
                     </div>
-                }
-
-            }
-            <input type="button" id="btAddFormacao" value="Adcionar Formação" />
-        </div>
 
 
-        <div id="idiomas_group">
-            <h3>Idiomas</h3>
-            @if (@Model.Idiomas != null && @Model.Idiomas.Count > 0)
-            {
-                for (int i = 0; i < @Model.Idiomas.Count; i++)
-                {
-                    <div class="idioma-item @i">
-                        <label for="Idiomas[@i].Id" class="control-label">Id</label>
-                        <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control" readonly />
+                    <div id="idiomas_group">
+                        <h3>Idiomas</h3>
+                        @if (@Model.Idiomas != null && @Model.Idiomas.Count > 0)
+                        {
+                            for (int i = 0; i < @Model.Idiomas.Count; i++)
+                            {
+                                <div class="idioma-item @i">
+                                    <label for="Idiomas[@i].Id" class="control-label">Id</label>
+                                    <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control" readonly />
 
 
-                        <label for="Idiomas[@i].IdCurriculo" class="control-label">Id Curriculo</label>
-                        <input type="text" Name="Idiomas[@i].IdCurriculo" value="@Model.Idiomas[i].IdCurriculo" class="form-control" readonly />
+                                    <label for="Idiomas[@i].IdCurriculo" class="control-label">Id Curriculo</label>
+                                    <input type="text" Name="Idiomas[@i].IdCurriculo" value="@Model.Idiomas[i].IdCurriculo" class="form-control" readonly />
 
 
-                        <label for="Idiomas[@i].Idioma" class="control-label">Idioma</label>
-                        <input type="text" Name="Idiomas[@i].Idioma" value="@Model.Idiomas[i].Idioma" class="form-control" />
+                                    <label for="Idiomas[@i].Idioma" class="control-label">Idioma</label>
+                                    <input type="text" Name="Idiomas[@i].Idioma" value="@Model.Idiomas[i].Idioma" class="form-control" />
 
 
-                        <label for="Idiomas[@i].Nivel" class="control-label">Nível</label>
-                        <input type="text" Name="Idiomas[@i].Nivel" value="@Model.Idiomas[i].Nivel" class="form-control" />
+                                    <label for="Idiomas[@i].Nivel" class="control-label">Nível</label>
+                                    <input type="text" Name="Idiomas[@i].Nivel" value="@Model.Idiomas[i].Nivel" class="form-control" />
 
 
-                        <input type="button" id="btRemoveIdioma @i" value="Remover" onclick="removeIdioma(this)" />
+                                    <input type="button" id="btRemoveIdioma @i" value="Remover" onclick="removeIdioma(this)" />
+                                </div>
+                            }
+                        }
+                        <input type="button" id="btAddIdioma" value="Adcionar Idioma" />
                     </div>
-                }
-            }
-            <input type="button" id="btAddIdioma" value="Adcionar Idioma" />
-        </div>
 
-        <div id="habilidades_group">
-            <h3>Habilidades</h3>
+                    <div id="habilidades_group">
+                        <h3>Habilidades</h3>
 
-            @if (@Model.Habilidades != null && Model.Habilidades.Count > 0)
-            {
-                for (int i = 0; i < Model.Habilidades.Count; i++)
-                {
-                    <div class="habilidade-item @i">
+                        @if (@Model.Habilidades != null && Model.Habilidades.Count > 0)
+                        {
+                            for (int i = 0; i < Model.Habilidades.Count; i++)
+                            {
+                                <div class="habilidade-item @i">
 
-                        <label for="Habilidades[@i].Id" class="control-label hide">Id</label>
-                        <input type="text" Name="Habilidades[@i].Id" value="@Model.Habilidades[i].Id" class="form-control hide" readonly />
+                                    <label for="Habilidades[@i].Id" class="control-label hide">Id</label>
+                                    <input type="text" Name="Habilidades[@i].Id" value="@Model.Habilidades[i].Id" class="form-control hide" readonly />
 
 
-                        <label for="Habilidades[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
-                        <input type="text" Name="Habilidades[@i].IdCurriculo" value="@Model.Habilidades[i].IdCurriculo" class="form-control hide" readonly />
+                                    <label for="Habilidades[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
+                                    <input type="text" Name="Habilidades[@i].IdCurriculo" value="@Model.Habilidades[i].IdCurriculo" class="form-control hide" readonly />
 
 
-                        <label for="Habilidades[@i].Descricao" class="control-label">Descrição</label>
-                        <input type="text" Name="Habilidades[@i].Descricao" value="@Model.Habilidades[i].Descricao" class="form-control" />
+                                    <label for="Habilidades[@i].Descricao" class="control-label">Descrição</label>
+                                    <input type="text" Name="Habilidades[@i].Descricao" value="@Model.Habilidades[i].Descricao" class="form-control" />
 
 
-                        <label for="Habilidades[@i].Descricao" class="control-label">Descrição</label>
-                        <input type="text" Name="Habilidades[@i].Descricao" value="@Model.Habilidades[i].Descricao" class="form-control" />
+                                    <label for="Habilidades[@i].Descricao" class="control-label">Descrição</label>
+                                    <input type="text" Name="Habilidades[@i].Descricao" value="@Model.Habilidades[i].Descricao" class="form-control" />
 
-                        <label for="Habilidades[@i].Nivel" class="control-label">Nivel</label>
-                        <input type="number" Name="Habilidades[@i].Nivel" value="@Model.Habilidades[i].Nivel" class="form-control" />
+                                    <label for="Habilidades[@i].Nivel" class="control-label">Nivel</label>
+                                    <input type="number" Name="Habilidades[@i].Nivel" value="@Model.Habilidades[i].Nivel" class="form-control" />
 
-                        <input type="button" id="btRemoveHabilidade @i" value="Remover" onclick="removeIdioma(this)" />
+                                    <input type="button" id="btRemoveHabilidade @i" value="Remover" onclick="removeIdioma(this)" />
+                                </div>
+                            }
+                        }
+
+                        <input type="button" id="btAddHabilidade" value="Adcionar Habilidade" />
                     </div>
-                }
-            }
 
-            <input type="button" id="btAddHabilidade" value="Adcionar Habilidade" />
-        </div>
-
-        <input type="submit" value="Salvar dados" class="btn btn-info" />
+                    <input type="submit" value="Salvar dados" class="btn btn-info" />
 
     </form>
 </body>
@@ -183,7 +192,12 @@
     var formacoes = document.getElementsByClassName("formacao-item").length;
     var idiomas = document.getElementsByClassName("idioma-item").length
     var habilidades = document.getElementsByClassName("habilidade-item").length;
-   
+
+    console.log(`formacoes: ${formacoes}`);
+    console.log(`idiomas: ${idiomas}`);
+    console.log(`habilidades: ${habilidades}`);
+
+
     divFormacao = document.getElementById("formacao_group");
     btFormacao = document.getElementById("btAddFormacao");
 
@@ -283,7 +297,7 @@
 
         buttonRemove = document.createElement("input");
         buttonRemove.setAttribute("type","button");
-        buttonRemove.setAttribute("id", `btRemoveFormacao ${idiomas}`);
+        buttonRemove.setAttribute("id", `btRemoveFormacao ${formacoes}`);
         buttonRemove.setAttribute("value", `Remover`);
         buttonRemove.setAttribute("onclick", `removeFormacao(this)`);
     
@@ -384,7 +398,6 @@
         removeId = e.id.replace("btRemoveIdioma ","");
 
         //recupera a div que forma o container
-        console.log(document.getElementsByClassName(`idioma-item ${removeId}`));
         itemToRemove = document.getElementsByClassName(`idioma-item ${removeId}`)[0]
 
         //alterar o id do curriculo
@@ -402,7 +415,6 @@
         removeId = e.id.replace("btRemoveFormacao ","");
 
         //recupera a div que forma o container
-        console.log(document.getElementsByClassName(`formacao-item ${removeId}`));
         itemToRemove = document.getElementsByClassName(`formacao-item ${removeId}`)[0]
 
         //alterar o id do curriculo
@@ -482,6 +494,15 @@
         habilidades++;
 
         divHabilidades.appendChild(habilidadeDiv);
+    }
+
+
+    function exibirImagem(){
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("Imagem").files[0]);
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("imgPreview").src = oFREvent.target.result;
+        };
     }
 
 </script>
