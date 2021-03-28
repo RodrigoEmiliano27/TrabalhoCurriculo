@@ -10,140 +10,162 @@
 </head>
     
 <body>
-    <form asp-action="Salvar" method="post" enctype="multipart/form-data">
+
+    <div class="mContainer shadow">
+
+        <form asp-action="Salvar" method="post" enctype="multipart/form-data">
 
 
-        <div class="sub-container">
-            <h3>Informações Pessoais</h3>
+            <div class="sub-container">
 
-            @if (@Model.Id >= 0)
-            {
-                <label for="id" class="control-label hide">Id</label>
-                <input type="number" Name="id" value="@Model.Id" class="form-control hide" readonly />
-            }
-
-            <label for="Imagem" class="control-label">Foto</label>
-
-            <div class="image-container">
-                <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive" width="32%">
-
-                <input type="file" name="Imagem" id="Imagem" onchange="exibirImagem()" class="btn btn-secondary" />
-
-
-            </div>
-
-
-
-            <label for="nome" class="control-label">Nome</label>
-            <input type="text" Name="nome" value="@Model.Nome" class="form-control" />
-
-            <label for="Nascimento" class="control-label">Data de Nascimento</label>
-            <input type="date" Name="Nascimento" value="@Model.Nascimento.ToString("yyyy'-'MM'-'dd")" class="form-control" />
-
-            <label for="telefone" class="control-label">Telefone</label>
-            <input type="text" Name="telefone" value="@Model.Telefone" class="form-control" />
-
-
-            <label for="CPF" class="control-label">CPF</label>
-            <input type="text" Name="CPF" value="@Model.CPF" class="form-control" />
-
-
-            <label for="Email" class="control-label">E-Mail</label>
-            <input type="text" Name="Email" value="@Model.Email" class="form-control" />
-
-            <label for="cargo_pretendido" class="control-label">Cargo Pretendido</label>
-            <input type="text" Name="cargo_pretendido" value="@Model.Cargo_Pretendido" class="form-control" />
-
-        </div>
-
-
-
-        <div class="sub-container">
-
-            <h3>Endereço</h3>
-
-            <label for="rua" class="control-label">Rua</label>
-            <input type="text" Name="rua" value="@Model.Rua" class="form-control" />
-
-            <label for="Numero" class="control-label">Número</label>
-            <input type="text" Name="Numero" value="@Model.Numero_Endereco" class="form-control" />
-
-            <label for="cep" class="control-label">CEP</label>
-            <input type="text" Name="cep" value="@Model.CEP" class="form-control" />
-
-            <label for="bairro" class="control-label">Bairro</label>
-            <input type="text" Name="bairro" value="@Model.Bairro" class="form-control" />
-
-
-            <label for="cidade" class="control-label">Cidade</label>
-            <input type="text" Name="cidade" value="@Model.Cidade" class="form-control" />
-
-
-            <label for="estado" class="control-label">Estado</label>
-            <input type="text" Name="estado" value="@Model.Estado" class="form-control" />
-
-        </div>
-
-        <div class="sub-container">
-
-            <h3>Midias Sociais</h3>
-
-            <label for="Facebook" class="control-label">Facebook</label>
-            <input type="text" Name="Facebook" value="@Model.Facebook" class="form-control" />
-
-            <label for="Linkdin" class="control-label">Linked in</label>
-            <input type="text" Name="Linkdin" value="@Model.Linkdin" class="form-control" />
-
-            <label for="Instagram" class="control-label">Instagram</label>
-            <input type="text" Name="Instagram" value="@Model.Instagram" class="form-control" />
-        </div>
-
-        <div class="sub-container">
-            <h3>Resumo</h3>
-
-            <label for="SobreMim" class="control-label">Sobre mim</label>
-            <textarea type="text" Name="SobreMim" class="form-control">@Model.SobreMim</textarea>
-        </div>
-        <div class="sub-container">
-            <div id="formacao_group">
-                <h3>Formações</h3>
-                @if (@Model.Formacao != null && @Model.Formacao.Count > 0)
+                @if (@Model.Id >= 0)
                 {
+                    <label for="id" class="control-label hide">Id</label>
+                    <input type="number" Name="id" value="@Model.Id" class="form-control hide" readonly />
 
-                    for (int i = 0; i < @Model.Formacao.Count; i++)
+                    <h2>Edição de Curriculo</h2>
+                }
+                else
+                {
+                    <h2>Criação de Curriculo</h2>
+                }
+
+                <h3>Informações Pessoais</h3>
+
+                <label for="Imagem" class="control-label">Foto</label>
+
+                <div class="image-container">
+                    <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive" width="32%">
+
+                    <input type="file" name="Imagem" id="Imagem" onchange="exibirImagem()" class="btn btn-secondary" />
+
+                    @if (@Model.ImagemEmBase64 == "")
                     {
-                        <div class="formacao-item @i">
-
-                            <label for="Formacao[@i].Id" class="control-label hide">Id</label>
-                            <input type="text" Name="Formacao[@i].Id" value="@Model.Formacao[i].Id" class="form-control hide" readonly />
-
-
-                            <label for="Formacao[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
-                            <input type="text" Name="Formacao[@i].IdCurriculo" value="@Model.Formacao[i].IdCurriculo" class="form-control hide" readonly />
-
-                            <label for="Formacao[@i].Instituicao" class="control-label">Instituição</label>
-                            <input type="text" Name="Formacao[@i].Instituicao" value="@Model.Formacao[i].Instituicao" class="form-control" />
-
-                            <label for="Formacao[@i].Descricao" class="control-label">Descrição</label>
-                            <input type="text" Name="Formacao[@i].Descricao" value="@Model.Formacao[i].Descricao" class="form-control" />
-
-                            <label for="Formacao[@i].Inicio" class="control-label">Inicio</label>
-                            <input type="date" Name="Formacao[@i].Inicio" value="@Model.Formacao[i].Inicio.ToString("yyyy'-'MM'-'dd")" class="form-control" />
-
-
-
-                            <label for="Formacao[@i].Fim" class="control-label">Fim</label>
-                            <input type="date" Name="Formacao[@i].Fim" value="@Model.Formacao[i].Fim.ToString("yyyy'-'MM'-'dd")" class="form-control" />
-
-                            <input type="button" id="btRemoveFormacao @i" value="Remover" onclick="removeFormacao(this)" />
-
-                        </div>
+                        <div class="remove shadow hide" id="btRemoveImage" onclick="removeImage()"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
+                    }
+                    else
+                    {
+                        <div class="remove shadow" id="btRemoveImage" onclick="removeImage()"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
                     }
 
-                }
-                <input type="button" id="btAddFormacao" value="Adcionar Formação" />
+                </div>
+
+
+
+                <label for="nome" class="control-label">Nome</label>
+                <input type="text" Name="nome" value="@Model.Nome" class="form-control" />
+
+                <label for="Nascimento" class="control-label">Data de Nascimento</label>
+                <input type="date" Name="Nascimento" value="@Model.Nascimento.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+
+                <label for="telefone" class="control-label">Telefone</label>
+                <input type="text" Name="telefone" value="@Model.Telefone" class="form-control" />
+
+
+                <label for="CPF" class="control-label">CPF</label>
+                <input type="text" Name="CPF" value="@Model.CPF" class="form-control" />
+
+
+                <label for="Email" class="control-label">E-Mail</label>
+                <input type="text" Name="Email" value="@Model.Email" class="form-control" />
+
+                <label for="cargo_pretendido" class="control-label">Cargo Pretendido</label>
+                <input type="text" Name="cargo_pretendido" value="@Model.Cargo_Pretendido" class="form-control" />
+
             </div>
-        </div>
+
+
+
+            <div class="sub-container">
+
+                <h3>Endereço</h3>
+
+                <label for="rua" class="control-label">Rua</label>
+                <input type="text" Name="rua" value="@Model.Rua" class="form-control" />
+
+                <label for="Numero" class="control-label">Número</label>
+                <input type="text" Name="Numero" value="@Model.Numero_Endereco" class="form-control" />
+
+                <label for="cep" class="control-label">CEP</label>
+                <input type="text" Name="cep" value="@Model.CEP" class="form-control" />
+
+                <label for="bairro" class="control-label">Bairro</label>
+                <input type="text" Name="bairro" value="@Model.Bairro" class="form-control" />
+
+
+                <label for="cidade" class="control-label">Cidade</label>
+                <input type="text" Name="cidade" value="@Model.Cidade" class="form-control" />
+
+
+                <label for="estado" class="control-label">Estado</label>
+                <input type="text" Name="estado" value="@Model.Estado" class="form-control" />
+
+            </div>
+
+            <div class="sub-container">
+
+                <h3>Midias Sociais</h3>
+
+                <label for="Facebook" class="control-label">Facebook</label>
+                <input type="text" Name="Facebook" value="@Model.Facebook" class="form-control" />
+
+                <label for="Linkdin" class="control-label">Linked in</label>
+                <input type="text" Name="Linkdin" value="@Model.Linkdin" class="form-control" />
+
+                <label for="Instagram" class="control-label">Instagram</label>
+                <input type="text" Name="Instagram" value="@Model.Instagram" class="form-control" />
+            </div>
+
+            <div class="sub-container">
+                <h3>Resumo</h3>
+
+                <label for="SobreMim" class="control-label">Sobre mim</label>
+                <textarea type="text" Name="SobreMim" class="form-control">@Model.SobreMim</textarea>
+            </div>
+            <div class="sub-container">
+                <div id="formacao_group">
+                    <h3>Formações</h3>
+                    @if (@Model.Formacao != null && @Model.Formacao.Count > 0)
+                    {
+
+                        for (int i = 0; i < @Model.Formacao.Count; i++)
+                        {
+                            <div class="formacao-item @i">
+
+                                <label for="Formacao[@i].Id" class="control-label hide">Id</label>
+                                <input type="text" Name="Formacao[@i].Id" value="@Model.Formacao[i].Id" class="form-control hide" readonly />
+
+
+                                <label for="Formacao[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
+                                <input type="text" Name="Formacao[@i].IdCurriculo" value="@Model.Formacao[i].IdCurriculo" class="form-control hide" readonly />
+
+                                <label for="Formacao[@i].Instituicao" class="control-label">Instituição</label>
+                                <input type="text" Name="Formacao[@i].Instituicao" value="@Model.Formacao[i].Instituicao" class="form-control" />
+
+                                <label for="Formacao[@i].Descricao" class="control-label">Descrição</label>
+                                <input type="text" Name="Formacao[@i].Descricao" value="@Model.Formacao[i].Descricao" class="form-control" />
+
+                                <label for="Formacao[@i].Inicio" class="control-label">Inicio</label>
+                                <input type="date" Name="Formacao[@i].Inicio" value="@Model.Formacao[i].Inicio.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+
+
+
+                                <label for="Formacao[@i].Fim" class="control-label">Fim</label>
+                                <input type="date" Name="Formacao[@i].Fim" value="@Model.Formacao[i].Fim.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+
+                                <div class="remove shadow" id="btRemoveFormacao @i" onclick="removeFormacao(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
+
+
+                            </div>
+                        }
+
+                    }
+                </div>
+
+                <div class="add-button shadow" id="btAddFormacao"><i class="fas fa-plus fa-3x"></i><h4>Adcionar Formação</h4></div>
+
+
+            </div>
             <div class="sub-container">
                 <div id="idiomas_group">
                     <h3>Idiomas</h3>
@@ -152,12 +174,12 @@
                         for (int i = 0; i < @Model.Idiomas.Count; i++)
                         {
                             <div class="idioma-item @i">
-                                <label for="Idiomas[@i].Id" class="control-label">Id</label>
-                                <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control" readonly />
+                                <label for="Idiomas[@i].Id" class="control-label hide">Id</label>
+                                <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control hide" readonly />
 
 
-                                <label for="Idiomas[@i].IdCurriculo" class="control-label">Id Curriculo</label>
-                                <input type="text" Name="Idiomas[@i].IdCurriculo" value="@Model.Idiomas[i].IdCurriculo" class="form-control" readonly />
+                                <label for="Idiomas[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
+                                <input type="text" Name="Idiomas[@i].IdCurriculo" value="@Model.Idiomas[i].IdCurriculo" class="form-control hide" readonly />
 
 
                                 <label for="Idiomas[@i].Idioma" class="control-label">Idioma</label>
@@ -165,15 +187,46 @@
 
 
                                 <label for="Idiomas[@i].Nivel" class="control-label">Nível</label>
-                                <input type="text" Name="Idiomas[@i].Nivel" value="@Model.Idiomas[i].Nivel" class="form-control" />
 
+                                <select Name="Idiomas[@i].Nivel" value="@Model.Idiomas[i].Nivel" class="form-control">
+                                    @if (Model.Idiomas[i].Nivel == "Iniciante")
+                                    {
+                                        <option value="Iniciante" selected>Iniciante</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="Iniciante">Iniciante</option>
+                                    }
 
-                                <input type="button" id="btRemoveIdioma @i" value="Remover" onclick="removeIdioma(this)" />
+                                    @if (Model.Idiomas[i].Nivel == "Intermediario")
+                                    {
+                                        <option value="Intermediario" selected>Intermediario</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="Intermediario">Intermediario</option>
+                                    }
+
+                                    @if (Model.Idiomas[i].Nivel == "Avançado")
+                                    {
+                                        <option value="Avançado" selected>Avançado</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="Avançado">Avançado</option>
+                                    }
+                                </select>
+
+                                <div class="remove shadow" id="btRemoveIdioma @i" onclick="removeIdioma(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
+
                             </div>
                         }
                     }
-                    <input type="button" id="btAddIdioma" value="Adcionar Idioma" />
                 </div>
+
+                <div class="add-button shadow" id="btAddIdioma"><i class="fas fa-plus fa-3x"></i><h4>Adcionar Idioma</h4></div>
+
+
             </div>
 
             <div class="sub-container">
@@ -198,24 +251,53 @@
                                 <label for="Habilidades[@i].Descricao" class="control-label">Descrição</label>
                                 <input type="text" Name="Habilidades[@i].Descricao" value="@Model.Habilidades[i].Descricao" class="form-control" />
 
-
-                                <label for="Habilidades[@i].Descricao" class="control-label">Descrição</label>
-                                <input type="text" Name="Habilidades[@i].Descricao" value="@Model.Habilidades[i].Descricao" class="form-control" />
-
                                 <label for="Habilidades[@i].Nivel" class="control-label">Nivel</label>
-                                <input type="number" Name="Habilidades[@i].Nivel" value="@Model.Habilidades[i].Nivel" class="form-control" />
 
-                                <input type="button" id="btRemoveHabilidade @i" value="Remover" onclick="removeIdioma(this)" />
+                                <select Name="Habilidades[@i].Nivel" value="@Model.Habilidades[i].Nivel" class="form-control">
+                                    @if (Model.Habilidades[i].Nivel == 0)
+                                    {
+                                        <option value="0" selected>Iniciante</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="0">Iniciante</option>
+                                    }
+
+                                    @if (Model.Habilidades[i].Nivel == 1)
+                                    {
+                                        <option value="1" selected>Intermediario</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="1">Intermediario</option>
+                                    }
+
+                                    @if (Model.Habilidades[i].Nivel == 2)
+                                    {
+                                        <option value="2" selected>Avançado</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="2">Avançado</option>
+                                    }
+                                </select>
+
+                                <div class="remove shadow" id="btRemoveHabilidade @i" onclick="removeHabilidade(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
+
                             </div>
                         }
                     }
-
-                    <input type="button" id="btAddHabilidade" value="Adcionar Habilidade" />
                 </div>
-            </div>
-            <input type="submit" value="Salvar dados" class="btn btn-info" />
 
-    </form>
+                <div class="add-button shadow" id="btAddHabilidade"><i class="fas fa-plus fa-3x"></i><h4>Adcionar Habilidade</h4></div>
+
+
+            </div>
+           <input type="submit" value="Salvar dados" class="btSave shadow" />
+
+        </form>
+    </div>
+
 </body>
 
 <script type="text/javascript">
@@ -253,14 +335,14 @@
 
 
         //id
-        
+
         idInput = document.createElement("input");
         idInput.setAttribute("type", "text");
         idInput.setAttribute("name", `Formacao[${formacoes}].Id`);
         idInput.setAttribute("class", `form-control hide`);
 
         formacaoDiv.appendChild(idInput);
-    
+
 
         //id curriculo
 
@@ -276,12 +358,13 @@
         instituicaoLabel = document.createElement("label")
         instituicaoLabel.setAttribute("for", `Formacao[${formacoes}]`);
         instituicaoLabel.innerHTML = "Instituicao";
-
+        instituicaoLabel.setAttribute("class", "control-label");
         formacaoDiv.appendChild(instituicaoLabel);
 
         instituicaoInput = document.createElement("input");
         instituicaoInput.setAttribute("type", "text");
         instituicaoInput.setAttribute("name", `Formacao[${formacoes}].Instituicao`);
+        instituicaoInput.setAttribute("class", `form-control`);
 
         formacaoDiv.appendChild(instituicaoInput);
 
@@ -290,13 +373,14 @@
         descricaoLabel = document.createElement("label")
         descricaoLabel.setAttribute("for", `Formacao[${formacoes}].Descricao`);
         descricaoLabel.innerHTML = "Descrição";
+        descricaoLabel.setAttribute("class", "control-label");
 
         formacaoDiv.appendChild(descricaoLabel);
 
         descricaoInput = document.createElement("input");
         descricaoInput.setAttribute("type", "text");
         descricaoInput.setAttribute("name", `Formacao[${formacoes}].Descricao`);
-
+        descricaoInput.setAttribute("class", `form-control`);
         formacaoDiv.appendChild(descricaoInput);
 
 
@@ -304,12 +388,14 @@
         inicioLabel = document.createElement("label")
         inicioLabel.setAttribute("for", `Formacao[${formacoes}].Inicio`);
         inicioLabel.innerHTML = "Inicio";
+        inicioLabel.setAttribute("class", "control-label");
 
         formacaoDiv.appendChild(inicioLabel);
 
         inicioInput = document.createElement("input");
         inicioInput.setAttribute("type", "date");
         inicioInput.setAttribute("name", `Formacao[${formacoes}].Inicio`);
+        inicioInput.setAttribute("class", `form-control`);
 
         formacaoDiv.appendChild(inicioInput);
 
@@ -317,23 +403,33 @@
         fimLabel = document.createElement("label")
         fimLabel.setAttribute("for", `Formacao[${formacoes}].Fim`);
         fimLabel.innerHTML = "Fim";
+        fimLabel.setAttribute("class", "control-label");
 
         formacaoDiv.appendChild(fimLabel);
 
         fimInput = document.createElement("input");
         fimInput.setAttribute("type", "date");
         fimInput.setAttribute("name", `Formacao[${formacoes}].Fim`);
+        fimInput.setAttribute("class", `form-control`);
 
         formacaoDiv.appendChild(fimInput);
 
-        buttonRemove = document.createElement("input");
-        buttonRemove.setAttribute("type","button");
+        //delete
+        buttonRemove = document.createElement("div");
         buttonRemove.setAttribute("id", `btRemoveFormacao ${formacoes}`);
-        buttonRemove.setAttribute("value", `Remover`);
         buttonRemove.setAttribute("onclick", `removeFormacao(this)`);
-    
-        formacaoDiv.appendChild(buttonRemove);
+        buttonRemove.setAttribute("class", `remove`);
 
+        icon = document.createElement("i");
+        icon.setAttribute("class", `far fa-trash-alt fa-3x`);
+
+        text = document.createElement("h4");
+        text.innerHTML = "Remover";
+
+        buttonRemove.appendChild(icon);
+        buttonRemove.appendChild(text);
+
+        formacaoDiv.appendChild(buttonRemove);
 
         formacoes++;
 
@@ -369,12 +465,14 @@
         idiomaLabel = document.createElement("label")
         idiomaLabel.setAttribute("for", `Idiomas[${idiomas}].Idioma`);
         idiomaLabel.innerHTML = "Idioma";
+        idiomaLabel.setAttribute("class", "control-label");
 
         idiomaDiv.appendChild(idiomaLabel);
 
         idiomaInput = document.createElement("input");
         idiomaInput.setAttribute("type", "text");
         idiomaInput.setAttribute("name", `Idiomas[${idiomas}].Idioma`);
+        idiomaInput.setAttribute("class", "form-control");
 
         idiomaDiv.appendChild(idiomaInput);
 
@@ -382,23 +480,44 @@
 
         nivelLabel = document.createElement("label")
         nivelLabel.setAttribute("for", `Idiomas[${idiomas}].Nivel`);
-        nivelLabel.innerHTML = "Idioma";
+        nivelLabel.innerHTML = "Nivel";
+        nivelLabel.setAttribute("class", "control-label");
 
         idiomaDiv.appendChild(nivelLabel);
 
-        nivelInput = document.createElement("input");
-        nivelInput.setAttribute("type", "text");
+        //nivel input
+        nivelInput = document.createElement("select");
         nivelInput.setAttribute("name", `Idiomas[${idiomas}].Nivel`);
+        nivelInput.setAttribute("value", `Idiomas[${idiomas}].Nivel`);
+        nivelInput.setAttribute("class", "form-control");
 
-        
+        let opcoes = ["Iniciante", "Intermediario", "Avançado"];
+
+        for (count = 0; count < 3; count++) {
+            mOption = document.createElement("option");
+            mOption.value = opcoes[count];
+            mOption.innerHTML = opcoes[count];
+            nivelInput.appendChild(mOption);
+        }
+
+
         idiomaDiv.appendChild(nivelInput);
 
-        buttonRemove = document.createElement("input");
-        buttonRemove.setAttribute("type","button");
+        //delete
+        buttonRemove = document.createElement("div");
         buttonRemove.setAttribute("id", `btRemoveIdioma ${idiomas}`);
-        buttonRemove.setAttribute("value", `Remover`);
         buttonRemove.setAttribute("onclick", `removeIdioma(this)`);
-    
+        buttonRemove.setAttribute("class", `remove`);
+
+        icon = document.createElement("i");
+        icon.setAttribute("class", `far fa-trash-alt fa-3x`);
+
+        text = document.createElement("h4");
+        text.innerHTML = "Remover";
+
+        buttonRemove.appendChild(icon);
+        buttonRemove.appendChild(text);
+
         idiomaDiv.appendChild(buttonRemove);
 
         idiomas++;
@@ -420,7 +539,7 @@
 
         //esconde a habilidade
         itemToRemove.setAttribute("class", "hide");
-        
+
     }
 
     function removeIdioma(e)
@@ -457,9 +576,6 @@
 
     }
 
-
-
-
     function adcionaHabilidade()
     {
 
@@ -467,14 +583,14 @@
         habilidadeDiv.setAttribute("class", `habilidade-item ${habilidades}`);
 
         //id
-        
+
         idInput = document.createElement("input");
         idInput.setAttribute("type", "text");
         idInput.setAttribute("name", `Habilidades[${habilidades}].Id`);
         idInput.setAttribute("class","form-control hide");
 
         habilidadeDiv.appendChild(idInput);
-        
+
 
         //id curriculo
 
@@ -490,6 +606,7 @@
         descricaoLabel = document.createElement("label")
         descricaoLabel.setAttribute("for", `Habilidades[${habilidades}].Descricao`);
         descricaoLabel.innerHTML = "Descrição";
+        descricaoLabel.setAttribute("class", "control-label");
 
         habilidadeDiv.appendChild(descricaoLabel);
 
@@ -505,21 +622,46 @@
         nivelLabel = document.createElement("label")
         nivelLabel.setAttribute("for", `Habilidades[${habilidades}].Nivel`);
         nivelLabel.innerHTML = "Nivel";
+        nivelLabel.setAttribute("class", "control-label");
 
         habilidadeDiv.appendChild(nivelLabel);
 
-        nivelInput = document.createElement("input");
-        nivelInput.setAttribute("type", "number");
+
+        //nivel input
+        nivelInput = document.createElement("select");
         nivelInput.setAttribute("name", `Habilidades[${habilidades}].Nivel`);
-        nivelInput.setAttribute("class","form-control");
+        nivelInput.setAttribute("value", `Habilidades[${habilidades}].Nivel`);
+        nivelInput.setAttribute("class", "form-control");
+
+        let opcoes = ["Iniciante", "Intermediario", "Avançado"];
+
+        for (count = 0; count < 3; count++) {
+            mOption = document.createElement("option");
+            mOption.value = count;
+            mOption.innerHTML = opcoes[count];
+            nivelInput.appendChild(mOption);
+        }
+
         habilidadeDiv.appendChild(nivelInput);
 
-        buttonRemove = document.createElement("input");
-        buttonRemove.setAttribute("type","button");
+
+
+        //remove
+        buttonRemove = document.createElement("div");
         buttonRemove.setAttribute("id", `btRemoveHabilidade ${habilidades}`);
-        buttonRemove.setAttribute("value", `Remover`);
         buttonRemove.setAttribute("onclick", `removeHabilidade(this)`);
-    
+        buttonRemove.setAttribute("class", `remove`);
+
+        icon = document.createElement("i");
+        icon.setAttribute("class", `far fa-trash-alt fa-3x`);
+
+        text = document.createElement("h4");
+        text.innerHTML = "Remover";
+
+        buttonRemove.appendChild(icon);
+        buttonRemove.appendChild(text);
+
+
         habilidadeDiv.appendChild(buttonRemove);
 
         habilidades++;
@@ -527,44 +669,132 @@
         divHabilidades.appendChild(habilidadeDiv);
     }
 
-
     function exibirImagem(){
         var oFReader = new FileReader();
         oFReader.readAsDataURL(document.getElementById("Imagem").files[0]);
         oFReader.onload = function (oFREvent) {
             document.getElementById("imgPreview").src = oFREvent.target.result;
         };
-    }
 
+        //exibe botão de remover imagem
+        btRemoveImg = document.getElementById("btRemoveImage");
+        btRemoveImg.className = "remove shadow";
+     }
+
+    function removeImage() {
+
+
+        document.getElementById("Imagem").value = "";
+
+        //clear image preview
+        document.getElementById("imgPreview").src = "";
+
+        //hide delete button
+        buttonRemoveImg = document.getElementById("btRemoveImage");
+        buttonRemoveImg.setAttribute("class", "hide");
+    }
 </script>
 
 <style>
 
     .hide{
            display:none;
-        }
-
-    .sub-container {
-        margin: 24px;
-        padding: 16px;
-        background-color: #eeeeee;
-        border-radius:16px;
-        -webkit-box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.75);
-        -moz-box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.75);
-        box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.75);
     }
 
-    .image-container{
-        max-width:40%;
-        display:flex;
-        flex-direction:column;
-        align-content:center;
-        justify-content:center;
+    .sub-container {
+        margin:8px;
+        padding: 16px;
+        border: 1px dashed #b6b8c3;
+        border-radius:16px;
+    }
+
+    .mContainer {
+        background-color: #e8eaf6;
+    }
+
+    .shadow {
+        -webkit-box-shadow: 10px 3px 16px -2px rgba(0,0,0,0.31);
+        -moz-box-shadow: 10px 3px 16px -2px rgba(0,0,0,0.31);
+        box-shadow: 10px 3px 16px -2px rgba(0,0,0,0.31);
+        padding: 16px;
+    }
+
+    .image-container {
+        max-width: 40%;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
     }
 
     .image-container img{
         width:100%;
     }
+
+    .control-label {
+        margin-top: 8px;
+        font-family: 'Roboto', sans-serif;
+        font-size:large;
+        font-weight:bold;
+    }
+
+    .form-control{
+        border-radius:8px;
+    }
+
+    .formacao-item, .habilidade-item, .idioma-item {
+        border: 1px dashed #b6b8c3;
+        border-radius:8px;
+        padding: 8px;
+        margin: 8px;
+    }
+
+    .remove {
+        margin-bottom: 16px;
+        margin-top: 16px;
+        padding: 8px;
+        border-radius: 16px;
+        background-color: #c62828;
+        color: white;
+        display: flex;
+        justify-content:center;
+        align-items: center;
+    }
+
+    .remove h4{
+        margin-left:8px;
+        margin-right:8px;
+    }
+
+    .add-button {
+        margin-bottom: 16px;
+        margin-top: 16px;
+        padding: 8px;
+        border-radius: 16px;
+        background-color: #1565c0;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .add-button h4 {
+       margin-left: 8px;
+       margin-right: 8px;
+    }
+
+    .btSave {
+        margin-top: 16px;
+        margin-bottom: 16px;
+        width: 100%;
+        background-color: green;
+        color: white;
+        border-radius: 16px;
+        padding: 16px;
+        font-size: larger;
+    }
+
+
 </style>
 
 
