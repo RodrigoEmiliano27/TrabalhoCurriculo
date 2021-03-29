@@ -32,6 +32,8 @@
 
                 <h3>Informações Pessoais</h3>
 
+                <input type="hidden" name="StatusImg" id="editarImg"/>
+
                 <label for="Imagem" class="control-label">Foto</label>
 
                 <div class="image-container">
@@ -39,9 +41,9 @@
 
                     <input type="file" name="Imagem" id="Imagem" onchange="exibirImagem()" class="btn btn-secondary" />
 
-                    @if (@Model.ImagemEmBase64 == "")
+                    @if (@Model.ImagemEmBase64.Length == 0)
                     {
-                        <div class="remove shadow hide" id="btRemoveImage" onclick="removeImage()"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
+                        <div class="hide" id="btRemoveImage" onclick="removeImage()"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
                     }
                     else
                     {
@@ -679,6 +681,10 @@
         //exibe botão de remover imagem
         btRemoveImg = document.getElementById("btRemoveImage");
         btRemoveImg.className = "remove shadow";
+
+        //indica ao controller que a imagem vai ser editada
+        document.getElementById("editarImg").value = "Editar";
+
      }
 
     function removeImage() {
@@ -692,6 +698,9 @@
         //hide delete button
         buttonRemoveImg = document.getElementById("btRemoveImage");
         buttonRemoveImg.setAttribute("class", "hide");
+
+        //remover quaisquer indicações de edição
+        document.getElementById("editarImg").value = "Editar";
     }
 </script>
 

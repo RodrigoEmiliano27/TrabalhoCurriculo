@@ -89,8 +89,12 @@ namespace TrabalhoCurriculo.Controllers
                 {
                     CompareCurriculos Compare = new CompareCurriculos(dao.Consulta(cur.Id), cur);
                     Compare.CompararCurriculo();
-                    if (ViewBag.EditarImagem == "Editar")
+                    if (cur.StatusImg == "Editar")
+                    {
+                        
                         dao.AlterarImagem(cur.ImagemEmByte, cur.Id);
+                    }
+;
                 }
 
                 return RedirectToAction("index");

@@ -54,6 +54,7 @@ namespace TrabalhoCurriculo.Models
         public string Linkdin { get; set; }
         public string Instagram { get; set; }
         public string SobreMim { get; set; }
+        public string StatusImg { get; set; }
         public List<IdiomaViewModel> Idiomas { get; set; }
         public List<FormacaoViewModel> Formacao { get; set; }
         public List<HabilidadesViewModel> Habilidades { get; set; }
