@@ -51,10 +51,10 @@ namespace TrabalhoCurriculo.DAO
             string sql =
             "SET ANSI_WARNINGS  OFF " +
             "update Curriculos set Imagem = @Imagem " +
-            "where id = @id " +
+            "where id = @id " + 
             "SET ANSI_WARNINGS ON ";
             SqlParameter[] parametros = new SqlParameter[2];
-            parametros[0] = new SqlParameter("Imagem", Imagem);
+            parametros[0] = new SqlParameter("Imagem", Imagem !=null ? Imagem: new byte[] { });
             parametros[1] = new SqlParameter("id", id);
             HelperDAO.ExecutaSQL(sql, parametros);
         }
