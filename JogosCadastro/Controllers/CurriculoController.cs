@@ -133,6 +133,23 @@ namespace TrabalhoCurriculo.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
+
+        public IActionResult Exibir(int id)
+        {
+            try
+            {
+                CurriculoDAO dao = new CurriculoDAO();
+                CurriculoViewModel cur = dao.Consulta(id);
+                if (cur == null)
+                    return RedirectToAction("index");
+                else
+                    return View("Exibir", cur);
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
+        }
        
     }
 }

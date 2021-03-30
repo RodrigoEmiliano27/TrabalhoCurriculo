@@ -1,4 +1,4 @@
-﻿
+﻿@model CurriculoViewModel
 @{
     Layout = null;
 }
@@ -6,7 +6,13 @@
 
 <html>
 <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Holtwood+One+SC&family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a42a254279.js" crossorigin="anonymous"></script>
 </head>
 
 
@@ -14,72 +20,32 @@
     <!-- style=" "-->
     <div class="quadro-esquerdo">
         <div class="foto-container">
-            <img src="https://julianafonte.com.br/wp-content/uploads/2018/02/dermato-estetica-macas-do-rosto.jpg" class="ImagemRedonda" />
+            <img src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="ImagemRedonda" />
         </div>
         <section class="nome-container">
-            <h1>Nome do fulano</h1>
+            <h1>@Model.Nome</h1>
 
         </section>
         <section class="dados-pessoais-conatiner">
 
-            <section class="dados-pessoais-item">
-                <span class="material-icons">account_box</span>
+           <p>@Model.CPF</p>
 
-                <label class="mdc-text-field mdc-text-field--filled">
-                    <span class="mdc-text-field__ripple"></span>
-                    <span class="mdc-floating-label" id="my-label-id">CPF</span>
-                    <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
-                    <span class="mdc-line-ripple"></span>
-                </label>
-            </section>
+           <p>@Model.Telefone</p>
 
-            <section class="dados-pessoais-item">
-                <span class="material-icons">home</span>
-                <label class="mdc-text-field mdc-text-field--filled">
-                    <span class="mdc-text-field__ripple"></span>
-                    <span class="mdc-floating-label" id="my-label-id">Endereco</span>
-                    <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
-                    <span class="mdc-line-ripple"></span>
-                </label>
-            </section>
+            <p>@Model.Email</p>
 
-
-            <section class="dados-pessoais-item">
-                <span class="material-icons">phone</span>
-
-                <label class="mdc-text-field mdc-text-field--filled">
-                    <span class="mdc-text-field__ripple"></span>
-                    <span class="mdc-floating-label" id="my-label-id">Telefone</span>
-                    <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
-                    <span class="mdc-line-ripple"></span>
-                </label>
-
-            </section>
-
-
-            <section class="dados-pessoais-item">
-                <span class="material-icons">email</span>
-
-                <label class="mdc-text-field mdc-text-field--filled">
-                    <span class="mdc-text-field__ripple"></span>
-                    <span class="mdc-floating-label" id="my-label-id">Email</span>
-                    <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
-                    <span class="mdc-line-ripple"></span>
-                </label>
-
-            </section>
 
         </section>
 
 
         <section class="cargo-container">
-            <h2>Cargo Pretendido</h2>
+            <h2>Cargo Pretendido: @Model.Cargo_Pretendido</h2>
         </section>
 
         <section class="midias-sociais-container">
-            <i class="fab fa-facebook fa-2x"></i>
-            <i class="fab fa-linkedin fa-2x"></i>
-            <i class="fab fa-instagram-square fa-2x"></i>
+            <span><i class="fab fa-facebook fa-2x"></i>@Model.Facebook</span>
+            <span><i class="fab fa-linkedin fa-2x"></i>@Model.Linkdin</span>
+            <span><i class="fab fa-instagram-square fa-2x"></i>@Model.Instagram</span>
 
         </section>
 
@@ -88,57 +54,77 @@
         <div class="SobreMIM">
             <h2>Sobre mim</h2>
             <p>
-                Isso aqui é só um espaço para escrever sobre o candidato, alias eu n faço ideia do que escrever aqui
-                e nem exatamento do tamanho que será necessário mas sei que vai ser algum texto
+                @Model.SobreMim
             </p>
         </div>
-        <div Id="Ed1" class="Educacao">
-            <h2>Instituição 1</h2>
-            <h2>Curso 1</h2>
-            <h2>Preiodo1</h2>
+        <div class="Formacoes">
+            <h3>Formações</h3>
+            @foreach(FormacaoViewModel f in Model.Formacao)
+            {
+
+                <div class="formacao item">
+                    <p><strong>Formacao:</strong>@f.Descricao</p>
+                    <p><strong>Instituição:</strong>@f.Instituicao</p>
+                    <p><strong>Inicio:</strong>@f.Inicio.ToString("dd/MM/YYYY")</p>
+                    <p><strong>Fim:</strong>@f.Fim.ToString("dd/MM/YYYY")</p>
+                </div>
+            }
         </div>
-        <div Id="Ed2" class="Educacao">
-            <h2>Instituição 1</h2>
-            <h2>Curso 1</h2>
-            <h2>Preiodo1</h2>
+  
+        <div class="Habilidades">
+            <h3>Habilidades</h3>
+            @foreach(HabilidadesViewModel h in Model.Habilidades)
+            {
+                <div class="habilidade item">
+                    <p>@h.Descricao</p>
+
+                    @if (h.Nivel == 0)
+                    {
+                        <p><strong>Nivel:</strong>Iniciante</p>
+                    }
+                    else if (h.Nivel == 1)
+                    {
+                        <p><strong>Nivel:</strong>Intermediario</p>
+                    }
+                    else
+                    {
+                        <p><strong>Nivel:</strong>Avançado</p>
+                    }
+                </div>
+            }
         </div>
-        <div Id="Ed2" class="Educacao">
-            <h2>Instituição 1</h2>
-            <h2>Curso 1</h2>
-            <h2>Preiodo1</h2>
+
+
+        <div class="Idiomas">
+            <h3>Idiomas</h3>
+            @foreach(IdiomaViewModel i in Model.Idiomas)
+            {
+                <div class="Idiomas item">
+                    <p><strong>Idioma:</strong>@i.Idioma</p>
+                    <p><strong>Nível:</strong>@i.Nivel</p>
+                </div>
+            }
+
+
         </div>
-        <div Id="Ed2" class="Educacao">
-            <h2>Instituição 1</h2>
-            <h2>Curso 1</h2>
-            <h2>Preiodo1</h2>
-        </div>
-        <div Id="Ed2" class="Educacao">
-            <h2>Instituição 1</h2>
-            <h2>Curso 1</h2>
-            <h2>Preiodo1</h2>
-        </div>
-        <div Id="Ed2" class="Educacao">
-            <h2>Instituição 1</h2>
-            <h2>Curso 1</h2>
-            <h2>Preiodo1</h2>
-        </div>
+
     </div>
 </div>
 
 <script>
     const textFields = document.querySelectorAll('.mdc-text-field');
 
-    for (const textField of textFields) {
-        mdc.textField.MDCTextField.attachTo(textField);
-    }
+                    for (const textField of textFields) {
+                        mdc.textField.MDCTextField.attachTo(textField);
+                    }
 
 </script>
 
 
 <style>
     h1 {
-        font-family: 'Holtwood One SC', serif;
-    }
+                        font-family: 'Holtwood One SC', serif;
+                    }
 
     p {
         font-family: 'Roboto', sans-serif;
