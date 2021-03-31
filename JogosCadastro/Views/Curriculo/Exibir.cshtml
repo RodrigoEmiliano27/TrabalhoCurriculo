@@ -29,16 +29,24 @@
             <h1>@Model.Nome</h1>
 
         </section>
-        <section class="dados-pessoais-conatiner">
+        <section class="dados-pessoais-container">
+            <div class="dados-pessoais-items">
+                <p><i class="fas fa-id-card"></i> @Model.CPF</p>
+            </div>
 
-            <p><i class="fas fa-id-card"></i> @Model.CPF</p>
+            <div class="dados-pessoais-items">
+                <p><i class="fas fa-envelope"></i> @Model.Telefone</p>
+            </div>
 
-            <p><i class="fas fa-envelope"></i> @Model.Telefone</p>
+            <div class="dados-pessoais-items">
+                <p><i class="fas fa-envelope"></i> @Model.Email</p>
+            </div>
 
-            <p><i class="fas fa-envelope"></i> @Model.Email</p>
+            <div class="dados-pessoais-items">
+                <p><i class="fas fa-home"></i> @Model.Rua nº: @Model.Numero_Endereco, @Model.Bairro @Model.Cidade - @Model.Estado</p>
+            </div>
 
-
-        </section>
+         </section>
 
 
         <section class="cargo-container">
@@ -217,6 +225,15 @@
         border-radius: 50%;
         max-width: 80%;
     }
+
+    .dados-pessoais-container{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        flex-direction:column;
+    }
+
+
 
     .dados-pessoais-item span {
         vertical-align: middle;
