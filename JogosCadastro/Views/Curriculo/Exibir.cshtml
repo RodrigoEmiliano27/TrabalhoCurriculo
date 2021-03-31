@@ -13,10 +13,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Holtwood+One+SC&family=Roboto:wght@700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a42a254279.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Permanent+Marker&display=swap" rel="stylesheet">
 </head>
 
 
-<div>
+<div class="curriculo-container">
     <!-- style=" "-->
     <div class="quadro-esquerdo">
         <div class="foto-container">
@@ -28,29 +31,41 @@
         </section>
         <section class="dados-pessoais-conatiner">
 
-           <p>@Model.CPF</p>
+            <p><i class="fas fa-id-card"></i> @Model.CPF</p>
 
-           <p>@Model.Telefone</p>
+            <p><i class="fas fa-envelope"></i> @Model.Telefone</p>
 
-            <p>@Model.Email</p>
+            <p><i class="fas fa-envelope"></i> @Model.Email</p>
 
 
         </section>
 
 
         <section class="cargo-container">
-            <h2>Cargo Pretendido: @Model.Cargo_Pretendido</h2>
+            <p>Cargo Pretendido:</p>
+            <h3>@Model.Cargo_Pretendido</h3>
         </section>
 
         <section class="midias-sociais-container">
-            <span><i class="fab fa-facebook fa-2x"></i>@Model.Facebook</span>
-            <span><i class="fab fa-linkedin fa-2x"></i>@Model.Linkdin</span>
-            <span><i class="fab fa-instagram-square fa-2x"></i>@Model.Instagram</span>
+            <div class="social-item">
+                <i class="fab fa-facebook fa-2x"></i>
+                <p>@Model.Facebook</p>
+            </div>
 
+            <div class="social-item">
+                <i class="fab fa-linkedin fa-2x"></i>
+                <p>@Model.Linkdin</p>
+            </div>
+
+            <div class="social-item">
+                <i class="fab fa-instagram-square fa-2x"></i>
+                <p>@Model.Instagram</p>
+            </div>
         </section>
 
     </div>
-    <div style="margin-left: 20px; width: 55%; float: left; background: yellow; ">
+    <!-- style="margin-left: 20px; width: 55%; float: left; -->
+    <div class="quadro-direito">
         <div class="SobreMIM">
             <h2>Sobre mim</h2>
             <p>
@@ -58,37 +73,37 @@
             </p>
         </div>
         <div class="Formacoes">
-            <h3>Formações</h3>
-            @foreach(FormacaoViewModel f in Model.Formacao)
+            <h2>Formações</h2>
+            @foreach (FormacaoViewModel f in Model.Formacao)
             {
 
                 <div class="formacao item">
-                    <p><strong>Formacao:</strong>@f.Descricao</p>
-                    <p><strong>Instituição:</strong>@f.Instituicao</p>
-                    <p><strong>Inicio:</strong>@f.Inicio.ToString("dd/MM/YYYY")</p>
-                    <p><strong>Fim:</strong>@f.Fim.ToString("dd/MM/YYYY")</p>
+                    <h3>@f.Descricao</h3>
+                    <p><strong>Instituição:</strong> @f.Instituicao</p>
+                    <p><strong>Inicio:</strong> @f.Inicio.ToString("dd/MM/yyyy")</p>
+                    <p><strong>Fim:</strong> @f.Fim.ToString("dd/MM/yyyy")</p>
                 </div>
             }
         </div>
-  
+
         <div class="Habilidades">
-            <h3>Habilidades</h3>
-            @foreach(HabilidadesViewModel h in Model.Habilidades)
+            <h2>Habilidades</h2>
+            @foreach (HabilidadesViewModel h in Model.Habilidades)
             {
                 <div class="habilidade item">
-                    <p>@h.Descricao</p>
+                    <h3>@h.Descricao</h3>
 
                     @if (h.Nivel == 0)
                     {
-                        <p><strong>Nivel:</strong>Iniciante</p>
+                        <p><strong>Nivel:</strong> Iniciante</p>
                     }
                     else if (h.Nivel == 1)
                     {
-                        <p><strong>Nivel:</strong>Intermediario</p>
+                        <p><strong>Nivel:</strong> Intermediario</p>
                     }
                     else
                     {
-                        <p><strong>Nivel:</strong>Avançado</p>
+                        <p><strong>Nivel:</strong> Avançado</p>
                     }
                 </div>
             }
@@ -96,12 +111,12 @@
 
 
         <div class="Idiomas">
-            <h3>Idiomas</h3>
-            @foreach(IdiomaViewModel i in Model.Idiomas)
+            <h2>Idiomas</h2>
+            @foreach (IdiomaViewModel i in Model.Idiomas)
             {
                 <div class="Idiomas item">
-                    <p><strong>Idioma:</strong>@i.Idioma</p>
-                    <p><strong>Nível:</strong>@i.Nivel</p>
+                    <h3>@i.Idioma</h3>
+                    <p><strong>Nível:</strong> @i.Nivel</p>
                 </div>
             }
 
@@ -122,30 +137,77 @@
 
 
 <style>
-    h1 {
-                        font-family: 'Holtwood One SC', serif;
-                    }
 
-    p {
-        font-family: 'Roboto', sans-serif;
+    *{
+        margin:0;
     }
 
-    .quadro-esquerdo {
-        width: 24%;
-        float: left;
-        height: 100%;
+    h1 {
+         font-family: 'Holtwood One SC', serif;
+         font-size:2em;
+     }
+
+    p {
+        font-family: 'Indie Flower', cursive;
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-family: 'Permanent Marker', cursive;
+        font-size:2em;
+        margin:0;
+    }
+
+    h2 {
+        font-family: 'Permanent Marker', cursive;
+        font-size: 2.5em;
+        margin:0;
+    }
+
+    .curriculo-container {
         display: flex;
-        background-color: #eeeeee;
-        flex-direction: column;
         justify-content: center;
+        align-content: center;
+        background-color: #897853;
+        padding: 24px;
+    }
+
+    .cargo-container {
+        margin-top: 16px;
+        margin-bottom: 16px;
+        padding-bottom:16px;
+        padding-top:16px;
+        text-align:center;
+    }
+
+    .quadro-esquerdo{
+        width: 24%;
+        /*float: left;*/
+        min-height: 100%;
+        display: flex;
+        background-color: white;
+        flex-direction: column;
+        justify-content: flex-start;
         align-items: center;
+        border: 5px solid black;
+    }
+
+    .quadro-direito {
+        border: 5px solid black;
+        padding-top: 8px;
+        padding-left:24px;
+        padding-right:24px;
+        padding-bottom:8px;
+        width: 56%;
+        background-color: white;
     }
 
     .foto-container {
-        flex: 1;
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-top: 20vh;
+        margin-bottom: 8vh;
     }
 
     .ImagemRedonda {
@@ -160,6 +222,26 @@
         vertical-align: middle;
         margin-right: 8px;
     }
+
+    .item {
+        margin-top: 16px;
+        margin-bottom: 16px;
+        padding: 8px;
+    }
+
+    .nome-container{
+        margin:0px;
+    }
+
+    .social-item{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        margin-top:8px;
+        margin-bottom:8px;
+    }
+
+
 </style>
 </html>
 
