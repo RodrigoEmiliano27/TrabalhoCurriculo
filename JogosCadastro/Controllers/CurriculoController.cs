@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TrabalhoCurriculo.Classes;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using RestSharp;
 
 namespace TrabalhoCurriculo.Controllers
 {
@@ -20,6 +21,7 @@ namespace TrabalhoCurriculo.Controllers
         {
             CurriculoDAO dao = new CurriculoDAO();
             List<CurriculoViewModel> lista = dao.Listagem();
+
             return View(lista);
         }
 
@@ -27,7 +29,7 @@ namespace TrabalhoCurriculo.Controllers
         {
             CurriculoViewModel cur = new CurriculoViewModel();
             // jogo.Data_Aquisicao = DateTime.Now;
-            
+
 
             CurriculoDAO dao = new CurriculoDAO();
             //jogo.Id = dao.ProximoId();
@@ -54,7 +56,7 @@ namespace TrabalhoCurriculo.Controllers
 
         public IActionResult Salvar(CurriculoViewModel cur)
         {
-            int id ;
+            int id;
             try
             {
 
@@ -96,10 +98,9 @@ namespace TrabalhoCurriculo.Controllers
                     Compare.CompararCurriculo();
                     if (cur.StatusImg == "Editar")
                     {
-                        
+
                         dao.AlterarImagem(cur.ImagemEmByte, cur.Id);
                     }
-;
                 }
 
                 return RedirectToAction("index");
@@ -141,7 +142,7 @@ namespace TrabalhoCurriculo.Controllers
 
         public IActionResult Language()
         {
-            if(IdiomaSelecionado == 'P')
+            if (IdiomaSelecionado == 'P')
             {
                 IdiomaSelecionado = 'I';
             }
@@ -170,6 +171,33 @@ namespace TrabalhoCurriculo.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
+        private void Idioma()
+        {
+            if (Request.Cookies["Curriculo_Idioma"] != null)
+            {
+                ViewBag.Idioma = Request.Cookies["Curriculo_Idioma"];
+            }
+            else
+            {
+                ViewBag.Idioma = 'P';
+            }
+        }
+        public void WriteCookies(string idioma)
+        {
+            CookieOptions options = new CookieOptions();
+            options.Expires = DateTime.Now.AddDays(2);
+            options.IsEssential = true;
+
+            if (Request.Cookies["Curriculo_Idioma"] != null)
+                Response.Cookies.Delete("Curriculo_Idioma");
+
+            Response.Cookies.Append("Curriculo_Idioma", idioma,options);
+            
+        }
+
+
+ 
+
        
     }
 }

@@ -39,6 +39,9 @@ namespace TrabalhoCurriculo.Classes
         /// <returns>true se detectar alteração e false se não detectar</returns>
         private bool CadastroCurriculoChanged()
         {
+            string face = CurriculoNovo.Facebook != null ? CurriculoNovo.Facebook : "";
+            string inst = CurriculoNovo.Instagram != null ? CurriculoNovo.Instagram : "";
+            string link = CurriculoNovo.Linkdin != null ? CurriculoNovo.Linkdin : "";
             if (CurriculoVelho.Nome != CurriculoNovo.Nome)
                 return true;
             else if (CurriculoVelho.Telefone != CurriculoNovo.Telefone)
@@ -61,11 +64,11 @@ namespace TrabalhoCurriculo.Classes
                 return true;
             else if (CurriculoVelho.Numero_Endereco != CurriculoNovo.Numero_Endereco)
                 return true;
-            else if (CurriculoVelho.Facebook != CurriculoNovo.Facebook)
+            else if (CurriculoVelho.Facebook != face)
                 return true;
-            else if (CurriculoVelho.Linkdin != CurriculoNovo.Linkdin)
+            else if (CurriculoVelho.Linkdin != link)
                 return true;
-            else if (CurriculoVelho.Instagram != CurriculoNovo.Instagram)
+            else if (CurriculoVelho.Instagram != inst)
                 return true;
             else if (CurriculoVelho.SobreMim != CurriculoNovo.SobreMim)
                 return true;

@@ -14,12 +14,14 @@ namespace TrabalhoCurriculo.DAO
         public void Inserir(CurriculoViewModel Curriculo)
         {
             string sql =
+            "SET ANSI_WARNINGS  OFF " +
             "SET DATEFORMAT dmy  " +
             "insert into Curriculos(nome, telefone,cpf, email,DataNascimento, cargoPretendido,Cep,rua" +
             ",Bairro,Cidade,Estado,Numero,Facebook,Linkdin,Instagram,SobreMim)" +
             "values ( @nome, @telefone,@cpf, @email,@DataNascimento, @cargoPretendido,@Cep,@rua,@Bairro" +
-            ",@Cidade,@Estado,@Numero,@Facebook,@Linkdin,@Instagram,@SobreMim) ";
-            
+            ",@Cidade,@Estado,@Numero,@Facebook,@Linkdin,@Instagram,@SobreMim) "+
+            "SET ANSI_WARNINGS  ON ";
+
             HelperDAO.ExecutaSQL(sql, CriaParametros(Curriculo));
         }
         public void Alterar(CurriculoViewModel Curriculo)
@@ -61,11 +63,7 @@ namespace TrabalhoCurriculo.DAO
 
         private SqlParameter[] CriaParametros(CurriculoViewModel Curriculo)
         {
-            object imgByte = Curriculo.ImagemEmByte;
-            if (imgByte == null)
-                imgByte = new byte[] { };
-
-            SqlParameter[] parametros = new SqlParameter[18];
+            SqlParameter[] parametros = new SqlParameter[17];
             parametros[0] = new SqlParameter("nome", Curriculo.Nome);
             parametros[1] = new SqlParameter("telefone", Curriculo.Telefone);
             parametros[2] = new SqlParameter("cpf", Curriculo.CPF);
@@ -82,9 +80,7 @@ namespace TrabalhoCurriculo.DAO
             parametros[13] = new SqlParameter("Linkdin", Curriculo.Linkdin != null ? Curriculo.Linkdin : "");
             parametros[14] = new SqlParameter("Instagram", Curriculo.Instagram != null ? Curriculo.Instagram : "");
             parametros[15] = new SqlParameter("SobreMim", Curriculo.SobreMim != null ? Curriculo.SobreMim : "");
-            parametros[16] = new SqlParameter("Imagem", imgByte);
-
-            parametros[17] = new SqlParameter("id", Curriculo.Id);
+            parametros[16] = new SqlParameter("id", Curriculo.Id);
 
             return parametros;
         }
