@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using TrabalhoCurriculo.Classes;
 using Microsoft.AspNetCore.Http;
 using System.IO;
-using RestSharp;
+//using RestSharp;
 
 namespace TrabalhoCurriculo.Controllers
 {
@@ -19,6 +19,9 @@ namespace TrabalhoCurriculo.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Idioma = getSelectedLanguage();
+
+
             CurriculoDAO dao = new CurriculoDAO();
             List<CurriculoViewModel> lista = dao.Listagem();
 
@@ -27,6 +30,9 @@ namespace TrabalhoCurriculo.Controllers
 
         public IActionResult Create(int id)
         {
+            ViewBag.Idioma = getSelectedLanguage();
+
+
             CurriculoViewModel cur = new CurriculoViewModel();
             // jogo.Data_Aquisicao = DateTime.Now;
 
@@ -41,6 +47,8 @@ namespace TrabalhoCurriculo.Controllers
         {
             try
             {
+                ViewBag.Idioma = getSelectedLanguage();
+
                 CurriculoDAO dao = new CurriculoDAO();
                 CurriculoViewModel cur = dao.Consulta(id);
                 if (cur == null)
@@ -60,7 +68,7 @@ namespace TrabalhoCurriculo.Controllers
             try
             {
 
-                ViewBag.Idioma = IdiomaSelecionado;
+                ViewBag.Idioma = getSelectedLanguage();
 
                 CurriculoDAO dao = new CurriculoDAO();
                 FormacaoDAO fdao = new FormacaoDAO();
@@ -140,18 +148,32 @@ namespace TrabalhoCurriculo.Controllers
             }
         }
 
-        public IActionResult Language()
+        public IActionResult Language(string language)
         {
-            if (IdiomaSelecionado == 'P')
+
+            WriteCookies(language);
+            /*if (Request.Cookies["Curriculo_Idioma"] != null)
             {
-                IdiomaSelecionado = 'I';
+                ViewBag.Idioma = Request.Cookies["Curriculo_Idioma"];
             }
             else
             {
-                IdiomaSelecionado = 'P';
-            }
+                ViewBag.Idioma = 'P';
+            }*/
+
+
             return RedirectToAction("index");
 
+        }
+
+        private string getSelectedLanguage()
+        {
+            if (Request.Cookies["Curriculo_Idioma"] != null)
+            {
+                return Request.Cookies["Curriculo_Idioma"];
+            }
+
+            return "P";
         }
 
         public IActionResult Exibir(int id)
@@ -160,7 +182,7 @@ namespace TrabalhoCurriculo.Controllers
             {
                 CurriculoDAO dao = new CurriculoDAO();
                 CurriculoViewModel cur = dao.Consulta(id);
-                ViewBag.Idioma = IdiomaSelecionado;
+                ViewBag.Idioma = getSelectedLanguage();
                 if (cur == null)
                     return RedirectToAction("index");
                 else
@@ -171,17 +193,7 @@ namespace TrabalhoCurriculo.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
-        private void Idioma()
-        {
-            if (Request.Cookies["Curriculo_Idioma"] != null)
-            {
-                ViewBag.Idioma = Request.Cookies["Curriculo_Idioma"];
-            }
-            else
-            {
-                ViewBag.Idioma = 'P';
-            }
-        }
+
         public void WriteCookies(string idioma)
         {
             CookieOptions options = new CookieOptions();

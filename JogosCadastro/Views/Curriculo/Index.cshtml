@@ -4,18 +4,43 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <br />
-<a href="/curriculo/create">Novo Registro</a>
-<a href="Curriculo/Language">Alterar Idioma</a>
+@if (ViewBag.Idioma == "I")
+{
+    <a href="/curriculo/create">New Register</a>
+    <a href="Curriculo/Language?language=P">Portuguese</a>
+    <a href="Curriculo/Language?language=I">English</a>
+    <br />
+    <h2>Curriculum Listing</h2>
+}
+else
+{
+    <a href="/curriculo/create">Novo Registro</a>
+    <a href="Curriculo/Language?language=P">Portugues</a>
+    <a href="Curriculo/Language?language=I">Ingles</a>
+    <br />
+    <h2>Listagem de Curriculos</h2>
+}
 
-<br />
-<h2>Listagem de Curriculos</h2>
 <table class="table table-responsive table-striped">
     <tr>
-        <th>Ações</th>
-        <th>CPF</th>
-        <th>Nome</th>
-        <th>CEP</th>
-        <th>Rua</th>
+
+        @if (ViewBag.Idioma == "I")
+        {
+            <th>Action</th>
+            <th>CPF</th>
+            <th>Name</th>
+            <th>CEP</th>
+            <th>Street</th>
+        }
+        else
+        {
+            <th>Ações</th>
+            <th>CPF</th>
+            <th>Nome</th>
+            <th>CEP</th>
+            <th>Rua</th>
+        }
+
     </tr>
     @foreach (var cur in Model)
     {

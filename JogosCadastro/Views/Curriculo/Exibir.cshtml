@@ -50,7 +50,7 @@
 
 
         <section class="cargo-container">
-            @if (ViewBag.Idioma == 'I')
+            @if (ViewBag.Idioma == "I")
             {
                 <p>Intended Position:</p>
             }
@@ -82,7 +82,7 @@
     <!-- style="margin-left: 20px; width: 55%; float: left; -->
     <div class="quadro-direito">
         <div class="SobreMIM">
-            @if (ViewBag.Idioma == 'I')
+            @if (ViewBag.Idioma == "I")
             {
                 <h2>About me</h2>
             }
@@ -95,7 +95,7 @@
             </p>
         </div>
         <div class="Formacoes">
-            @if (ViewBag.Idioma == 'I')
+            @if (ViewBag.Idioma == "I")
             {
                 <h2>Formations</h2>
             }
@@ -110,7 +110,7 @@
                 <div class="formacao item">
                     <h3>@f.Descricao</h3>
 
-                    @if (ViewBag.Idioma == 'I')
+                    @if (ViewBag.Idioma == "I")
                     {
                         <p><strong>Instituition:</strong> @f.Instituicao</p>
                         <p><strong>Start:</strong> @f.Inicio.ToString("dd/MM/yyyy")</p>
@@ -129,7 +129,7 @@
         </div>
 
         <div class="Habilidades">
-            @if (ViewBag.Idioma == 'I')
+            @if (ViewBag.Idioma == "I")
             {
                 <h2>Skills</h2>
             }
@@ -142,7 +142,7 @@
         <div class="habilidade item">
             <h3>@h.Descricao</h3>
 
-            @if (ViewBag.Idioma == 'I')
+            @if (ViewBag.Idioma == "I")
             {
                 @if (h.Nivel == 0)
                 {
@@ -181,13 +181,13 @@
 
         <div class="Idiomas">
 
-            @if (ViewBag.Idioma == 'I')
+            @if (ViewBag.Idioma == "I")
             {
-                <h2>Idiomas</h2>
+                <h2>Languages</h2>
             }
             else
             {
-                <h2>Languages</h2>
+                <h2>Idiomas</h2>
             }
 
             @foreach (IdiomaViewModel i in Model.Idiomas)
@@ -195,7 +195,7 @@
                 <div class="Idiomas item">
                     <h3>@i.Idioma</h3>
 
-                    @if (ViewBag.Idioma == 'I')
+                    @if (ViewBag.Idioma == "I")
                     {
                         <p><strong>Level:</strong> @i.Nivel</p>
                     }
