@@ -50,7 +50,14 @@
 
 
         <section class="cargo-container">
-            <p>Cargo Pretendido:</p>
+            @if (ViewBag.Idioma == 'I')
+            {
+                <p>Intended Position:</p>
+            }
+            else
+            {
+                <p>Cargo Pretendido:</p>
+            }
             <h3>@Model.Cargo_Pretendido</h3>
         </section>
 
@@ -75,56 +82,127 @@
     <!-- style="margin-left: 20px; width: 55%; float: left; -->
     <div class="quadro-direito">
         <div class="SobreMIM">
-            <h2>Sobre mim</h2>
+            @if (ViewBag.Idioma == 'I')
+            {
+                <h2>About me</h2>
+            }
+            else
+            {
+                <h2>Sobre mim</h2>
+            }
             <p>
                 @Model.SobreMim
             </p>
         </div>
         <div class="Formacoes">
-            <h2>Formações</h2>
+            @if (ViewBag.Idioma == 'I')
+            {
+                <h2>Formations</h2>
+            }
+            else
+            {
+                <h2>Formações</h2>
+            }
+
             @foreach (FormacaoViewModel f in Model.Formacao)
             {
 
                 <div class="formacao item">
                     <h3>@f.Descricao</h3>
-                    <p><strong>Instituição:</strong> @f.Instituicao</p>
-                    <p><strong>Inicio:</strong> @f.Inicio.ToString("dd/MM/yyyy")</p>
-                    <p><strong>Fim:</strong> @f.Fim.ToString("dd/MM/yyyy")</p>
+
+                    @if (ViewBag.Idioma == 'I')
+                    {
+                        <p><strong>Instituition:</strong> @f.Instituicao</p>
+                        <p><strong>Start:</strong> @f.Inicio.ToString("dd/MM/yyyy")</p>
+                        <p><strong>End:</strong> @f.Fim.ToString("dd/MM/yyyy")</p>
+                    }
+                    else
+                    {
+                        <p><strong>Instituição:</strong> @f.Instituicao</p>
+                        <p><strong>Inicio:</strong> @f.Inicio.ToString("dd/MM/yyyy")</p>
+                        <p><strong>Fim:</strong> @f.Fim.ToString("dd/MM/yyyy")</p>
+                    }
+
+
                 </div>
             }
         </div>
 
         <div class="Habilidades">
-            <h2>Habilidades</h2>
+            @if (ViewBag.Idioma == 'I')
+            {
+                <h2>Skills</h2>
+            }
+            else
+            {
+                <h2>Habilidades</h2>
+            }
             @foreach (HabilidadesViewModel h in Model.Habilidades)
             {
-                <div class="habilidade item">
-                    <h3>@h.Descricao</h3>
+        <div class="habilidade item">
+            <h3>@h.Descricao</h3>
 
-                    @if (h.Nivel == 0)
-                    {
-                        <p><strong>Nivel:</strong> Iniciante</p>
-                    }
-                    else if (h.Nivel == 1)
-                    {
-                        <p><strong>Nivel:</strong> Intermediario</p>
-                    }
-                    else
-                    {
-                        <p><strong>Nivel:</strong> Avançado</p>
-                    }
-                </div>
+            @if (ViewBag.Idioma == 'I')
+            {
+                @if (h.Nivel == 0)
+                {
+                    <p><strong>Level:</strong> Iniciante</p>
+                }
+                else if (h.Nivel == 1)
+                {
+                    <p><strong>Level:</strong> Intermediario</p>
+                }
+                else
+                {
+                    <p><strong>Level:</strong> Avançado</p>
+                }
+            }
+            else
+            {
+                @if (h.Nivel == 0)
+                {
+                    <p><strong>Nivel:</strong> Iniciante</p>
+                }
+                else if (h.Nivel == 1)
+                {
+                    <p><strong>Nivel:</strong> Intermediario</p>
+                }
+                else
+                {
+                    <p><strong>Nivel:</strong> Avançado</p>
+                }
+            }
+
+
+        </div>
             }
         </div>
 
 
         <div class="Idiomas">
-            <h2>Idiomas</h2>
+
+            @if (ViewBag.Idioma == 'I')
+            {
+                <h2>Idiomas</h2>
+            }
+            else
+            {
+                <h2>Languages</h2>
+            }
+
             @foreach (IdiomaViewModel i in Model.Idiomas)
             {
                 <div class="Idiomas item">
                     <h3>@i.Idioma</h3>
-                    <p><strong>Nível:</strong> @i.Nivel</p>
+
+                    @if (ViewBag.Idioma == 'I')
+                    {
+                        <p><strong>Level:</strong> @i.Nivel</p>
+                    }
+                    else
+                    {
+                        <p><strong>Nível:</strong> @i.Nivel</p>
+                    }
                 </div>
             }
 

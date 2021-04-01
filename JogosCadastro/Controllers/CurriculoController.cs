@@ -13,7 +13,9 @@ namespace TrabalhoCurriculo.Controllers
 {
     public class CurriculoController : Controller
     {
-  
+
+        private char IdiomaSelecionado = 'P';
+
         public IActionResult Index()
         {
             CurriculoDAO dao = new CurriculoDAO();
@@ -55,6 +57,9 @@ namespace TrabalhoCurriculo.Controllers
             int id ;
             try
             {
+
+                ViewBag.Idioma = IdiomaSelecionado;
+
                 CurriculoDAO dao = new CurriculoDAO();
                 FormacaoDAO fdao = new FormacaoDAO();
                 IdiomaDAO Idao = new IdiomaDAO();
@@ -134,12 +139,27 @@ namespace TrabalhoCurriculo.Controllers
             }
         }
 
+        public IActionResult Language()
+        {
+            if(IdiomaSelecionado == 'P')
+            {
+                IdiomaSelecionado = 'I';
+            }
+            else
+            {
+                IdiomaSelecionado = 'P';
+            }
+            return RedirectToAction("index");
+
+        }
+
         public IActionResult Exibir(int id)
         {
             try
             {
                 CurriculoDAO dao = new CurriculoDAO();
                 CurriculoViewModel cur = dao.Consulta(id);
+                ViewBag.Idioma = IdiomaSelecionado;
                 if (cur == null)
                     return RedirectToAction("index");
                 else

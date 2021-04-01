@@ -5,6 +5,8 @@
 }
 <br />
 <a href="/curriculo/create">Novo Registro</a>
+<a href="Curriculo/Language">Alterar Idioma</a>
+
 <br />
 <h2>Listagem de Curriculos</h2>
 <table class="table table-responsive table-striped">
@@ -33,9 +35,8 @@
 </table>
 
 <script>
-     function apagarJogo(id)
-     {
-         if (confirm('Confirma a exclusão do registro?'))
-         location.href = 'Curriculo/Delete?id=' + id;
-     }
+    function apagarJogo(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = 'Curriculo/Delete?id=' + id;
+    }
 </script>

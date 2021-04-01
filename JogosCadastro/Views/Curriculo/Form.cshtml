@@ -23,18 +23,47 @@
                     <label for="id" class="control-label hide">Id</label>
                     <input type="number" Name="id" value="@Model.Id" class="form-control hide" readonly />
 
-                    <h2>Edição de Curriculo</h2>
+                    @if (ViewBag.Idioma == 'I')
+                    {
+                        <h2>Resume Editing</h2>
+                    }
+                    else
+                    {
+                        <h2>Edição de Curriculo</h2>
+                    }
                 }
                 else
                 {
-                    <h2>Criação de Curriculo</h2>
+                    @if (ViewBag.Idioma == 'I')
+                    {
+                        <h2>Curriculum creation</h2>
+                    }
+                    else
+                    {
+                        <h2>Criação de Curriculo</h2>
+                    }
+
                 }
 
-                <h3>Informações Pessoais</h3>
+                @if (ViewBag.Idioma == 'I')
+                {
+                    <h3>Personal information</h3>
+                }
+                else
+                {
+                    <h3>Informações Pessoais</h3>
+                }
 
-                <input type="hidden" name="StatusImg" id="editarImg"/>
+                <input type="hidden" name="StatusImg" id="editarImg" />
 
-                <label for="Imagem" class="control-label">Foto</label>
+                @if (ViewBag.Idioma == 'I')
+                {
+                    <label for="Imagem" class="control-label">Photo</label>
+                }
+                else
+                {
+                    <label for="Imagem" class="control-label">Foto</label>
+                }
 
                 <div class="image-container">
                     <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive" width="32%">
@@ -43,36 +72,77 @@
 
                     @if (@Model.ImagemEmBase64.Length == 0)
                     {
-                        <div class="hide" id="btRemoveImage" onclick="removeImage()"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
+                        @if (ViewBag.Idioma == 'I')
+                        {
+                            <div class="hide" id="btRemoveImage" onclick="removeImage()"><i class="far fa-trash-alt fa-3x"></i><h4>Remove</h4></div>
+                        }
+                        else
+                        {
+                            <div class="hide" id="btRemoveImage" onclick="removeImage()"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
+                        }
                     }
                     else
                     {
-                        <div class="remove shadow" id="btRemoveImage" onclick="removeImage()"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
+                        @if (ViewBag.Idioma == 'I')
+                        {
+                            <div class="remove shadow" id="btRemoveImage" onclick="removeImage()"><i class="far fa-trash-alt fa-3x"></i><h4>Remove</h4></div>
+                        }
+                        else
+                        {
+                            <div class="remove shadow" id="btRemoveImage" onclick="removeImage()"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
+                        }
                     }
 
                 </div>
 
 
+                @if (ViewBag.Idioma == 'I')
+                {
+                    <label for="nome" class="control-label">Name</label>
+                    <input type="text" Name="nome" value="@Model.Nome" class="form-control" />
 
-                <label for="nome" class="control-label">Nome</label>
-                <input type="text" Name="nome" value="@Model.Nome" class="form-control" />
+                    <label for="Nascimento" class="control-label">Birth date</label>
+                    <input type="date" Name="Nascimento" value="@Model.Nascimento.ToString("yyyy'-'MM'-'dd")" class="form-control" />
 
-                <label for="Nascimento" class="control-label">Data de Nascimento</label>
-                <input type="date" Name="Nascimento" value="@Model.Nascimento.ToString("yyyy'-'MM'-'dd")" class="form-control" />
-
-                <label for="telefone" class="control-label">Telefone</label>
-                <input type="text" Name="telefone" value="@Model.Telefone" class="form-control" />
-
-
-                <label for="CPF" class="control-label">CPF</label>
-                <input type="text" Name="CPF" value="@Model.CPF" class="form-control" />
+                    <label for="telefone" class="control-label">Phone</label>
+                    <input type="text" Name="telefone" value="@Model.Telefone" class="form-control" />
 
 
-                <label for="Email" class="control-label">E-Mail</label>
-                <input type="text" Name="Email" value="@Model.Email" class="form-control" />
+                    <label for="CPF" class="control-label">CPF</label>
+                    <input type="text" Name="CPF" value="@Model.CPF" class="form-control" />
 
-                <label for="cargo_pretendido" class="control-label">Cargo Pretendido</label>
-                <input type="text" Name="cargo_pretendido" value="@Model.Cargo_Pretendido" class="form-control" />
+
+                    <label for="Email" class="control-label">E-Mail</label>
+                    <input type="text" Name="Email" value="@Model.Email" class="form-control" />
+
+                    <label for="cargo_pretendido" class="control-label">Intended Position</label>
+                    <input type="text" Name="cargo_pretendido" value="@Model.Cargo_Pretendido" class="form-control" />
+
+                }
+                else
+                {
+                    <label for="nome" class="control-label">Nome</label>
+                    <input type="text" Name="nome" value="@Model.Nome" class="form-control" />
+
+                    <label for="Nascimento" class="control-label">Data de Nascimento</label>
+                    <input type="date" Name="Nascimento" value="@Model.Nascimento.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+
+                    <label for="telefone" class="control-label">Telefone</label>
+                    <input type="text" Name="telefone" value="@Model.Telefone" class="form-control" />
+
+
+                    <label for="CPF" class="control-label">CPF</label>
+                    <input type="text" Name="CPF" value="@Model.CPF" class="form-control" />
+
+
+                    <label for="Email" class="control-label">E-Mail</label>
+                    <input type="text" Name="Email" value="@Model.Email" class="form-control" />
+
+                    <label for="cargo_pretendido" class="control-label">Cargo Pretendido</label>
+                    <input type="text" Name="cargo_pretendido" value="@Model.Cargo_Pretendido" class="form-control" />
+
+                }
+
 
             </div>
 
@@ -80,153 +150,333 @@
 
             <div class="sub-container">
 
-                <h3>Endereço</h3>
 
-                <label for="rua" class="control-label">Rua</label>
-                <input type="text" Name="rua" value="@Model.Rua" class="form-control" />
+                @if (ViewBag.Idioma == 'I')
+                {
+                    <h3>Address</h3>
 
-                <label for="Numero" class="control-label">Número</label>
-                <input type="text" Name="Numero" value="@Model.Numero_Endereco" class="form-control" />
+                    <label for="rua" class="control-label">Street</label>
+                    <input type="text" Name="rua" value="@Model.Rua" class="form-control" />
 
-                <label for="cep" class="control-label">CEP</label>
-                <input type="text" Name="cep" value="@Model.CEP" class="form-control" />
+                    <label for="Numero" class="control-label">Number</label>
+                    <input type="text" Name="Numero" value="@Model.Numero_Endereco" class="form-control" />
 
-                <label for="bairro" class="control-label">Bairro</label>
-                <input type="text" Name="bairro" value="@Model.Bairro" class="form-control" />
+                    <label for="cep" class="control-label">CEP</label>
+                    <input type="text" Name="cep" value="@Model.CEP" class="form-control" />
+
+                    <label for="bairro" class="control-label">Neighborhood</label>
+                    <input type="text" Name="bairro" value="@Model.Bairro" class="form-control" />
 
 
-                <label for="cidade" class="control-label">Cidade</label>
-                <input type="text" Name="cidade" value="@Model.Cidade" class="form-control" />
+                    <label for="cidade" class="control-label">City</label>
+                    <input type="text" Name="cidade" value="@Model.Cidade" class="form-control" />
 
 
-                <label for="estado" class="control-label">Estado</label>
-                <input type="text" Name="estado" value="@Model.Estado" class="form-control" />
+                    <label for="estado" class="control-label">State</label>
+                    <input type="text" Name="estado" value="@Model.Estado" class="form-control" />
+
+                }
+                else
+                {
+                    <h3>Endereço</h3>
+
+                    <label for="rua" class="control-label">Rua</label>
+                    <input type="text" Name="rua" value="@Model.Rua" class="form-control" />
+
+                    <label for="Numero" class="control-label">Número</label>
+                    <input type="text" Name="Numero" value="@Model.Numero_Endereco" class="form-control" />
+
+                    <label for="cep" class="control-label">CEP</label>
+                    <input type="text" Name="cep" value="@Model.CEP" class="form-control" />
+
+                    <label for="bairro" class="control-label">Bairro</label>
+                    <input type="text" Name="bairro" value="@Model.Bairro" class="form-control" />
+
+
+                    <label for="cidade" class="control-label">Cidade</label>
+                    <input type="text" Name="cidade" value="@Model.Cidade" class="form-control" />
+
+
+                    <label for="estado" class="control-label">Estado</label>
+                    <input type="text" Name="estado" value="@Model.Estado" class="form-control" />
+
+                }
+
 
             </div>
 
             <div class="sub-container">
 
-                <h3>Midias Sociais</h3>
+                @if (ViewBag.Idioma == 'I')
+                {
+                    <h3>Social Medias</h3>
 
-                <label for="Facebook" class="control-label">Facebook</label>
-                <input type="text" Name="Facebook" value="@Model.Facebook" class="form-control" />
+                    <label for="Facebook" class="control-label">Facebook</label>
+                    <input type="text" Name="Facebook" value="@Model.Facebook" class="form-control" />
 
-                <label for="Linkdin" class="control-label">Linked in</label>
-                <input type="text" Name="Linkdin" value="@Model.Linkdin" class="form-control" />
+                    <label for="Linkdin" class="control-label">Linked in</label>
+                    <input type="text" Name="Linkdin" value="@Model.Linkdin" class="form-control" />
 
-                <label for="Instagram" class="control-label">Instagram</label>
-                <input type="text" Name="Instagram" value="@Model.Instagram" class="form-control" />
+                    <label for="Instagram" class="control-label">Instagram</label>
+                    <input type="text" Name="Instagram" value="@Model.Instagram" class="form-control" />
+
+                }
+                else
+                {
+                    <h3>Midias Sociais</h3>
+
+                    <label for="Facebook" class="control-label">Facebook</label>
+                    <input type="text" Name="Facebook" value="@Model.Facebook" class="form-control" />
+
+                    <label for="Linkdin" class="control-label">Linked in</label>
+                    <input type="text" Name="Linkdin" value="@Model.Linkdin" class="form-control" />
+
+                    <label for="Instagram" class="control-label">Instagram</label>
+                    <input type="text" Name="Instagram" value="@Model.Instagram" class="form-control" />
+
+                }
+
             </div>
 
             <div class="sub-container">
-                <h3>Resumo</h3>
+                @if (ViewBag.Idioma == 'I')
+                {
+                    <h3>Abstract</h3>
 
-                <label for="SobreMim" class="control-label">Sobre mim</label>
-                <textarea type="text" Name="SobreMim" class="form-control">@Model.SobreMim</textarea>
+                    <label for="SobreMim" class="control-label">About me</label>
+                    <textarea type="text" Name="SobreMim" class="form-control">@Model.SobreMim</textarea>
+                }
+                else
+                {
+                    <h3>Resumo</h3>
+
+                    <label for="SobreMim" class="control-label">Sobre mim</label>
+                    <textarea type="text" Name="SobreMim" class="form-control">@Model.SobreMim</textarea>
+                }
+
             </div>
             <div class="sub-container">
                 <div id="formacao_group">
-                    <h3>Formações</h3>
-                    @if (@Model.Formacao != null && @Model.Formacao.Count > 0)
+                    @if (ViewBag.Idioma == 'I')
                     {
-
-                        for (int i = 0; i < @Model.Formacao.Count; i++)
+                        <h3>Formations</h3>
+                        @if (@Model.Formacao != null && @Model.Formacao.Count > 0)
                         {
-                            <div class="formacao-item @i">
 
-                                <label for="Formacao[@i].Id" class="control-label hide">Id</label>
-                                <input type="text" Name="Formacao[@i].Id" value="@Model.Formacao[i].Id" class="form-control hide" readonly />
+                            for (int i = 0; i < @Model.Formacao.Count; i++)
+                            {
+                                <div class="formacao-item @i">
 
-
-                                <label for="Formacao[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
-                                <input type="text" Name="Formacao[@i].IdCurriculo" value="@Model.Formacao[i].IdCurriculo" class="form-control hide" readonly />
-
-                                <label for="Formacao[@i].Instituicao" class="control-label">Instituição</label>
-                                <input type="text" Name="Formacao[@i].Instituicao" value="@Model.Formacao[i].Instituicao" class="form-control" />
-
-                                <label for="Formacao[@i].Descricao" class="control-label">Descrição</label>
-                                <input type="text" Name="Formacao[@i].Descricao" value="@Model.Formacao[i].Descricao" class="form-control" />
-
-                                <label for="Formacao[@i].Inicio" class="control-label">Inicio</label>
-                                <input type="date" Name="Formacao[@i].Inicio" value="@Model.Formacao[i].Inicio.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+                                    <label for="Formacao[@i].Id" class="control-label hide">Id</label>
+                                    <input type="text" Name="Formacao[@i].Id" value="@Model.Formacao[i].Id" class="form-control hide" readonly />
 
 
+                                    <label for="Formacao[@i].IdCurriculo" class="control-label hide">Id Resume</label>
+                                    <input type="text" Name="Formacao[@i].IdCurriculo" value="@Model.Formacao[i].IdCurriculo" class="form-control hide" readonly />
 
-                                <label for="Formacao[@i].Fim" class="control-label">Fim</label>
-                                <input type="date" Name="Formacao[@i].Fim" value="@Model.Formacao[i].Fim.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+                                    <label for="Formacao[@i].Instituicao" class="control-label">Instituition</label>
+                                    <input type="text" Name="Formacao[@i].Instituicao" value="@Model.Formacao[i].Instituicao" class="form-control" />
 
-                                <div class="remove shadow" id="btRemoveFormacao @i" onclick="removeFormacao(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
+                                    <label for="Formacao[@i].Descricao" class="control-label">Description</label>
+                                    <input type="text" Name="Formacao[@i].Descricao" value="@Model.Formacao[i].Descricao" class="form-control" />
+
+                                    <label for="Formacao[@i].Inicio" class="control-label">Start</label>
+                                    <input type="date" Name="Formacao[@i].Inicio" value="@Model.Formacao[i].Inicio.ToString("yyyy'-'MM'-'dd")" class="form-control" />
 
 
-                            </div>
+
+                                    <label for="Formacao[@i].Fim" class="control-label">End</label>
+                                    <input type="date" Name="Formacao[@i].Fim" value="@Model.Formacao[i].Fim.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+
+                                    <div class="remove shadow" id="btRemoveFormacao @i" onclick="removeFormacao(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remove</h4></div>
+
+
+                                </div>
+                            }
+
                         }
-
                     }
+                    else
+                    {
+                        <h3>Formações</h3>
+                        @if (@Model.Formacao != null && @Model.Formacao.Count > 0)
+                        {
+
+                            for (int i = 0; i < @Model.Formacao.Count; i++)
+                            {
+                                <div class="formacao-item @i">
+
+                                    <label for="Formacao[@i].Id" class="control-label hide">Id</label>
+                                    <input type="text" Name="Formacao[@i].Id" value="@Model.Formacao[i].Id" class="form-control hide" readonly />
+
+
+                                    <label for="Formacao[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
+                                    <input type="text" Name="Formacao[@i].IdCurriculo" value="@Model.Formacao[i].IdCurriculo" class="form-control hide" readonly />
+
+                                    <label for="Formacao[@i].Instituicao" class="control-label">Instituição</label>
+                                    <input type="text" Name="Formacao[@i].Instituicao" value="@Model.Formacao[i].Instituicao" class="form-control" />
+
+                                    <label for="Formacao[@i].Descricao" class="control-label">Descrição</label>
+                                    <input type="text" Name="Formacao[@i].Descricao" value="@Model.Formacao[i].Descricao" class="form-control" />
+
+                                    <label for="Formacao[@i].Inicio" class="control-label">Inicio</label>
+                                    <input type="date" Name="Formacao[@i].Inicio" value="@Model.Formacao[i].Inicio.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+
+
+
+                                    <label for="Formacao[@i].Fim" class="control-label">Fim</label>
+                                    <input type="date" Name="Formacao[@i].Fim" value="@Model.Formacao[i].Fim.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+
+                                    <div class="remove shadow" id="btRemoveFormacao @i" onclick="removeFormacao(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
+
+
+                                </div>
+                            }
+
+                        }
+                    }
+
                 </div>
 
-                <div class="add-button shadow" id="btAddFormacao"><i class="fas fa-plus fa-3x"></i><h4>Adcionar Formação</h4></div>
+                @if (ViewBag.Idioma == 'I')
+                {
+                    <div class="add-button shadow" id="btAddFormacao"><i class="fas fa-plus fa-3x"></i><h4>Add Formation</h4></div>
+                }
+                else
+                {
+                    <div class="add-button shadow" id="btAddFormacao"><i class="fas fa-plus fa-3x"></i><h4>Adcionar Formação</h4></div>
+                }
 
 
             </div>
             <div class="sub-container">
                 <div id="idiomas_group">
-                    <h3>Idiomas</h3>
-                    @if (@Model.Idiomas != null && @Model.Idiomas.Count > 0)
+
+                    @if (ViewBag.Idioma == 'I')
                     {
-                        for (int i = 0; i < @Model.Idiomas.Count; i++)
+                        <h3>Languages</h3>
+                        @if (@Model.Idiomas != null && @Model.Idiomas.Count > 0)
                         {
-                            <div class="idioma-item @i">
-                                <label for="Idiomas[@i].Id" class="control-label hide">Id</label>
-                                <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control hide" readonly />
+                            for (int i = 0; i < @Model.Idiomas.Count; i++)
+                            {
+                                <div class="idioma-item @i">
+                                    <label for="Idiomas[@i].Id" class="control-label hide">Id</label>
+                                    <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control hide" readonly />
 
 
-                                <label for="Idiomas[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
-                                <input type="text" Name="Idiomas[@i].IdCurriculo" value="@Model.Idiomas[i].IdCurriculo" class="form-control hide" readonly />
+                                    <label for="Idiomas[@i].IdCurriculo" class="control-label hide">Id Resume</label>
+                                    <input type="text" Name="Idiomas[@i].IdCurriculo" value="@Model.Idiomas[i].IdCurriculo" class="form-control hide" readonly />
 
 
-                                <label for="Idiomas[@i].Idioma" class="control-label">Idioma</label>
-                                <input type="text" Name="Idiomas[@i].Idioma" value="@Model.Idiomas[i].Idioma" class="form-control" />
+                                    <label for="Idiomas[@i].Idioma" class="control-label">Language</label>
+                                    <input type="text" Name="Idiomas[@i].Idioma" value="@Model.Idiomas[i].Idioma" class="form-control" />
 
 
-                                <label for="Idiomas[@i].Nivel" class="control-label">Nível</label>
+                                    <label for="Idiomas[@i].Nivel" class="control-label">Level</label>
 
-                                <select Name="Idiomas[@i].Nivel" value="@Model.Idiomas[i].Nivel" class="form-control">
-                                    @if (Model.Idiomas[i].Nivel == "Iniciante")
-                                    {
-                                        <option value="Iniciante" selected>Iniciante</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="Iniciante">Iniciante</option>
-                                    }
+                                    <select Name="Idiomas[@i].Nivel" value="@Model.Idiomas[i].Nivel" class="form-control">
+                                        @if (Model.Idiomas[i].Nivel == "Iniciante")
+                                        {
+                                            <option value="Iniciante" selected>Beginner</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="Iniciante">Beginner</option>
+                                        }
 
-                                    @if (Model.Idiomas[i].Nivel == "Intermediario")
-                                    {
-                                        <option value="Intermediario" selected>Intermediario</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="Intermediario">Intermediario</option>
-                                    }
+                                        @if (Model.Idiomas[i].Nivel == "Intermediario")
+                                        {
+                                            <option value="Intermediario" selected>Intermediary</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="Intermediario">Intermediary</option>
+                                        }
 
-                                    @if (Model.Idiomas[i].Nivel == "Avançado")
-                                    {
-                                        <option value="Avançado" selected>Avançado</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="Avançado">Avançado</option>
-                                    }
-                                </select>
+                                        @if (Model.Idiomas[i].Nivel == "Avançado")
+                                        {
+                                            <option value="Avançado" selected>Advanced</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="Avançado">Advanced</option>
+                                        }
+                                    </select>
 
-                                <div class="remove shadow" id="btRemoveIdioma @i" onclick="removeIdioma(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
+                                    <div class="remove shadow" id="btRemoveIdioma @i" onclick="removeIdioma(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remove</h4></div>
 
-                            </div>
+                                </div>
+                            }
                         }
                     }
+                    else
+                    {
+                        <h3>Idiomas</h3>
+                        @if (@Model.Idiomas != null && @Model.Idiomas.Count > 0)
+                        {
+                            for (int i = 0; i < @Model.Idiomas.Count; i++)
+                            {
+                                <div class="idioma-item @i">
+                                    <label for="Idiomas[@i].Id" class="control-label hide">Id</label>
+                                    <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control hide" readonly />
+
+
+                                    <label for="Idiomas[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
+                                    <input type="text" Name="Idiomas[@i].IdCurriculo" value="@Model.Idiomas[i].IdCurriculo" class="form-control hide" readonly />
+
+
+                                    <label for="Idiomas[@i].Idioma" class="control-label">Idioma</label>
+                                    <input type="text" Name="Idiomas[@i].Idioma" value="@Model.Idiomas[i].Idioma" class="form-control" />
+
+
+                                    <label for="Idiomas[@i].Nivel" class="control-label">Nível</label>
+
+                                    <select Name="Idiomas[@i].Nivel" value="@Model.Idiomas[i].Nivel" class="form-control">
+                                        @if (Model.Idiomas[i].Nivel == "Iniciante")
+                                        {
+                                            <option value="Iniciante" selected>Iniciante</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="Iniciante">Iniciante</option>
+                                        }
+
+                                        @if (Model.Idiomas[i].Nivel == "Intermediario")
+                                        {
+                                            <option value="Intermediario" selected>Intermediario</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="Intermediario">Intermediario</option>
+                                        }
+
+                                        @if (Model.Idiomas[i].Nivel == "Avançado")
+                                        {
+                                            <option value="Avançado" selected>Avançado</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="Avançado">Avançado</option>
+                                        }
+                                    </select>
+
+                                    <div class="remove shadow" id="btRemoveIdioma @i" onclick="removeIdioma(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
+
+                                </div>
+                            }
+                        }
+                    }
+
                 </div>
 
-                <div class="add-button shadow" id="btAddIdioma"><i class="fas fa-plus fa-3x"></i><h4>Adcionar Idioma</h4></div>
+                @if (ViewBag.Idioma == 'I')
+                {
+                    <div class="add-button shadow" id="btAddIdioma"><i class="fas fa-plus fa-3x"></i><h4>Add Language</h4></div>
+                }
+                else
+                {
+                    <div class="add-button shadow" id="btAddIdioma"><i class="fas fa-plus fa-3x"></i><h4>Adcionar Idioma</h4></div>
+                }
 
 
             </div>
@@ -234,64 +484,133 @@
             <div class="sub-container">
 
                 <div id="habilidades_group">
-                    <h3>Habilidades</h3>
 
-                    @if (@Model.Habilidades != null && Model.Habilidades.Count > 0)
+                    @if (ViewBag.Idioma == 'I')
                     {
-                        for (int i = 0; i < Model.Habilidades.Count; i++)
+                        <h3>Skils</h3>
+
+                        @if (@Model.Habilidades != null && Model.Habilidades.Count > 0)
                         {
-                            <div class="habilidade-item @i">
+                            for (int i = 0; i < Model.Habilidades.Count; i++)
+                            {
+                                <div class="habilidade-item @i">
 
-                                <label for="Habilidades[@i].Id" class="control-label hide">Id</label>
-                                <input type="text" Name="Habilidades[@i].Id" value="@Model.Habilidades[i].Id" class="form-control hide" readonly />
-
-
-                                <label for="Habilidades[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
-                                <input type="text" Name="Habilidades[@i].IdCurriculo" value="@Model.Habilidades[i].IdCurriculo" class="form-control hide" readonly />
+                                    <label for="Habilidades[@i].Id" class="control-label hide">Id</label>
+                                    <input type="text" Name="Habilidades[@i].Id" value="@Model.Habilidades[i].Id" class="form-control hide" readonly />
 
 
-                                <label for="Habilidades[@i].Descricao" class="control-label">Descrição</label>
-                                <input type="text" Name="Habilidades[@i].Descricao" value="@Model.Habilidades[i].Descricao" class="form-control" />
+                                    <label for="Habilidades[@i].IdCurriculo" class="control-label hide">Id Resume</label>
+                                    <input type="text" Name="Habilidades[@i].IdCurriculo" value="@Model.Habilidades[i].IdCurriculo" class="form-control hide" readonly />
 
-                                <label for="Habilidades[@i].Nivel" class="control-label">Nivel</label>
 
-                                <select Name="Habilidades[@i].Nivel" value="@Model.Habilidades[i].Nivel" class="form-control">
-                                    @if (Model.Habilidades[i].Nivel == 0)
-                                    {
-                                        <option value="0" selected>Iniciante</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="0">Iniciante</option>
-                                    }
+                                    <label for="Habilidades[@i].Descricao" class="control-label">Description</label>
+                                    <input type="text" Name="Habilidades[@i].Descricao" value="@Model.Habilidades[i].Descricao" class="form-control" />
 
-                                    @if (Model.Habilidades[i].Nivel == 1)
-                                    {
-                                        <option value="1" selected>Intermediario</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="1">Intermediario</option>
-                                    }
+                                    <label for="Habilidades[@i].Nivel" class="control-label">Level</label>
 
-                                    @if (Model.Habilidades[i].Nivel == 2)
-                                    {
-                                        <option value="2" selected>Avançado</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="2">Avançado</option>
-                                    }
-                                </select>
+                                    <select Name="Habilidades[@i].Nivel" value="@Model.Habilidades[i].Nivel" class="form-control">
+                                        @if (Model.Habilidades[i].Nivel == 0)
+                                        {
+                                            <option value="0" selected>Beginner</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="0">Beginner</option>
+                                        }
 
-                                <div class="remove shadow" id="btRemoveHabilidade @i" onclick="removeHabilidade(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
+                                        @if (Model.Habilidades[i].Nivel == 1)
+                                        {
+                                            <option value="1" selected>Intermediary</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="1">Intermediary</option>
+                                        }
 
-                            </div>
+                                        @if (Model.Habilidades[i].Nivel == 2)
+                                        {
+                                            <option value="2" selected>Advanced</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="2">Advanced</option>
+                                        }
+                                    </select>
+
+                                    <div class="remove shadow" id="btRemoveHabilidade @i" onclick="removeHabilidade(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remove</h4></div>
+
+                                </div>
+                            }
                         }
                     }
-                </div>
+                    else
+                    {
+                        <h3>Habilidades</h3>
 
-                <div class="add-button shadow" id="btAddHabilidade"><i class="fas fa-plus fa-3x"></i><h4>Adcionar Habilidade</h4></div>
+                        @if (@Model.Habilidades != null && Model.Habilidades.Count > 0)
+                        {
+                            for (int i = 0; i < Model.Habilidades.Count; i++)
+                            {
+                                <div class="habilidade-item @i">
+
+                                    <label for="Habilidades[@i].Id" class="control-label hide">Id</label>
+                                    <input type="text" Name="Habilidades[@i].Id" value="@Model.Habilidades[i].Id" class="form-control hide" readonly />
+
+
+                                    <label for="Habilidades[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
+                                    <input type="text" Name="Habilidades[@i].IdCurriculo" value="@Model.Habilidades[i].IdCurriculo" class="form-control hide" readonly />
+
+
+                                    <label for="Habilidades[@i].Descricao" class="control-label">Descrição</label>
+                                    <input type="text" Name="Habilidades[@i].Descricao" value="@Model.Habilidades[i].Descricao" class="form-control" />
+
+                                    <label for="Habilidades[@i].Nivel" class="control-label">Nivel</label>
+
+                                    <select Name="Habilidades[@i].Nivel" value="@Model.Habilidades[i].Nivel" class="form-control">
+                                        @if (Model.Habilidades[i].Nivel == 0)
+                                        {
+                                            <option value="0" selected>Iniciante</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="0">Iniciante</option>
+                                        }
+
+                                        @if (Model.Habilidades[i].Nivel == 1)
+                                        {
+                                            <option value="1" selected>Intermediario</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="1">Intermediario</option>
+                                        }
+
+                                        @if (Model.Habilidades[i].Nivel == 2)
+                                        {
+                                            <option value="2" selected>Avançado</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="2">Avançado</option>
+                                        }
+                                    </select>
+
+                                    <div class="remove shadow" id="btRemoveHabilidade @i" onclick="removeHabilidade(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
+
+                                </div>
+                            }
+                        }
+                    }
+
+                </div>
+                @if (ViewBag.Idioma == 'I')
+                {
+                    <div class="add-button shadow" id="btAddHabilidade"><i class="fas fa-plus fa-3x"></i><h4>Add Skils</h4></div>
+                }
+                else
+                {
+                    <div class="add-button shadow" id="btAddHabilidade"><i class="fas fa-plus fa-3x"></i><h4>Adcionar Habilidade</h4></div>
+                }
 
 
             </div>
@@ -734,6 +1053,7 @@
         flex-direction: column;
         align-content: center;
         justify-content: center;
+        border: 2px solid #b6b8c3;
     }
 
     .image-container img{
