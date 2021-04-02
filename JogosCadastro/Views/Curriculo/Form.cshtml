@@ -627,10 +627,8 @@
     var idiomas = document.getElementsByClassName("idioma-item").length
     var habilidades = document.getElementsByClassName("habilidade-item").length;
 
-    console.log(`formacoes: ${formacoes}`);
-    console.log(`idiomas: ${idiomas}`);
-    console.log(`habilidades: ${habilidades}`);
 
+    var idiomaSelecionado = getCookie("Curriculo_Idioma");
 
     divFormacao = document.getElementById("formacao_group");
     btFormacao = document.getElementById("btAddFormacao");
@@ -676,9 +674,17 @@
 
         // instituição
 
+
         instituicaoLabel = document.createElement("label")
         instituicaoLabel.setAttribute("for", `Formacao[${formacoes}]`);
-        instituicaoLabel.innerHTML = "Instituicao";
+
+        if (idiomaSelecionado == "I") {
+            instituicaoLabel.innerHTML = "Institution";
+        }
+        else {
+            instituicaoLabel.innerHTML = "Instituicao";
+
+        }
         instituicaoLabel.setAttribute("class", "control-label");
         formacaoDiv.appendChild(instituicaoLabel);
 
@@ -693,7 +699,14 @@
         //descricao
         descricaoLabel = document.createElement("label")
         descricaoLabel.setAttribute("for", `Formacao[${formacoes}].Descricao`);
-        descricaoLabel.innerHTML = "Descrição";
+
+        if (idiomaSelecionado == "I") {
+            descricaoLabel.innerHTML = "Descrição";
+        }
+        else {
+            descricaoLabel.innerHTML = "Description";
+        }
+
         descricaoLabel.setAttribute("class", "control-label");
 
         formacaoDiv.appendChild(descricaoLabel);
@@ -708,7 +721,13 @@
         //Inicio
         inicioLabel = document.createElement("label")
         inicioLabel.setAttribute("for", `Formacao[${formacoes}].Inicio`);
-        inicioLabel.innerHTML = "Inicio";
+
+        if (idiomaSelecionado == "I") {
+            inicioLabel.innerHTML = "Start";
+        }
+        else {
+            inicioLabel.innerHTML = "Inicio";
+        }
         inicioLabel.setAttribute("class", "control-label");
 
         formacaoDiv.appendChild(inicioLabel);
@@ -723,7 +742,14 @@
         //Fim
         fimLabel = document.createElement("label")
         fimLabel.setAttribute("for", `Formacao[${formacoes}].Fim`);
-        fimLabel.innerHTML = "Fim";
+
+        if (idiomaSelecionado == "I") {
+            fimLabel.innerHTML = "End";
+        }
+        else {
+            fimLabel.innerHTML = "Fim";
+        }
+
         fimLabel.setAttribute("class", "control-label");
 
         formacaoDiv.appendChild(fimLabel);
@@ -745,7 +771,13 @@
         icon.setAttribute("class", `far fa-trash-alt fa-3x`);
 
         text = document.createElement("h4");
-        text.innerHTML = "Remover";
+
+        if (idiomaSelecionado == "I") {
+            text.innerHTML = "Remove";
+        }
+        else {
+            text.innerHTML = "Remover";
+        }
 
         buttonRemove.appendChild(icon);
         buttonRemove.appendChild(text);
@@ -785,7 +817,14 @@
 
         idiomaLabel = document.createElement("label")
         idiomaLabel.setAttribute("for", `Idiomas[${idiomas}].Idioma`);
-        idiomaLabel.innerHTML = "Idioma";
+
+        if (idiomaSelecionado == "I") {
+            idiomaLabel.innerHTML = "Language";
+        }
+        else {
+            idiomaLabel.innerHTML = "Idioma";
+        }
+
         idiomaLabel.setAttribute("class", "control-label");
 
         idiomaDiv.appendChild(idiomaLabel);
@@ -801,7 +840,14 @@
 
         nivelLabel = document.createElement("label")
         nivelLabel.setAttribute("for", `Idiomas[${idiomas}].Nivel`);
-        nivelLabel.innerHTML = "Nivel";
+
+        if (idiomaSelecionado == "I") {
+            nivelLabel.innerHTML = "Level";
+        }
+        else {
+            nivelLabel.innerHTML = "Nivel";
+        }
+
         nivelLabel.setAttribute("class", "control-label");
 
         idiomaDiv.appendChild(nivelLabel);
@@ -813,6 +859,10 @@
         nivelInput.setAttribute("class", "form-control");
 
         let opcoes = ["Iniciante", "Intermediario", "Avançado"];
+
+        if (idiomaSelecionado == "I") {
+            opcoes = ["Beginner", "Intermediary", "Advanced"];
+        }
 
         for (count = 0; count < 3; count++) {
             mOption = document.createElement("option");
@@ -834,7 +884,13 @@
         icon.setAttribute("class", `far fa-trash-alt fa-3x`);
 
         text = document.createElement("h4");
-        text.innerHTML = "Remover";
+
+        if (idiomaSelecionado == "I") {
+            text.innerHTML = "Remove";
+        }
+        else {
+            text.innerHTML = "Remover";
+        }
 
         buttonRemove.appendChild(icon);
         buttonRemove.appendChild(text);
@@ -926,7 +982,14 @@
 
         descricaoLabel = document.createElement("label")
         descricaoLabel.setAttribute("for", `Habilidades[${habilidades}].Descricao`);
-        descricaoLabel.innerHTML = "Descrição";
+
+        if (idiomaSelecionado == "I") {
+            descricaoLabel.innerHTML = "Description";
+        }
+        else {
+            descricaoLabel.innerHTML = "Descrição";
+        }
+
         descricaoLabel.setAttribute("class", "control-label");
 
         habilidadeDiv.appendChild(descricaoLabel);
@@ -942,7 +1005,14 @@
 
         nivelLabel = document.createElement("label")
         nivelLabel.setAttribute("for", `Habilidades[${habilidades}].Nivel`);
-        nivelLabel.innerHTML = "Nivel";
+
+        if (idiomaSelecionado == "I") {
+            nivelLabel.innerHTML = "Level";
+        }
+        else {
+            nivelLabel.innerHTML = "Nivel";
+        }
+
         nivelLabel.setAttribute("class", "control-label");
 
         habilidadeDiv.appendChild(nivelLabel);
@@ -955,6 +1025,11 @@
         nivelInput.setAttribute("class", "form-control");
 
         let opcoes = ["Iniciante", "Intermediario", "Avançado"];
+
+        if (idiomaSelecionado == "I") {
+            opcoes = ["Beginner", "Intermediary", "Advanced"];
+        }
+
 
         for (count = 0; count < 3; count++) {
             mOption = document.createElement("option");
@@ -977,7 +1052,13 @@
         icon.setAttribute("class", `far fa-trash-alt fa-3x`);
 
         text = document.createElement("h4");
-        text.innerHTML = "Remover";
+
+        if (idiomaSelecionado == "I") {
+            text.innerHTML = "Remove";
+        }
+        else {
+            text.innerHTML = "Remover";
+        }
 
         buttonRemove.appendChild(icon);
         buttonRemove.appendChild(text);
@@ -1020,6 +1101,21 @@
 
         //remover quaisquer indicações de edição
         document.getElementById("editarImg").value = "Editar";
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
     }
 </script>
 

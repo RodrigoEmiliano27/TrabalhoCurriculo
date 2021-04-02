@@ -35,6 +35,61 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            @if (ViewBag.Idioma == "I")
+                            {
+
+                                <select class="nav-link" name="Language" onchange="location = this.value;">
+
+                                    @if (this.Context.Request.Path == "/Curriculo/Edit")
+                                    {
+                                        <option value="Language?language=P" style="background-image: url(~/wwwroot/Images/brazil-flag.svg)">
+                                            Portuguese
+                                        </option>
+                                        <option value="Language?language=I" selected style="background-image: url(~/wwwroot/Images/united-states-of-america-flag.svg)">
+                                            English
+                                        </option>
+                                    }
+                                    else
+                                    {
+                                        <option value="Curriculo/Language?language=P" style="background-image: url(~/wwwroot/Images/brazil-flag.svg)">
+                                            Portuguese
+                                        </option>
+                                        <option value="Curriculo/Language?language=I" selected style="background-image: url(~/wwwroot/Images/united-states-of-america-flag.svg)">
+                                            English
+                                        </option>
+                                    }
+
+                                </select>
+
+                            }
+                            else
+                            {
+                                @if (this.Context.Request.Path == "/Curriculo/Edit")
+                                {
+                                    <select class="nav-link" name="Idioma" onchange="location = this.value;">
+                                        <option value="Language?language=P" selected>
+                                            Portugues
+                                        </option>
+                                        <option value="Language?language=I">
+                                            Inglês
+                                        </option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <select class="nav-link" name="Idioma" onchange="location = this.value;">
+                                        <option value="Curriculo/Language?language=P" selected>
+                                            Portugues
+                                        </option>
+                                        <option value="Curriculo/Language?language=I">
+                                            Inglês
+                                        </option>
+                                    </select>
+                                }
+
+                            }
+                        </li>
                     </ul>
                 </div>
             </div>

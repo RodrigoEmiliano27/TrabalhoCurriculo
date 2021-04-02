@@ -7,16 +7,31 @@
 @if (ViewBag.Idioma == "I")
 {
     <a href="/curriculo/create">New Register</a>
-    <a href="Curriculo/Language?language=P">Portuguese</a>
-    <a href="Curriculo/Language?language=I">English</a>
+
+    <select name="Language" onchange="location = this.value;">
+        <option value="Curriculo/Language?language=P">
+            Portuguese
+        </option>
+        <option value="Curriculo/Language?language=I" selected>
+            English
+        </option>
+    </select>
     <br />
     <h2>Curriculum Listing</h2>
 }
 else
 {
+
     <a href="/curriculo/create">Novo Registro</a>
-    <a href="Curriculo/Language?language=P">Portugues</a>
-    <a href="Curriculo/Language?language=I">Ingles</a>
+
+    <select name="Idioma" onchange="location = this.value;">
+        <option value="Curriculo/Language?language=P" selected>
+            Portugues
+        </option>
+        <option value="Curriculo/Language?language=I" >
+            Inglês
+        </option>
+    </select>
     <br />
     <h2>Listagem de Curriculos</h2>
 }
