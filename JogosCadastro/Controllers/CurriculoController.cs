@@ -69,54 +69,92 @@ namespace TrabalhoCurriculo.Controllers
             {
 
                 ViewBag.Idioma = getSelectedLanguage();
-
-                CurriculoDAO dao = new CurriculoDAO();
-                FormacaoDAO fdao = new FormacaoDAO();
-                IdiomaDAO Idao = new IdiomaDAO();
-                HabilidadesDAO Hdao = new HabilidadesDAO();
-                //cur.Nascimento = Convert.ToDateTime("10/07/1997");
-                cur.ImagemEmByte = ConvertImageToByte(cur.Imagem);
-                if (dao.Consulta(cur.Id) == null)
+                ValidaDados(cur);
+                if (!ModelState.IsValid)
                 {
-                    id = dao.ProximoId();
-                    dao.Inserir(cur);
-
-                    foreach (FormacaoViewModel f in cur.Formacao)
-                    {
-                        f.IdCurriculo = id;
-                        fdao.Inserir(f);
-                    }
-
-                    foreach (IdiomaViewModel d in cur.Idiomas)
-                    {
-                        d.IdCurriculo = id;
-                        Idao.Inserir(d);
-                    }
-
-                    foreach (HabilidadesViewModel h in cur.Habilidades)
-                    {
-                        h.IdCurriculo = id;
-                        Hdao.Inserir(h);
-                    }
-
+                    return View("Form", cur);
                 }
                 else
                 {
-                    CompareCurriculos Compare = new CompareCurriculos(dao.Consulta(cur.Id), cur);
-                    Compare.CompararCurriculo();
-                    if (cur.StatusImg == "Editar")
+                    CurriculoDAO dao = new CurriculoDAO();
+                    FormacaoDAO fdao = new FormacaoDAO();
+                    IdiomaDAO Idao = new IdiomaDAO();
+                    HabilidadesDAO Hdao = new HabilidadesDAO();
+                    //cur.Nascimento = Convert.ToDateTime("10/07/1997");
+                    cur.ImagemEmByte = ConvertImageToByte(cur.Imagem);
+                    if (dao.Consulta(cur.Id) == null)
                     {
+                        id = dao.ProximoId();
+                        dao.Inserir(cur);
 
-                        dao.AlterarImagem(cur.ImagemEmByte, cur.Id);
+                        foreach (FormacaoViewModel f in cur.Formacao)
+                        {
+                            f.IdCurriculo = id;
+                            fdao.Inserir(f);
+                        }
+
+                        foreach (IdiomaViewModel d in cur.Idiomas)
+                        {
+                            d.IdCurriculo = id;
+                            Idao.Inserir(d);
+                        }
+
+                        foreach (HabilidadesViewModel h in cur.Habilidades)
+                        {
+                            h.IdCurriculo = id;
+                            Hdao.Inserir(h);
+                        }
+
                     }
-                }
+                    else
+                    {
+                        CompareCurriculos Compare = new CompareCurriculos(dao.Consulta(cur.Id), cur);
+                        Compare.CompararCurriculo();
+                        if (cur.StatusImg == "Editar")
+                        {
 
-                return RedirectToAction("index");
+                            dao.AlterarImagem(cur.ImagemEmByte, cur.Id);
+                        }
+                    }
+
+                    return RedirectToAction("index");
+                }
+                
+                
+
             }
             catch (Exception erro)
             {
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
+
+        }
+        private void ValidaDados(CurriculoViewModel cur)
+        {
+
+            if (string.IsNullOrEmpty(cur.Nome))
+                ModelState.AddModelError("Nome", "Preencha o nome.");
+            if (cur.Nascimento > DateTime.Now)
+                ModelState.AddModelError("Nascimento", "Data inválida!");
+            if (string.IsNullOrEmpty(cur.Telefone))
+                ModelState.AddModelError("Telefone", "Preencha o Telefone.");
+            if (string.IsNullOrEmpty(cur.CPF))
+                ModelState.AddModelError("CPF", "Preencha o Telefone.");
+            if (string.IsNullOrEmpty(cur.Email))
+                ModelState.AddModelError("Email", "Preencha o Telefone.");
+            if (string.IsNullOrEmpty(cur.Cargo_Pretendido))
+                ModelState.AddModelError("Cargo_Pretendido", "Preencha o Telefone.");
+            if (string.IsNullOrEmpty(cur.Rua))
+                ModelState.AddModelError("Rua", "Preencha o Telefone.");
+            if (cur.Numero_Endereco==null || cur.Numero_Endereco<0)
+                ModelState.AddModelError("Numero_Endereco", "Preencha o Telefone.");
+            if (string.IsNullOrEmpty(cur.CEP))
+                ModelState.AddModelError("CEP", "Preencha o Telefone.");
+            if (string.IsNullOrEmpty(cur.Bairro))
+                ModelState.AddModelError("Bairro", "Preencha o Telefone.");
+            if (string.IsNullOrEmpty(cur.Estado))
+                ModelState.AddModelError("Estado", "Preencha o Telefone.");
+          
         }
         /// <summary>
         /// Converte a imagem recebida no form em um vetor de bytes
