@@ -148,7 +148,7 @@ namespace TrabalhoCurriculo.Controllers
             }
         }
 
-        public IActionResult Language(string language)
+        public IActionResult Language(string language,string lastPage)
         {
 
             WriteCookies(language);
@@ -161,8 +161,15 @@ namespace TrabalhoCurriculo.Controllers
                 ViewBag.Idioma = 'P';
             }*/
 
+            if(lastPage == "Main")
+            {
+                return RedirectToAction("index");
+            }
+            else
+            {
+                return RedirectToAction("Edit");
+            }
 
-            return RedirectToAction("index");
 
         }
 
@@ -175,6 +182,12 @@ namespace TrabalhoCurriculo.Controllers
 
             return "P";
         }
+
+        public IActionResult Sobre()
+        {
+            return View("Sobre");
+        }
+
 
         public IActionResult Exibir(int id)
         {

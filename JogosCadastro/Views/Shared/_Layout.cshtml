@@ -22,7 +22,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Curriculo</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Curriculo" asp-action="Index">Curriculo</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -30,10 +30,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Curriculo" asp-action="Sobre">Sobre</a>
                         </li>
                         <li class="nav-item">
                             @if (ViewBag.Idioma == "I")
@@ -43,19 +40,19 @@
 
                                     @if (this.Context.Request.Path == "/Curriculo/Edit")
                                     {
-                                        <option value="Language?language=P" style="background-image: url(~/wwwroot/Images/brazil-flag.svg)">
+                                        <option value="Language?language=P&lastPage=edit" style="background-image: url(~/wwwroot/Images/brazil-flag.svg)">
                                             Portuguese
                                         </option>
-                                        <option value="Language?language=I" selected style="background-image: url(~/wwwroot/Images/united-states-of-america-flag.svg)">
+                                        <option value="Language?language=I&lastPage=edit" selected style="background-image: url(~/wwwroot/Images/united-states-of-america-flag.svg)">
                                             English
                                         </option>
                                     }
                                     else
                                     {
-                                        <option value="Curriculo/Language?language=P" style="background-image: url(~/wwwroot/Images/brazil-flag.svg)">
+                                        <option value="Curriculo/Language?language=P&lastPage=Main" style="background-image: url(~/wwwroot/Images/brazil-flag.svg)">
                                             Portuguese
                                         </option>
-                                        <option value="Curriculo/Language?language=I" selected style="background-image: url(~/wwwroot/Images/united-states-of-america-flag.svg)">
+                                        <option value="Curriculo/Language?language=I&lastPage=Main" selected style="background-image: url(~/wwwroot/Images/united-states-of-america-flag.svg)">
                                             English
                                         </option>
                                     }

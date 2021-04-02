@@ -8,30 +8,13 @@
 {
     <a href="/curriculo/create">New Register</a>
 
-    <select name="Language" onchange="location = this.value;">
-        <option value="Curriculo/Language?language=P">
-            Portuguese
-        </option>
-        <option value="Curriculo/Language?language=I" selected>
-            English
-        </option>
-    </select>
     <br />
     <h2>Curriculum Listing</h2>
 }
 else
 {
-
     <a href="/curriculo/create">Novo Registro</a>
 
-    <select name="Idioma" onchange="location = this.value;">
-        <option value="Curriculo/Language?language=P" selected>
-            Portugues
-        </option>
-        <option value="Curriculo/Language?language=I" >
-            Inglês
-        </option>
-    </select>
     <br />
     <h2>Listagem de Curriculos</h2>
 }
@@ -61,9 +44,19 @@ else
     {
         <tr>
             <td>
-                <a href="Curriculo/Edit?id=@cur.Id">Editar</a>
-                <a href="javascript:apagarJogo(@cur.Id)">Apagar</a>
-                <a href="Curriculo/Exibir?id=@cur.Id">Visualizar</a>
+                @if (ViewBag.Idioma == "I")
+                {
+                    <a href="Curriculo/Edit?id=@cur.Id">Edit</a>
+                    <a href="javascript:apagarJogo(@cur.Id)">Delete</a>
+                    <a href="Curriculo/Exibir?id=@cur.Id">View</a>
+                }
+                else
+                {
+                    <a href="Curriculo/Edit?id=@cur.Id">Editar</a>
+                    <a href="javascript:apagarJogo(@cur.Id)">Apagar</a>
+                    <a href="Curriculo/Exibir?id=@cur.Id">Visualizar</a>
+                }
+
             </td>
 
             <td>@cur.CPF</td>
@@ -75,8 +68,37 @@ else
 </table>
 
 <script>
+
+    var idiomaSelecionado = getCookie("Curriculo_Idioma");
+
+
     function apagarJogo(id) {
-        if (confirm('Confirma a exclusão do registro?'))
-            location.href = 'Curriculo/Delete?id=' + id;
+        if (idiomaSelecionado == "I") {
+            if (confirm('Confirm the deletion of the record?'))
+                location.href = 'Curriculo/Delete?id=' + id;
+        }
+        else {
+            if (confirm('Confirma a exclusão do registro?'))
+                location.href = 'Curriculo/Delete?id=' + id;
+        }
+
     }
+
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+
 </script>

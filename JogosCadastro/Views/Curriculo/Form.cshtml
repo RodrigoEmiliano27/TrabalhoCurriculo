@@ -6,6 +6,9 @@
 
 <html>
 <head>
+    <link rel="stylesheet" href="~/css/form.css">
+
+    <script type="text/javascript" src="~/js/Form.js"></script>
 
 </head>
     
@@ -100,47 +103,67 @@
                 {
                     <label for="nome" class="control-label">Name</label>
                     <input type="text" Name="nome" value="@Model.Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                    <br>
 
                     <label for="Nascimento" class="control-label">Birth date</label>
                     <input type="date" Name="Nascimento" value="@Model.Nascimento.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+                    <span asp-validation-for="Nascimento" class="text-danger"></span>
+                    <br />
 
                     <label for="telefone" class="control-label">Phone</label>
                     <input type="text" Name="telefone" value="@Model.Telefone" class="form-control" />
-
+                    <span asp-validation-for="Telefone" class="text-danger"></span>
+                    <br />
 
                     <label for="CPF" class="control-label">CPF</label>
                     <input type="text" Name="CPF" value="@Model.CPF" class="form-control" />
-
+                    <span asp-validation-for="CPF" class="text-danger"></span>
+                    <br />
 
                     <label for="Email" class="control-label">E-Mail</label>
                     <input type="text" Name="Email" value="@Model.Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <br />
 
-                    <label for="cargo_pretendido" class="control-label">Intended Position</label>
-                    <input type="text" Name="cargo_pretendido" value="@Model.Cargo_Pretendido" class="form-control" />
 
+                    <label for="Cargo_Pretendido" class="control-label">Intended Position</label>
+                    <input type="text" Name="Cargo_Pretendido" value="@Model.Cargo_Pretendido" class="form-control" />
+                    <span asp-validation-for="Cargo_Pretendido" class="text-danger"></span>
+                    <br />
                 }
                 else
                 {
                     <label for="nome" class="control-label">Nome</label>
                     <input type="text" Name="nome" value="@Model.Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                    <br>
+
 
                     <label for="Nascimento" class="control-label">Data de Nascimento</label>
                     <input type="date" Name="Nascimento" value="@Model.Nascimento.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+                    <span asp-validation-for="Nascimento" class="text-danger"></span>
+                    <br />
 
                     <label for="telefone" class="control-label">Telefone</label>
                     <input type="text" Name="telefone" value="@Model.Telefone" class="form-control" />
-
+                    <span asp-validation-for="Telefone" class="text-danger"></span>
+                    <br />
 
                     <label for="CPF" class="control-label">CPF</label>
                     <input type="text" Name="CPF" value="@Model.CPF" class="form-control" />
-
+                    <span asp-validation-for="CPF" class="text-danger"></span>
+                    <br />
 
                     <label for="Email" class="control-label">E-Mail</label>
                     <input type="text" Name="Email" value="@Model.Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <br />
 
-                    <label for="cargo_pretendido" class="control-label">Cargo Pretendido</label>
-                    <input type="text" Name="cargo_pretendido" value="@Model.Cargo_Pretendido" class="form-control" />
-
+                    <label for="Cargo_Pretendido" class="control-label">Cargo Pretendido</label>
+                    <input type="text" Name="Cargo_Pretendido" value="@Model.Cargo_Pretendido" class="form-control" />
+                    <span asp-validation-for="Cargo_Pretendido" class="text-danger"></span>
+                    <br />
                 }
 
 
@@ -157,24 +180,33 @@
 
                     <label for="rua" class="control-label">Street</label>
                     <input type="text" Name="rua" value="@Model.Rua" class="form-control" />
+                    <span asp-validation-for="Rua" class="text-danger"></span>
+                    <br />
 
-                    <label for="Numero" class="control-label">Number</label>
-                    <input type="text" Name="Numero" value="@Model.Numero_Endereco" class="form-control" />
+                    <label for="Numero_Endereco" class="control-label">Number</label>
+                    <input type="text" Name="Numero_Endereco" value="@Model.Numero_Endereco" class="form-control" />
+                    <span asp-validation-for="Numero_Endereco" class="text-danger"></span>
+                    <br />
 
-                    <label for="cep" class="control-label">CEP</label>
-                    <input type="text" Name="cep" value="@Model.CEP" class="form-control" />
+                    <label for="CEP" class="control-label">CEP</label>
+                    <input type="text" Name="CEP" value="@Model.CEP" class="form-control" />
+                    <span asp-validation-for="CEP" class="text-danger"></span>
+                    <br />
 
                     <label for="bairro" class="control-label">Neighborhood</label>
                     <input type="text" Name="bairro" value="@Model.Bairro" class="form-control" />
-
+                    <span asp-validation-for="Bairro" class="text-danger"></span>
+                    <br />
 
                     <label for="cidade" class="control-label">City</label>
                     <input type="text" Name="cidade" value="@Model.Cidade" class="form-control" />
-
+                    <span asp-validation-for="Cidade" class="text-danger"></span>
+                    <br />
 
                     <label for="estado" class="control-label">State</label>
                     <input type="text" Name="estado" value="@Model.Estado" class="form-control" />
-
+                    <span asp-validation-for="Estado" class="text-danger"></span>
+                    <br />
                 }
                 else
                 {
@@ -182,24 +214,33 @@
 
                     <label for="rua" class="control-label">Rua</label>
                     <input type="text" Name="rua" value="@Model.Rua" class="form-control" />
+                    <span asp-validation-for="Rua" class="text-danger"></span>
+                    <br />
 
-                    <label for="Numero" class="control-label">Número</label>
-                    <input type="text" Name="Numero" value="@Model.Numero_Endereco" class="form-control" />
+                    <label for="Numero_Endereco" class="control-label">Número</label>
+                    <input type="text" Name="Numero_Endereco" value="@Model.Numero_Endereco" class="form-control" />
+                    <span asp-validation-for="Numero_Endereco" class="text-danger"></span>
+                    <br />
 
-                    <label for="cep" class="control-label">CEP</label>
-                    <input type="text" Name="cep" value="@Model.CEP" class="form-control" />
+                    <label for="CEP" class="control-label">CEP</label>
+                    <input type="text" Name="CEP" value="@Model.CEP" class="form-control" />
+                    <span asp-validation-for="CEP" class="text-danger"></span>
+                    <br />
 
                     <label for="bairro" class="control-label">Bairro</label>
                     <input type="text" Name="bairro" value="@Model.Bairro" class="form-control" />
-
+                    <span asp-validation-for="Bairro" class="text-danger"></span>
+                    <br />
 
                     <label for="cidade" class="control-label">Cidade</label>
                     <input type="text" Name="cidade" value="@Model.Cidade" class="form-control" />
-
+                    <span asp-validation-for="Cidade" class="text-danger"></span>
+                    <br />
 
                     <label for="estado" class="control-label">Estado</label>
                     <input type="text" Name="estado" value="@Model.Estado" class="form-control" />
-
+                    <span asp-validation-for="Estado" class="text-danger"></span>
+                    <br />
                 }
 
 
@@ -213,13 +254,19 @@
 
                     <label for="Facebook" class="control-label">Facebook</label>
                     <input type="text" Name="Facebook" value="@Model.Facebook" class="form-control" />
+                    <span asp-validation-for="Facebook" class="text-danger"></span>
+                    <br />
+
 
                     <label for="Linkdin" class="control-label">Linked in</label>
                     <input type="text" Name="Linkdin" value="@Model.Linkdin" class="form-control" />
+                    <span asp-validation-for="Linkdin" class="text-danger"></span>
+                    <br />
 
                     <label for="Instagram" class="control-label">Instagram</label>
                     <input type="text" Name="Instagram" value="@Model.Instagram" class="form-control" />
-
+                    <span asp-validation-for="Instagram" class="text-danger"></span>
+                    <br />
                 }
                 else
                 {
@@ -227,13 +274,18 @@
 
                     <label for="Facebook" class="control-label">Facebook</label>
                     <input type="text" Name="Facebook" value="@Model.Facebook" class="form-control" />
+                    <span asp-validation-for="Facebook" class="text-danger"></span>
+                    <br />
 
                     <label for="Linkdin" class="control-label">Linked in</label>
                     <input type="text" Name="Linkdin" value="@Model.Linkdin" class="form-control" />
+                    <span asp-validation-for="Linkdin" class="text-danger"></span>
+                    <br />
 
                     <label for="Instagram" class="control-label">Instagram</label>
                     <input type="text" Name="Instagram" value="@Model.Instagram" class="form-control" />
-
+                    <span asp-validation-for="Instagram" class="text-danger"></span>
+                    <br />
                 }
 
             </div>
@@ -245,6 +297,8 @@
 
                     <label for="SobreMim" class="control-label">About me</label>
                     <textarea type="text" Name="SobreMim" class="form-control">@Model.SobreMim</textarea>
+                    <span asp-validation-for="SobreMim" class="text-danger"></span>
+                    <br />
                 }
                 else
                 {
@@ -252,6 +306,8 @@
 
                     <label for="SobreMim" class="control-label">Sobre mim</label>
                     <textarea type="text" Name="SobreMim" class="form-control">@Model.SobreMim</textarea>
+                    <span asp-validation-for="SobreMim" class="text-danger"></span>
+                    <br />
                 }
 
             </div>
@@ -269,24 +325,34 @@
 
                                     <label for="Formacao[@i].Id" class="control-label hide">Id</label>
                                     <input type="text" Name="Formacao[@i].Id" value="@Model.Formacao[i].Id" class="form-control hide" readonly />
-
+                                    <span asp-validation-for="Formacao[@i].Id" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Formacao[@i].IdCurriculo" class="control-label hide">Id Resume</label>
                                     <input type="text" Name="Formacao[@i].IdCurriculo" value="@Model.Formacao[i].IdCurriculo" class="form-control hide" readonly />
+                                    <span asp-validation-for="Formacao[@i].IdCurriculo" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Formacao[@i].Instituicao" class="control-label">Instituition</label>
                                     <input type="text" Name="Formacao[@i].Instituicao" value="@Model.Formacao[i].Instituicao" class="form-control" />
+                                    <span asp-validation-for="Formacao[@i].Instituicao" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Formacao[@i].Descricao" class="control-label">Description</label>
                                     <input type="text" Name="Formacao[@i].Descricao" value="@Model.Formacao[i].Descricao" class="form-control" />
+                                    <span asp-validation-for="Formacao[@i].Descricao" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Formacao[@i].Inicio" class="control-label">Start</label>
                                     <input type="date" Name="Formacao[@i].Inicio" value="@Model.Formacao[i].Inicio.ToString("yyyy'-'MM'-'dd")" class="form-control" />
-
+                                    <span asp-validation-for="Formacao[@i].Inicio" class="text-danger"></span>
+                                    <br />
 
 
                                     <label for="Formacao[@i].Fim" class="control-label">End</label>
                                     <input type="date" Name="Formacao[@i].Fim" value="@Model.Formacao[i].Fim.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+                                    <span asp-validation-for="Formacao[@i].Fim" class="text-danger"></span>
+                                    <br />
 
                                     <div class="remove shadow" id="btRemoveFormacao @i" onclick="removeFormacao(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remove</h4></div>
 
@@ -308,24 +374,34 @@
 
                                     <label for="Formacao[@i].Id" class="control-label hide">Id</label>
                                     <input type="text" Name="Formacao[@i].Id" value="@Model.Formacao[i].Id" class="form-control hide" readonly />
-
+                                    <span asp-validation-for="Formacao[@i].Id" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Formacao[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
                                     <input type="text" Name="Formacao[@i].IdCurriculo" value="@Model.Formacao[i].IdCurriculo" class="form-control hide" readonly />
+                                    <span asp-validation-for="Formacao[@i].IdCurriculo" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Formacao[@i].Instituicao" class="control-label">Instituição</label>
                                     <input type="text" Name="Formacao[@i].Instituicao" value="@Model.Formacao[i].Instituicao" class="form-control" />
+                                    <span asp-validation-for="Formacao[@i].Instituicao" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Formacao[@i].Descricao" class="control-label">Descrição</label>
                                     <input type="text" Name="Formacao[@i].Descricao" value="@Model.Formacao[i].Descricao" class="form-control" />
+                                    <span asp-validation-for="Formacao[@i].Descricao" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Formacao[@i].Inicio" class="control-label">Inicio</label>
                                     <input type="date" Name="Formacao[@i].Inicio" value="@Model.Formacao[i].Inicio.ToString("yyyy'-'MM'-'dd")" class="form-control" />
-
+                                    <span asp-validation-for="Formacao[@i].Inicio" class="text-danger"></span>
+                                    <br />
 
 
                                     <label for="Formacao[@i].Fim" class="control-label">Fim</label>
                                     <input type="date" Name="Formacao[@i].Fim" value="@Model.Formacao[i].Fim.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+                                    <span asp-validation-for="Formacao[@i].Fim" class="text-danger"></span>
+                                    <br />
 
                                     <div class="remove shadow" id="btRemoveFormacao @i" onclick="removeFormacao(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
 
@@ -362,15 +438,18 @@
                                 <div class="idioma-item @i">
                                     <label for="Idiomas[@i].Id" class="control-label hide">Id</label>
                                     <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control hide" readonly />
-
+                                    <span asp-validation-for="Idiomas[@i].Id" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Idiomas[@i].IdCurriculo" class="control-label hide">Id Resume</label>
                                     <input type="text" Name="Idiomas[@i].IdCurriculo" value="@Model.Idiomas[i].IdCurriculo" class="form-control hide" readonly />
-
+                                    <span asp-validation-for="Idiomas[@i].IdCurriculo" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Idiomas[@i].Idioma" class="control-label">Language</label>
                                     <input type="text" Name="Idiomas[@i].Idioma" value="@Model.Idiomas[i].Idioma" class="form-control" />
-
+                                    <span asp-validation-for="Idiomas[@i].Idioma" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Idiomas[@i].Nivel" class="control-label">Level</label>
 
@@ -402,6 +481,8 @@
                                             <option value="Avançado">Advanced</option>
                                         }
                                     </select>
+                                    <span asp-validation-for="Idiomas[@i].Idioma" class="text-danger"></span>
+                                    <br />
 
                                     <div class="remove shadow" id="btRemoveIdioma @i" onclick="removeIdioma(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remove</h4></div>
 
@@ -416,53 +497,58 @@
                         {
                             for (int i = 0; i < @Model.Idiomas.Count; i++)
                             {
-                                <div class="idioma-item @i">
-                                    <label for="Idiomas[@i].Id" class="control-label hide">Id</label>
-                                    <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control hide" readonly />
+                <div class="idioma-item @i">
+                    <label for="Idiomas[@i].Id" class="control-label hide">Id</label>
+                    <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control hide" readonly />
+                    <span asp-validation-for="Idiomas[@i].Id" class="text-danger"></span>
+                    <br />
 
+                    <label for="Idiomas[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
+                    <input type="text" Name="Idiomas[@i].IdCurriculo" value="@Model.Idiomas[i].IdCurriculo" class="form-control hide" readonly />
+                    <span asp-validation-for="Idiomas[@i].IdCurriculo" class="text-danger"></span>
+                    <br />
 
-                                    <label for="Idiomas[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
-                                    <input type="text" Name="Idiomas[@i].IdCurriculo" value="@Model.Idiomas[i].IdCurriculo" class="form-control hide" readonly />
+                    <label for="Idiomas[@i].Idioma" class="control-label">Idioma</label>
+                    <input type="text" Name="Idiomas[@i].Idioma" value="@Model.Idiomas[i].Idioma" class="form-control" />
+                    <span asp-validation-for="Idiomas[@i].Idioma" class="text-danger"></span>
+                    <br />
 
+                    <label for="Idiomas[@i].Nivel" class="control-label">Nível</label>
 
-                                    <label for="Idiomas[@i].Idioma" class="control-label">Idioma</label>
-                                    <input type="text" Name="Idiomas[@i].Idioma" value="@Model.Idiomas[i].Idioma" class="form-control" />
+                    <select Name="Idiomas[@i].Nivel" value="@Model.Idiomas[i].Nivel" class="form-control">
+                        @if (Model.Idiomas[i].Nivel == "Iniciante")
+                        {
+                            <option value="Iniciante" selected>Iniciante</option>
+                        }
+                        else
+                        {
+                            <option value="Iniciante">Iniciante</option>
+                        }
 
+                        @if (Model.Idiomas[i].Nivel == "Intermediario")
+                        {
+                            <option value="Intermediario" selected>Intermediario</option>
+                        }
+                        else
+                        {
+                            <option value="Intermediario">Intermediario</option>
+                        }
 
-                                    <label for="Idiomas[@i].Nivel" class="control-label">Nível</label>
+                        @if (Model.Idiomas[i].Nivel == "Avançado")
+                        {
+                            <option value="Avançado" selected>Avançado</option>
+                        }
+                        else
+                        {
+                            <option value="Avançado">Avançado</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Idiomas[@i].Nivel" class="text-danger"></span>
+                    <br />
 
-                                    <select Name="Idiomas[@i].Nivel" value="@Model.Idiomas[i].Nivel" class="form-control">
-                                        @if (Model.Idiomas[i].Nivel == "Iniciante")
-                                        {
-                                            <option value="Iniciante" selected>Iniciante</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="Iniciante">Iniciante</option>
-                                        }
+                    <div class="remove shadow" id="btRemoveIdioma @i" onclick="removeIdioma(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
 
-                                        @if (Model.Idiomas[i].Nivel == "Intermediario")
-                                        {
-                                            <option value="Intermediario" selected>Intermediario</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="Intermediario">Intermediario</option>
-                                        }
-
-                                        @if (Model.Idiomas[i].Nivel == "Avançado")
-                                        {
-                                            <option value="Avançado" selected>Avançado</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="Avançado">Avançado</option>
-                                        }
-                                    </select>
-
-                                    <div class="remove shadow" id="btRemoveIdioma @i" onclick="removeIdioma(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
-
-                                </div>
+                </div>
                             }
                         }
                     }
@@ -497,14 +583,18 @@
 
                                     <label for="Habilidades[@i].Id" class="control-label hide">Id</label>
                                     <input type="text" Name="Habilidades[@i].Id" value="@Model.Habilidades[i].Id" class="form-control hide" readonly />
-
+                                    <span asp-validation-for="Habilidades[@i].Id" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Habilidades[@i].IdCurriculo" class="control-label hide">Id Resume</label>
                                     <input type="text" Name="Habilidades[@i].IdCurriculo" value="@Model.Habilidades[i].IdCurriculo" class="form-control hide" readonly />
-
+                                    <span asp-validation-for="Habilidades[@i].IdCurriculo" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Habilidades[@i].Descricao" class="control-label">Description</label>
                                     <input type="text" Name="Habilidades[@i].Descricao" value="@Model.Habilidades[i].Descricao" class="form-control" />
+                                    <span asp-validation-for="Habilidades[@i].Descricao" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Habilidades[@i].Nivel" class="control-label">Level</label>
 
@@ -536,6 +626,8 @@
                                             <option value="2">Advanced</option>
                                         }
                                     </select>
+                                    <span asp-validation-for="Habilidades[@i].Nivel" class="text-danger"></span>
+                                    <br />
 
                                     <div class="remove shadow" id="btRemoveHabilidade @i" onclick="removeHabilidade(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remove</h4></div>
 
@@ -555,14 +647,18 @@
 
                                     <label for="Habilidades[@i].Id" class="control-label hide">Id</label>
                                     <input type="text" Name="Habilidades[@i].Id" value="@Model.Habilidades[i].Id" class="form-control hide" readonly />
-
+                                    <span asp-validation-for="Habilidades[@i].Id" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Habilidades[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
                                     <input type="text" Name="Habilidades[@i].IdCurriculo" value="@Model.Habilidades[i].IdCurriculo" class="form-control hide" readonly />
-
+                                    <span asp-validation-for="Habilidades[@i].IdCurriculo" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Habilidades[@i].Descricao" class="control-label">Descrição</label>
                                     <input type="text" Name="Habilidades[@i].Descricao" value="@Model.Habilidades[i].Descricao" class="form-control" />
+                                    <span asp-validation-for="Habilidades[@i].Descricao" class="text-danger"></span>
+                                    <br />
 
                                     <label for="Habilidades[@i].Nivel" class="control-label">Nivel</label>
 
@@ -594,6 +690,8 @@
                                             <option value="2">Avançado</option>
                                         }
                                     </select>
+                                    <span asp-validation-for="Habilidades[@i].Nivel" class="text-danger"></span>
+                                    <br />
 
                                     <div class="remove shadow" id="btRemoveHabilidade @i" onclick="removeHabilidade(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
 
@@ -614,613 +712,21 @@
 
 
             </div>
-           <input type="submit" value="Salvar dados" class="btSave shadow" />
+            @if (ViewBag.Idioma == "I")
+            {
+                <input type="submit" value="Save Data" class="btSave shadow" />
+            }
+            else
+            {
+                <input type="submit" value="Salvar dados" class="btSave shadow" />
+            }
 
         </form>
     </div>
 
 </body>
 
-<script type="text/javascript">
 
-    var formacoes = document.getElementsByClassName("formacao-item").length;
-    var idiomas = document.getElementsByClassName("idioma-item").length
-    var habilidades = document.getElementsByClassName("habilidade-item").length;
-
-
-    var idiomaSelecionado = getCookie("Curriculo_Idioma");
-
-    divFormacao = document.getElementById("formacao_group");
-    btFormacao = document.getElementById("btAddFormacao");
-
-    btFormacao.onclick = adcionaFormacao;
-
-
-    divIdiomas = document.getElementById("idiomas_group");
-    btIdiomas = document.getElementById("btAddIdioma");
-
-    btIdiomas.onclick = adcionaIdioma;
-
-    divHabilidades = document.getElementById("habilidades_group");
-    btHabilidades = document.getElementById("btAddHabilidade");
-
-    btHabilidades.onclick = adcionaHabilidade;
-
-    function adcionaFormacao()
-    {
-
-        formacaoDiv = document.createElement("div");
-        formacaoDiv.setAttribute("class", `formacao-item ${formacoes}`);
-
-
-        //id
-
-        idInput = document.createElement("input");
-        idInput.setAttribute("type", "text");
-        idInput.setAttribute("name", `Formacao[${formacoes}].Id`);
-        idInput.setAttribute("class", `form-control hide`);
-
-        formacaoDiv.appendChild(idInput);
-
-
-        //id curriculo
-
-        idCurriculoInput = document.createElement("input");
-        idCurriculoInput.setAttribute("type", "text");
-        idCurriculoInput.setAttribute("name", `Formacao[${formacoes}].IdCurriculo`);
-        idCurriculoInput.setAttribute("class", `form-control hide`);
-
-        formacaoDiv.appendChild(idCurriculoInput);
-
-        // instituição
-
-
-        instituicaoLabel = document.createElement("label")
-        instituicaoLabel.setAttribute("for", `Formacao[${formacoes}]`);
-
-        if (idiomaSelecionado == "I") {
-            instituicaoLabel.innerHTML = "Institution";
-        }
-        else {
-            instituicaoLabel.innerHTML = "Instituicao";
-
-        }
-        instituicaoLabel.setAttribute("class", "control-label");
-        formacaoDiv.appendChild(instituicaoLabel);
-
-        instituicaoInput = document.createElement("input");
-        instituicaoInput.setAttribute("type", "text");
-        instituicaoInput.setAttribute("name", `Formacao[${formacoes}].Instituicao`);
-        instituicaoInput.setAttribute("class", `form-control`);
-
-        formacaoDiv.appendChild(instituicaoInput);
-
-
-        //descricao
-        descricaoLabel = document.createElement("label")
-        descricaoLabel.setAttribute("for", `Formacao[${formacoes}].Descricao`);
-
-        if (idiomaSelecionado == "I") {
-            descricaoLabel.innerHTML = "Descrição";
-        }
-        else {
-            descricaoLabel.innerHTML = "Description";
-        }
-
-        descricaoLabel.setAttribute("class", "control-label");
-
-        formacaoDiv.appendChild(descricaoLabel);
-
-        descricaoInput = document.createElement("input");
-        descricaoInput.setAttribute("type", "text");
-        descricaoInput.setAttribute("name", `Formacao[${formacoes}].Descricao`);
-        descricaoInput.setAttribute("class", `form-control`);
-        formacaoDiv.appendChild(descricaoInput);
-
-
-        //Inicio
-        inicioLabel = document.createElement("label")
-        inicioLabel.setAttribute("for", `Formacao[${formacoes}].Inicio`);
-
-        if (idiomaSelecionado == "I") {
-            inicioLabel.innerHTML = "Start";
-        }
-        else {
-            inicioLabel.innerHTML = "Inicio";
-        }
-        inicioLabel.setAttribute("class", "control-label");
-
-        formacaoDiv.appendChild(inicioLabel);
-
-        inicioInput = document.createElement("input");
-        inicioInput.setAttribute("type", "date");
-        inicioInput.setAttribute("name", `Formacao[${formacoes}].Inicio`);
-        inicioInput.setAttribute("class", `form-control`);
-
-        formacaoDiv.appendChild(inicioInput);
-
-        //Fim
-        fimLabel = document.createElement("label")
-        fimLabel.setAttribute("for", `Formacao[${formacoes}].Fim`);
-
-        if (idiomaSelecionado == "I") {
-            fimLabel.innerHTML = "End";
-        }
-        else {
-            fimLabel.innerHTML = "Fim";
-        }
-
-        fimLabel.setAttribute("class", "control-label");
-
-        formacaoDiv.appendChild(fimLabel);
-
-        fimInput = document.createElement("input");
-        fimInput.setAttribute("type", "date");
-        fimInput.setAttribute("name", `Formacao[${formacoes}].Fim`);
-        fimInput.setAttribute("class", `form-control`);
-
-        formacaoDiv.appendChild(fimInput);
-
-        //delete
-        buttonRemove = document.createElement("div");
-        buttonRemove.setAttribute("id", `btRemoveFormacao ${formacoes}`);
-        buttonRemove.setAttribute("onclick", `removeFormacao(this)`);
-        buttonRemove.setAttribute("class", `remove`);
-
-        icon = document.createElement("i");
-        icon.setAttribute("class", `far fa-trash-alt fa-3x`);
-
-        text = document.createElement("h4");
-
-        if (idiomaSelecionado == "I") {
-            text.innerHTML = "Remove";
-        }
-        else {
-            text.innerHTML = "Remover";
-        }
-
-        buttonRemove.appendChild(icon);
-        buttonRemove.appendChild(text);
-
-        formacaoDiv.appendChild(buttonRemove);
-
-        formacoes++;
-
-        divFormacao.appendChild(formacaoDiv);
-
-    }
-
-    function adcionaIdioma() {
-
-        idiomaDiv = document.createElement("div")
-        idiomaDiv.setAttribute("class",`idioma-item ${idiomas}`);
-
-        //id
-
-        idInput = document.createElement("input");
-        idInput.setAttribute("type", "text");
-        idInput.setAttribute("name", `Idiomas[${idiomas}].Id`);
-        idInput.setAttribute("class","form-control hide")
-
-        idiomaDiv.appendChild(idInput);
-
-        //id curriculo
-        idCurriculoInput = document.createElement("input");
-        idCurriculoInput = document.createElement("input");
-        idCurriculoInput.setAttribute("type", "text");
-        idCurriculoInput.setAttribute("name", `Idiomas[${idiomas}].IdCurriculo`);
-        idCurriculoInput.setAttribute("class","form-control hide");
-
-        idiomaDiv.appendChild(idCurriculoInput);
-
-        // idioma
-
-        idiomaLabel = document.createElement("label")
-        idiomaLabel.setAttribute("for", `Idiomas[${idiomas}].Idioma`);
-
-        if (idiomaSelecionado == "I") {
-            idiomaLabel.innerHTML = "Language";
-        }
-        else {
-            idiomaLabel.innerHTML = "Idioma";
-        }
-
-        idiomaLabel.setAttribute("class", "control-label");
-
-        idiomaDiv.appendChild(idiomaLabel);
-
-        idiomaInput = document.createElement("input");
-        idiomaInput.setAttribute("type", "text");
-        idiomaInput.setAttribute("name", `Idiomas[${idiomas}].Idioma`);
-        idiomaInput.setAttribute("class", "form-control");
-
-        idiomaDiv.appendChild(idiomaInput);
-
-        // nivel
-
-        nivelLabel = document.createElement("label")
-        nivelLabel.setAttribute("for", `Idiomas[${idiomas}].Nivel`);
-
-        if (idiomaSelecionado == "I") {
-            nivelLabel.innerHTML = "Level";
-        }
-        else {
-            nivelLabel.innerHTML = "Nivel";
-        }
-
-        nivelLabel.setAttribute("class", "control-label");
-
-        idiomaDiv.appendChild(nivelLabel);
-
-        //nivel input
-        nivelInput = document.createElement("select");
-        nivelInput.setAttribute("name", `Idiomas[${idiomas}].Nivel`);
-        nivelInput.setAttribute("value", `Idiomas[${idiomas}].Nivel`);
-        nivelInput.setAttribute("class", "form-control");
-
-        let opcoes = ["Iniciante", "Intermediario", "Avançado"];
-
-        if (idiomaSelecionado == "I") {
-            opcoes = ["Beginner", "Intermediary", "Advanced"];
-        }
-
-        for (count = 0; count < 3; count++) {
-            mOption = document.createElement("option");
-            mOption.value = opcoes[count];
-            mOption.innerHTML = opcoes[count];
-            nivelInput.appendChild(mOption);
-        }
-
-
-        idiomaDiv.appendChild(nivelInput);
-
-        //delete
-        buttonRemove = document.createElement("div");
-        buttonRemove.setAttribute("id", `btRemoveIdioma ${idiomas}`);
-        buttonRemove.setAttribute("onclick", `removeIdioma(this)`);
-        buttonRemove.setAttribute("class", `remove`);
-
-        icon = document.createElement("i");
-        icon.setAttribute("class", `far fa-trash-alt fa-3x`);
-
-        text = document.createElement("h4");
-
-        if (idiomaSelecionado == "I") {
-            text.innerHTML = "Remove";
-        }
-        else {
-            text.innerHTML = "Remover";
-        }
-
-        buttonRemove.appendChild(icon);
-        buttonRemove.appendChild(text);
-
-        idiomaDiv.appendChild(buttonRemove);
-
-        idiomas++;
-        divIdiomas.appendChild(idiomaDiv);
-
-    }
-
-    function removeHabilidade(e)
-    {
-        //recupera o id do container que envolve o elemento a ser excluido
-        removeId = e.id.replace("btRemoveHabilidade ","");
-
-        //recupera a div que forma o containerr
-        itemToRemove = document.getElementsByClassName(`habilidade-item ${removeId}`)[0]
-
-        //alterar o id do curriculo
-        idCurriculoElement = itemToRemove.getElementsByClassName("form-control hide")[1]
-        idCurriculoElement.value = "-1"
-
-        //esconde a habilidade
-        itemToRemove.setAttribute("class", "hide");
-
-    }
-
-    function removeIdioma(e)
-    {
-        //recupera o id do container que envolve o elemento a ser excluido
-        removeId = e.id.replace("btRemoveIdioma ","");
-
-        //recupera a div que forma o container
-        itemToRemove = document.getElementsByClassName(`idioma-item ${removeId}`)[0]
-
-        //alterar o id do curriculo
-        idCurriculoElement = itemToRemove.getElementsByClassName("form-control hide")[1]
-        idCurriculoElement.value = "-1"
-
-        //esconde o idioma
-        itemToRemove.setAttribute("class", "hide");
-
-    }
-
-    function removeFormacao(e)
-    {
-        //recupera o id do container que envolve o elemento a ser excluido
-        removeId = e.id.replace("btRemoveFormacao ","");
-
-        //recupera a div que forma o container
-        itemToRemove = document.getElementsByClassName(`formacao-item ${removeId}`)[0]
-
-        //alterar o id do curriculo
-        idCurriculoElement = itemToRemove.getElementsByClassName("form-control hide")[1]
-        idCurriculoElement.value = "-1"
-
-        //esconde a formacao
-        itemToRemove.setAttribute("class", "hide");
-
-    }
-
-    function adcionaHabilidade()
-    {
-
-        habilidadeDiv = document.createElement("div")
-        habilidadeDiv.setAttribute("class", `habilidade-item ${habilidades}`);
-
-        //id
-
-        idInput = document.createElement("input");
-        idInput.setAttribute("type", "text");
-        idInput.setAttribute("name", `Habilidades[${habilidades}].Id`);
-        idInput.setAttribute("class","form-control hide");
-
-        habilidadeDiv.appendChild(idInput);
-
-
-        //id curriculo
-
-        idCurriculoInput = document.createElement("input");
-        idCurriculoInput.setAttribute("type", "text");
-        idCurriculoInput.setAttribute("name", `Habilidades[${habilidades}].IdCurriculo`);
-        idCurriculoInput.setAttribute("class","form-control hide");
-
-        habilidadeDiv.appendChild(idCurriculoInput);
-
-        // descricao
-
-        descricaoLabel = document.createElement("label")
-        descricaoLabel.setAttribute("for", `Habilidades[${habilidades}].Descricao`);
-
-        if (idiomaSelecionado == "I") {
-            descricaoLabel.innerHTML = "Description";
-        }
-        else {
-            descricaoLabel.innerHTML = "Descrição";
-        }
-
-        descricaoLabel.setAttribute("class", "control-label");
-
-        habilidadeDiv.appendChild(descricaoLabel);
-
-        descricaoInput = document.createElement("input");
-        descricaoInput.setAttribute("type", "text");
-        descricaoInput.setAttribute("name", `Habilidades[${habilidades}].Descricao`);
-        descricaoInput.setAttribute("class","form-control");
-
-        habilidadeDiv.appendChild(descricaoInput);
-
-        // nivel
-
-        nivelLabel = document.createElement("label")
-        nivelLabel.setAttribute("for", `Habilidades[${habilidades}].Nivel`);
-
-        if (idiomaSelecionado == "I") {
-            nivelLabel.innerHTML = "Level";
-        }
-        else {
-            nivelLabel.innerHTML = "Nivel";
-        }
-
-        nivelLabel.setAttribute("class", "control-label");
-
-        habilidadeDiv.appendChild(nivelLabel);
-
-
-        //nivel input
-        nivelInput = document.createElement("select");
-        nivelInput.setAttribute("name", `Habilidades[${habilidades}].Nivel`);
-        nivelInput.setAttribute("value", `Habilidades[${habilidades}].Nivel`);
-        nivelInput.setAttribute("class", "form-control");
-
-        let opcoes = ["Iniciante", "Intermediario", "Avançado"];
-
-        if (idiomaSelecionado == "I") {
-            opcoes = ["Beginner", "Intermediary", "Advanced"];
-        }
-
-
-        for (count = 0; count < 3; count++) {
-            mOption = document.createElement("option");
-            mOption.value = count;
-            mOption.innerHTML = opcoes[count];
-            nivelInput.appendChild(mOption);
-        }
-
-        habilidadeDiv.appendChild(nivelInput);
-
-
-
-        //remove
-        buttonRemove = document.createElement("div");
-        buttonRemove.setAttribute("id", `btRemoveHabilidade ${habilidades}`);
-        buttonRemove.setAttribute("onclick", `removeHabilidade(this)`);
-        buttonRemove.setAttribute("class", `remove`);
-
-        icon = document.createElement("i");
-        icon.setAttribute("class", `far fa-trash-alt fa-3x`);
-
-        text = document.createElement("h4");
-
-        if (idiomaSelecionado == "I") {
-            text.innerHTML = "Remove";
-        }
-        else {
-            text.innerHTML = "Remover";
-        }
-
-        buttonRemove.appendChild(icon);
-        buttonRemove.appendChild(text);
-
-
-        habilidadeDiv.appendChild(buttonRemove);
-
-        habilidades++;
-
-        divHabilidades.appendChild(habilidadeDiv);
-    }
-
-    function exibirImagem(){
-        var oFReader = new FileReader();
-        oFReader.readAsDataURL(document.getElementById("Imagem").files[0]);
-        oFReader.onload = function (oFREvent) {
-            document.getElementById("imgPreview").src = oFREvent.target.result;
-        };
-
-        //exibe botão de remover imagem
-        btRemoveImg = document.getElementById("btRemoveImage");
-        btRemoveImg.className = "remove shadow";
-
-        //indica ao controller que a imagem vai ser editada
-        document.getElementById("editarImg").value = "Editar";
-
-     }
-
-    function removeImage() {
-
-
-        document.getElementById("Imagem").value = "";
-
-        //clear image preview
-        document.getElementById("imgPreview").src = "";
-
-        //hide delete button
-        buttonRemoveImg = document.getElementById("btRemoveImage");
-        buttonRemoveImg.setAttribute("class", "hide");
-
-        //remover quaisquer indicações de edição
-        document.getElementById("editarImg").value = "Editar";
-    }
-
-    function getCookie(cname) {
-        var name = cname + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') {
-                c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
-            }
-        }
-        return "";
-    }
-</script>
-
-<style>
-
-    .hide{
-           display:none;
-    }
-
-    .sub-container {
-        margin:8px;
-        padding: 16px;
-        border: 1px dashed #b6b8c3;
-        border-radius:16px;
-    }
-
-    .mContainer {
-        background-color: #e8eaf6;
-    }
-
-    .shadow {
-        -webkit-box-shadow: 10px 3px 16px -2px rgba(0,0,0,0.31);
-        -moz-box-shadow: 10px 3px 16px -2px rgba(0,0,0,0.31);
-        box-shadow: 10px 3px 16px -2px rgba(0,0,0,0.31);
-        padding: 16px;
-    }
-
-    .image-container {
-        max-width: 40%;
-        display: flex;
-        flex-direction: column;
-        align-content: center;
-        justify-content: center;
-        border: 2px solid #b6b8c3;
-    }
-
-    .image-container img{
-        width:100%;
-    }
-
-    .control-label {
-        margin-top: 8px;
-        font-family: 'Roboto', sans-serif;
-        font-size:large;
-        font-weight:bold;
-    }
-
-    .form-control{
-        border-radius:8px;
-    }
-
-    .formacao-item, .habilidade-item, .idioma-item {
-        border: 1px dashed #b6b8c3;
-        border-radius:8px;
-        padding: 8px;
-        margin: 8px;
-    }
-
-    .remove {
-        margin-bottom: 16px;
-        margin-top: 16px;
-        padding: 8px;
-        border-radius: 16px;
-        background-color: #c62828;
-        color: white;
-        display: flex;
-        justify-content:center;
-        align-items: center;
-    }
-
-    .remove h4{
-        margin-left:8px;
-        margin-right:8px;
-    }
-
-    .add-button {
-        margin-bottom: 16px;
-        margin-top: 16px;
-        padding: 8px;
-        border-radius: 16px;
-        background-color: #1565c0;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .add-button h4 {
-       margin-left: 8px;
-       margin-right: 8px;
-    }
-
-    .btSave {
-        margin-top: 16px;
-        margin-bottom: 16px;
-        width: 100%;
-        background-color: green;
-        color: white;
-        border-radius: 16px;
-        padding: 16px;
-        font-size: larger;
-    }
-
-
-</style>
 
 
 </html>
