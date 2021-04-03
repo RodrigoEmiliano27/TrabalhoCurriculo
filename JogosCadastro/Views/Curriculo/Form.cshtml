@@ -8,10 +8,8 @@
 <head>
     <link rel="stylesheet" href="~/css/form.css">
 
-    <script type="text/javascript" src="~/js/Form.js"></script>
-
 </head>
-    
+
 <body>
 
     <div class="mContainer shadow">
@@ -497,58 +495,58 @@
                         {
                             for (int i = 0; i < @Model.Idiomas.Count; i++)
                             {
-                <div class="idioma-item @i">
-                    <label for="Idiomas[@i].Id" class="control-label hide">Id</label>
-                    <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control hide" readonly />
-                    <span asp-validation-for="Idiomas[@i].Id" class="text-danger"></span>
-                    <br />
+                                <div class="idioma-item @i">
+                                    <label for="Idiomas[@i].Id" class="control-label hide">Id</label>
+                                    <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control hide" readonly />
+                                    <span asp-validation-for="Idiomas[@i].Id" class="text-danger"></span>
+                                    <br />
 
-                    <label for="Idiomas[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
-                    <input type="text" Name="Idiomas[@i].IdCurriculo" value="@Model.Idiomas[i].IdCurriculo" class="form-control hide" readonly />
-                    <span asp-validation-for="Idiomas[@i].IdCurriculo" class="text-danger"></span>
-                    <br />
+                                    <label for="Idiomas[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
+                                    <input type="text" Name="Idiomas[@i].IdCurriculo" value="@Model.Idiomas[i].IdCurriculo" class="form-control hide" readonly />
+                                    <span asp-validation-for="Idiomas[@i].IdCurriculo" class="text-danger"></span>
+                                    <br />
 
-                    <label for="Idiomas[@i].Idioma" class="control-label">Idioma</label>
-                    <input type="text" Name="Idiomas[@i].Idioma" value="@Model.Idiomas[i].Idioma" class="form-control" />
-                    <span asp-validation-for="Idiomas[@i].Idioma" class="text-danger"></span>
-                    <br />
+                                    <label for="Idiomas[@i].Idioma" class="control-label">Idioma</label>
+                                    <input type="text" Name="Idiomas[@i].Idioma" value="@Model.Idiomas[i].Idioma" class="form-control" />
+                                    <span asp-validation-for="Idiomas[@i].Idioma" class="text-danger"></span>
+                                    <br />
 
-                    <label for="Idiomas[@i].Nivel" class="control-label">Nível</label>
+                                    <label for="Idiomas[@i].Nivel" class="control-label">Nível</label>
 
-                    <select Name="Idiomas[@i].Nivel" value="@Model.Idiomas[i].Nivel" class="form-control">
-                        @if (Model.Idiomas[i].Nivel == "Iniciante")
-                        {
-                            <option value="Iniciante" selected>Iniciante</option>
-                        }
-                        else
-                        {
-                            <option value="Iniciante">Iniciante</option>
-                        }
+                                    <select Name="Idiomas[@i].Nivel" value="@Model.Idiomas[i].Nivel" class="form-control">
+                                        @if (Model.Idiomas[i].Nivel == "Iniciante")
+                                        {
+                                            <option value="Iniciante" selected>Iniciante</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="Iniciante">Iniciante</option>
+                                        }
 
-                        @if (Model.Idiomas[i].Nivel == "Intermediario")
-                        {
-                            <option value="Intermediario" selected>Intermediario</option>
-                        }
-                        else
-                        {
-                            <option value="Intermediario">Intermediario</option>
-                        }
+                                        @if (Model.Idiomas[i].Nivel == "Intermediario")
+                                        {
+                                            <option value="Intermediario" selected>Intermediario</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="Intermediario">Intermediario</option>
+                                        }
 
-                        @if (Model.Idiomas[i].Nivel == "Avançado")
-                        {
-                            <option value="Avançado" selected>Avançado</option>
-                        }
-                        else
-                        {
-                            <option value="Avançado">Avançado</option>
-                        }
-                    </select>
-                    <span asp-validation-for="Idiomas[@i].Nivel" class="text-danger"></span>
-                    <br />
+                                        @if (Model.Idiomas[i].Nivel == "Avançado")
+                                        {
+                                            <option value="Avançado" selected>Avançado</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="Avançado">Avançado</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="Idiomas[@i].Nivel" class="text-danger"></span>
+                                    <br />
 
-                    <div class="remove shadow" id="btRemoveIdioma @i" onclick="removeIdioma(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
+                                    <div class="remove shadow" id="btRemoveIdioma @i" onclick="removeIdioma(this)"><i class="far fa-trash-alt fa-3x"></i><h4>Remover</h4></div>
 
-                </div>
+                                </div>
                             }
                         }
                     }
@@ -727,6 +725,7 @@
 </body>
 
 
+<script type="text/javascript" src="~/js/Form.js"></script>
 
 
 </html>
