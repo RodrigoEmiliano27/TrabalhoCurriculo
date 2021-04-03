@@ -131,29 +131,31 @@ namespace TrabalhoCurriculo.Controllers
         }
         private void ValidaDados(CurriculoViewModel cur)
         {
+            TextosValidacoes validacoes = new TextosValidacoes(ViewBag.Idioma);
+
 
             if (string.IsNullOrEmpty(cur.Nome))
-                ModelState.AddModelError("Nome", "Preencha o nome.");
+                ModelState.AddModelError("Nome", validacoes.Nome_vazio);
             if (cur.Nascimento > DateTime.Now)
-                ModelState.AddModelError("Nascimento", "Data inválida!");
+                ModelState.AddModelError("Nascimento", validacoes.Nascimento_invalido);
             if (string.IsNullOrEmpty(cur.Telefone))
-                ModelState.AddModelError("Telefone", "Preencha o Telefone.");
+                ModelState.AddModelError("Telefone", validacoes.Telefone_vazio);
             if (string.IsNullOrEmpty(cur.CPF))
-                ModelState.AddModelError("CPF", "Preencha o Telefone.");
+                ModelState.AddModelError("CPF", validacoes.Cpf_vazio);
             if (string.IsNullOrEmpty(cur.Email))
-                ModelState.AddModelError("Email", "Preencha o Telefone.");
+                ModelState.AddModelError("Email", validacoes.Email_vazio);
             if (string.IsNullOrEmpty(cur.Cargo_Pretendido))
-                ModelState.AddModelError("Cargo_Pretendido", "Preencha o Telefone.");
+                ModelState.AddModelError("Cargo_Pretendido",validacoes.Cargo_vazio);
             if (string.IsNullOrEmpty(cur.Rua))
-                ModelState.AddModelError("Rua", "Preencha o Telefone.");
+                ModelState.AddModelError("Rua", validacoes.Rua_vazio);
             if (cur.Numero_Endereco==null || cur.Numero_Endereco<0)
-                ModelState.AddModelError("Numero_Endereco", "Preencha o Telefone.");
+                ModelState.AddModelError("Numero_Endereco", validacoes.Numero_invalido);
             if (string.IsNullOrEmpty(cur.CEP))
-                ModelState.AddModelError("CEP", "Preencha o Telefone.");
+                ModelState.AddModelError("CEP", validacoes.Cep_vazio);
             if (string.IsNullOrEmpty(cur.Bairro))
-                ModelState.AddModelError("Bairro", "Preencha o Telefone.");
+                ModelState.AddModelError("Bairro", validacoes.Bairro_vazio);
             if (string.IsNullOrEmpty(cur.Estado))
-                ModelState.AddModelError("Estado", "Preencha o Telefone.");
+                ModelState.AddModelError("Estado", validacoes.Estado_vazio);
           
         }
         /// <summary>
