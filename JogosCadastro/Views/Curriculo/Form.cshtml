@@ -7,7 +7,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="~/css/form.css">
-
+       <script src="~/js/jquery.js"></script>
 </head>
 
 <body>
@@ -177,7 +177,7 @@
                     <h3>Address</h3>
 
                     <label for="rua" class="control-label">Street</label>
-                    <input type="text" Name="rua" value="@Model.Rua" class="form-control" />
+                    <input type="text" Name="rua" value="@Model.Rua" id="logradouro" readonly class="form-control" />
                     <span asp-validation-for="Rua" class="text-danger"></span>
                     <br />
 
@@ -187,22 +187,24 @@
                     <br />
 
                     <label for="CEP" class="control-label">CEP</label>
-                    <input type="text" Name="CEP" value="@Model.CEP" class="form-control" />
+                    <input type="text" Name="CEP" value="@Model.CEP" id="cep" class="form-control" />
                     <span asp-validation-for="CEP" class="text-danger"></span>
+                    <input type="button" onclick="buscaCEP()" class="btBuscaCEP" value="Search CEP" style="background-color:green;border-radius: 8px;color:white;margin:8px;padding:8px;"></input>
                     <br />
+                   
 
                     <label for="bairro" class="control-label">Neighborhood</label>
-                    <input type="text" Name="bairro" value="@Model.Bairro" class="form-control" />
+                    <input type="text" Name="bairro" value="@Model.Bairro" id="bairro" readonly class="form-control" />
                     <span asp-validation-for="Bairro" class="text-danger"></span>
                     <br />
 
                     <label for="cidade" class="control-label">City</label>
-                    <input type="text" Name="cidade" value="@Model.Cidade" class="form-control" />
+                    <input type="text" Name="cidade" value="@Model.Cidade" id="localidade" readonly class="form-control" />
                     <span asp-validation-for="Cidade" class="text-danger"></span>
                     <br />
 
                     <label for="estado" class="control-label">State</label>
-                    <input type="text" Name="estado" value="@Model.Estado" class="form-control" />
+                    <input type="text" Name="estado" value="@Model.Estado" id="uf" readonly class="form-control" />
                     <span asp-validation-for="Estado" class="text-danger"></span>
                     <br />
                 }
@@ -211,7 +213,7 @@
                     <h3>Endereço</h3>
 
                     <label for="rua" class="control-label">Rua</label>
-                    <input type="text" Name="rua" value="@Model.Rua" class="form-control" />
+                    <input type="text" Name="rua" value="@Model.Rua" id="logradouro" readonly class="form-control" />
                     <span asp-validation-for="Rua" class="text-danger"></span>
                     <br />
 
@@ -221,22 +223,23 @@
                     <br />
 
                     <label for="CEP" class="control-label">CEP</label>
-                    <input type="text" Name="CEP" value="@Model.CEP" class="form-control" />
+                    <input type="text" Name="CEP" value="@Model.CEP" id="cep" class="form-control" />
                     <span asp-validation-for="CEP" class="text-danger"></span>
+                    <input type="button" onclick="buscaCEP()" class="btBuscaCEP" value="Buscar CEP" style="background-color:green;border-radius: 8px;color:white;margin:8px;padding:8px;"></input>
                     <br />
 
                     <label for="bairro" class="control-label">Bairro</label>
-                    <input type="text" Name="bairro" value="@Model.Bairro" class="form-control" />
+                    <input type="text" Name="bairro" value="@Model.Bairro" id="bairro" readonly class="form-control" />
                     <span asp-validation-for="Bairro" class="text-danger"></span>
                     <br />
 
                     <label for="cidade" class="control-label">Cidade</label>
-                    <input type="text" Name="cidade" value="@Model.Cidade" class="form-control" />
+                    <input type="text" Name="cidade" value="@Model.Cidade" id="localidade" readonly class="form-control" />
                     <span asp-validation-for="Cidade" class="text-danger"></span>
                     <br />
 
                     <label for="estado" class="control-label">Estado</label>
-                    <input type="text" Name="estado" value="@Model.Estado" class="form-control" />
+                    <input type="text" Name="estado" value="@Model.Estado" id="uf" readonly class="form-control" />
                     <span asp-validation-for="Estado" class="text-danger"></span>
                     <br />
                 }

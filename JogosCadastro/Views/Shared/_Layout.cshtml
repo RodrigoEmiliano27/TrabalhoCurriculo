@@ -28,66 +28,69 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
+                    <div>
+                        @if (ViewBag.Idioma == "I")
+                        {
+
+                            <select class="nav-link" name="Language" onchange="location = this.value;">
+
+                                @if (this.Context.Request.Path != "/")
+                                {
+                                    <option value="Language?language=P&lastPage=edit" style="background-image: url(~/wwwroot/Images/brazil-flag.svg)">
+                                        Portuguese
+                                    </option>
+                                    <option value="Language?language=I&lastPage=edit" selected style="background-image: url(~/wwwroot/Images/united-states-of-america-flag.svg)">
+                                        English
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option value="Curriculo/Language?language=P&lastPage=Main" style="background-image: url(~/wwwroot/Images/brazil-flag.svg)">
+                                        Portuguese
+                                    </option>
+                                    <option value="Curriculo/Language?language=I&lastPage=Main" selected style="background-image: url(~/wwwroot/Images/united-states-of-america-flag.svg)">
+                                        English
+                                    </option>
+                                }
+
+                            </select>
+
+                        }
+                        else
+                        {
+                            @if (this.Context.Request.Path != "/")
+                            {
+                                <select class="nav-link" name="Idioma" onchange="location = this.value;">
+                                    <option value="Language?language=P" selected>
+                                        Portugues
+                                    </option>
+                                    <option value="Language?language=I">
+                                        Inglês
+                                    </option>
+                                </select>
+                            }
+                            else
+                            {
+                                <select class="nav-link" name="Idioma" onchange="location = this.value;">
+                                    <option value="Curriculo/Language?language=P" selected>
+                                        Portugues
+                                    </option>
+                                    <option value="Curriculo/Language?language=I">
+                                        Inglês
+                                    </option>
+                                </select>
+                            }
+
+                        }
+                    </div>
+
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Curriculo" asp-action="Sobre">Sobre</a>
                         </li>
-                        <li class="nav-item">
-                            @if (ViewBag.Idioma == "I")
-                            {
-
-                                <select class="nav-link" name="Language" onchange="location = this.value;">
-
-                                    @if (this.Context.Request.Path == "/Curriculo/Edit")
-                                    {
-                                        <option value="Language?language=P&lastPage=edit" style="background-image: url(~/wwwroot/Images/brazil-flag.svg)">
-                                            Portuguese
-                                        </option>
-                                        <option value="Language?language=I&lastPage=edit" selected style="background-image: url(~/wwwroot/Images/united-states-of-america-flag.svg)">
-                                            English
-                                        </option>
-                                    }
-                                    else
-                                    {
-                                        <option value="Curriculo/Language?language=P&lastPage=Main" style="background-image: url(~/wwwroot/Images/brazil-flag.svg)">
-                                            Portuguese
-                                        </option>
-                                        <option value="Curriculo/Language?language=I&lastPage=Main" selected style="background-image: url(~/wwwroot/Images/united-states-of-america-flag.svg)">
-                                            English
-                                        </option>
-                                    }
-
-                                </select>
-
-                            }
-                            else
-                            {
-                                @if (this.Context.Request.Path == "/Curriculo/Edit")
-                                {
-                                    <select class="nav-link" name="Idioma" onchange="location = this.value;">
-                                        <option value="Language?language=P" selected>
-                                            Portugues
-                                        </option>
-                                        <option value="Language?language=I">
-                                            Inglês
-                                        </option>
-                                    </select>
-                                }
-                                else
-                                {
-                                    <select class="nav-link" name="Idioma" onchange="location = this.value;">
-                                        <option value="Curriculo/Language?language=P" selected>
-                                            Portugues
-                                        </option>
-                                        <option value="Curriculo/Language?language=I">
-                                            Inglês
-                                        </option>
-                                    </select>
-                                }
-
-                            }
-                        </li>
                     </ul>
+
                 </div>
             </div>
         </nav>
