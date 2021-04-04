@@ -10,21 +10,41 @@
 
 
     <body>
-        <h3>Trabalho desenvolvido por:</h3>
-        <table>
-            <tr>
-                <th>Nome</th>
-                <th>RA</th>
-            </tr>
-            <tr>
-                <td>Rodrigo Emiliano </td>
-                <td>081190004</td>
-            </tr>
-            <tr>
-                <td>Yago Caetano</td>
-                <td>081190027</td>
-            </tr>
-        </table>
+        <div class="about-container">
+            <h3>Trabalho desenvolvido por:</h3>
+            <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>RA</th>
+                    <th>Foto</th>
+                </tr>
+                <tr>
+                    <td>Rodrigo Emiliano </td>
+                    <td>081190004</td>
+                    <td><img class="img-dev" src="~/Images/digão.jpg" /></td>
+                </tr>
+                <tr>
+                    <td>Yago Caetano</td>
+                    <td>081190027</td>
+                    <td><img class="img-dev" src="~/Images/yago.jpg" /></td>
+                </tr>
+            </table>
+        </div>
     </body>
 
+<style>
+    .img-dev{
+        max-width:20%;
+    }
+
+    td{
+        padding:8px;
+    }
+
+    h3{
+        margin-top:16px;
+        margin-bottom: 16px;
+    }
+
+</style>
 </html>
