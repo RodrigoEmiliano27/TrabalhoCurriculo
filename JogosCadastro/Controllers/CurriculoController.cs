@@ -79,23 +79,37 @@ namespace TrabalhoCurriculo.Controllers
                 {
                     id = dao.ProximoId();
                     dao.Inserir(cur);
-
+                    if(cur.ImagemEmByte!=null)
+                        dao.AlterarImagem(cur.ImagemEmByte, id);
+                    //garante que vai estar no ID correto
+                    id = dao.ProximoId() - 1;
                     foreach (FormacaoViewModel f in cur.Formacao)
                     {
-                        f.IdCurriculo = id;
-                        fdao.Inserir(f);
+                        if (f.Descricao != null && f.Instituicao != null)
+                        {
+                            f.IdCurriculo = id;
+                            fdao.Inserir(f);
+                        }
                     }
 
                     foreach (IdiomaViewModel d in cur.Idiomas)
                     {
-                        d.IdCurriculo = id;
-                        Idao.Inserir(d);
+                        if (d.Idioma != null)
+                        {
+                            d.IdCurriculo = id;
+                            Idao.Inserir(d);
+                        }
+                       
                     }
 
                     foreach (HabilidadesViewModel h in cur.Habilidades)
                     {
-                        h.IdCurriculo = id;
-                        Hdao.Inserir(h);
+                        if (h.Descricao != null)
+                        {
+                            h.IdCurriculo = id;
+                            Hdao.Inserir(h);
+                        }
+                      
                     }
 
                 }

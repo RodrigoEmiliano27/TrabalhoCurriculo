@@ -74,6 +74,7 @@ namespace TrabalhoCurriculo.Classes
                 return true;
             return false;
         }
+
         /// <summary>
         /// Verifica a formação academica, se dados novos foram inseridos, alterados e excluidos e faz as correções necessárias
         /// </summary>
@@ -81,6 +82,12 @@ namespace TrabalhoCurriculo.Classes
         {
             bool achou = false;
             FormacaoDAO formDao = new FormacaoDAO();
+            //Remove dados não válidos           
+            for (int n = 0; n < CurriculoNovo.Formacao.Count; n++)
+            {
+                if (CurriculoNovo.Formacao[n].Descricao == null && CurriculoNovo.Formacao[n].Instituicao == null)
+                    CurriculoNovo.Formacao.RemoveAt(n);
+            }
             //Se o curriculo estava sem formação academica todos os dados devem ser inseridos
             if (CurriculoVelho.Formacao.Count == 0 && CurriculoNovo.Formacao.Count > 0)
             {
@@ -129,6 +136,12 @@ namespace TrabalhoCurriculo.Classes
         {
             bool achou = false;
             IdiomaDAO IdiDao = new IdiomaDAO();
+            //Remove dados não válidos           
+            for (int n = 0; n < CurriculoNovo.Idiomas.Count; n++)
+            {
+                if (CurriculoNovo.Idiomas[n].Idioma == null )
+                    CurriculoNovo.Idiomas.RemoveAt(n);
+            }
             //Se o curriculo estava sem Idiomas  todos os dados devem ser inseridos
             if (CurriculoVelho.Idiomas.Count == 0 && CurriculoNovo.Idiomas.Count > 0)
             {
@@ -177,6 +190,12 @@ namespace TrabalhoCurriculo.Classes
         {
             bool achou = false;
             HabilidadesDAO HabDao = new HabilidadesDAO();
+            //Remove dados não válidos           
+            for (int n = 0; n < CurriculoNovo.Habilidades.Count; n++)
+            {
+                if (CurriculoNovo.Habilidades[n].Descricao == null)
+                    CurriculoNovo.Habilidades.RemoveAt(n);
+            }
             //Se o curriculo estava sem Idiomas  todos os dados devem ser inseridos
             if (CurriculoVelho.Habilidades.Count == 0 && CurriculoNovo.Habilidades.Count > 0)
             {
