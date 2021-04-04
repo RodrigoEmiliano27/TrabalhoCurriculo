@@ -24,7 +24,7 @@
                 @if (@Model.Id >= 0)
                 {
                     <label for="id" class="control-label hide">Id</label>
-                    <input type="number" Name="id" value="@Model.Id" class="form-control hide" readonly />
+                    <input type="number" Name="id" value="@Model.Id" class="form-control hide"  />
                     <span asp-validation-for="Id" class="text-danger hide"></span>
 
                     @if (ViewBag.Idioma == "I")
@@ -180,7 +180,7 @@
                     <h3>Address</h3>
 
                     <label for="rua" class="control-label">Street</label>
-                    <input type="text" Name="rua" value="@Model.Rua" id="logradouro" readonly class="form-control" />
+                    <input type="text" Name="rua" value="@Model.Rua" id="logradouro"  class="form-control" />
                     <span asp-validation-for="Rua" class="text-danger"></span>
                     <br />
 
@@ -197,17 +197,17 @@
                    
 
                     <label for="bairro" class="control-label">Neighborhood</label>
-                    <input type="text" Name="bairro" value="@Model.Bairro" id="bairro" readonly class="form-control" />
+                    <input type="text" Name="bairro" value="@Model.Bairro" id="bairro"  class="form-control" />
                     <span asp-validation-for="Bairro" class="text-danger"></span>
                     <br />
 
                     <label for="cidade" class="control-label">City</label>
-                    <input type="text" Name="cidade" value="@Model.Cidade" id="localidade" readonly class="form-control" />
+                    <input type="text" Name="cidade" value="@Model.Cidade" id="localidade"  class="form-control" />
                     <span asp-validation-for="Cidade" class="text-danger"></span>
                     <br />
 
                     <label for="estado" class="control-label">State</label>
-                    <input type="text" Name="estado" value="@Model.Estado" id="uf" readonly class="form-control" />
+                    <input type="text" Name="estado" value="@Model.Estado" id="uf"  class="form-control" />
                     <span asp-validation-for="Estado" class="text-danger"></span>
                     <br />
                 }
@@ -216,7 +216,7 @@
                     <h3>Endereço</h3>
 
                     <label for="rua" class="control-label">Rua</label>
-                    <input type="text" Name="rua" value="@Model.Rua" id="logradouro" readonly class="form-control" />
+                    <input type="text" Name="rua" value="@Model.Rua" id="logradouro"  class="form-control" />
                     <span asp-validation-for="Rua" class="text-danger"></span>
                     <br />
 
@@ -232,17 +232,17 @@
                     <br />
 
                     <label for="bairro" class="control-label">Bairro</label>
-                    <input type="text" Name="bairro" value="@Model.Bairro" id="bairro" readonly class="form-control" />
+                    <input type="text" Name="bairro" value="@Model.Bairro" id="bairro"  class="form-control" />
                     <span asp-validation-for="Bairro" class="text-danger"></span>
                     <br />
 
                     <label for="cidade" class="control-label">Cidade</label>
-                    <input type="text" Name="cidade" value="@Model.Cidade" id="localidade" readonly class="form-control" />
+                    <input type="text" Name="cidade" value="@Model.Cidade" id="localidade"  class="form-control" />
                     <span asp-validation-for="Cidade" class="text-danger"></span>
                     <br />
 
                     <label for="estado" class="control-label">Estado</label>
-                    <input type="text" Name="estado" value="@Model.Estado" id="uf" readonly class="form-control" />
+                    <input type="text" Name="estado" value="@Model.Estado" id="uf"  class="form-control" />
                     <span asp-validation-for="Estado" class="text-danger"></span>
                     <br />
                 }
@@ -328,12 +328,12 @@
                                 <div class="formacao-item @i">
 
                                     <label for="Formacao[@i].Id" class="control-label hide">Id</label>
-                                    <input type="text" Name="Formacao[@i].Id" value="@Model.Formacao[i].Id" class="form-control hide" readonly />
+                                    <input type="text" Name="Formacao[@i].Id" value="@Model.Formacao[i].Id" class="form-control hide"  />
                                     <span asp-validation-for="Formacao[@i].Id" class="text-danger hide"></span>
                                     <br />
 
                                     <label for="Formacao[@i].IdCurriculo" class="control-label hide">Id Resume</label>
-                                    <input type="text" Name="Formacao[@i].IdCurriculo" value="@Model.Formacao[i].IdCurriculo" class="form-control hide" readonly />
+                                    <input type="text" Name="Formacao[@i].IdCurriculo" value="@Model.Formacao[i].IdCurriculo" class="form-control hide"  />
                                     <span asp-validation-for="Formacao[@i].IdCurriculo" class="text-danger hide"></span>
                                     <br />
 
@@ -377,12 +377,12 @@
                                 <div class="formacao-item @i">
 
                                     <label for="Formacao[@i].Id" class="control-label hide">Id</label>
-                                    <input type="text" Name="Formacao[@i].Id" value="@Model.Formacao[i].Id" class="form-control hide" readonly />
+                                    <input type="text" Name="Formacao[@i].Id" value="@Model.Formacao[i].Id" class="form-control hide"  />
                                     <span asp-validation-for="Formacao[@i].Id" class="text-danger hide"></span>
                                     <br />
 
                                     <label for="Formacao[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
-                                    <input type="text" Name="Formacao[@i].IdCurriculo" value="@Model.Formacao[i].IdCurriculo" class="form-control hide" readonly />
+                                    <input type="text" Name="Formacao[@i].IdCurriculo" value="@Model.Formacao[i].IdCurriculo" class="form-control hide"  />
                                     <span asp-validation-for="Formacao[@i].IdCurriculo" class="text-danger hide"></span>
                                     <br />
 
@@ -441,12 +441,12 @@
                             {
                                 <div class="idioma-item @i">
                                     <label for="Idiomas[@i].Id" class="control-label hide">Id</label>
-                                    <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control hide" readonly />
+                                    <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control hide"  />
                                     <span asp-validation-for="Idiomas[@i].Id" class="text-danger hide"></span>
                                     <br />
 
                                     <label for="Idiomas[@i].IdCurriculo" class="control-label hide">Id Resume</label>
-                                    <input type="text" Name="Idiomas[@i].IdCurriculo" value="@Model.Idiomas[i].IdCurriculo" class="form-control hide" readonly />
+                                    <input type="text" Name="Idiomas[@i].IdCurriculo" value="@Model.Idiomas[i].IdCurriculo" class="form-control hide"  />
                                     <span asp-validation-for="Idiomas[@i].IdCurriculo" class="text-danger"></span>
                                     <br />
 
@@ -503,12 +503,12 @@
                             {
                                 <div class="idioma-item @i">
                                     <label for="Idiomas[@i].Id" class="control-label hide">Id</label>
-                                    <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control hide" readonly />
+                                    <input type="text" Name="Idiomas[@i].Id" value="@Model.Idiomas[i].Id" class="form-control hide"  />
                                     <span asp-validation-for="Idiomas[@i].Id" class="text-danger hide"></span>
                                     <br />
 
                                     <label for="Idiomas[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
-                                    <input type="text" Name="Idiomas[@i].IdCurriculo" value="@Model.Idiomas[i].IdCurriculo" class="form-control hide" readonly />
+                                    <input type="text" Name="Idiomas[@i].IdCurriculo" value="@Model.Idiomas[i].IdCurriculo" class="form-control hide"  />
                                     <span asp-validation-for="Idiomas[@i].IdCurriculo" class="text-danger hide"></span>
                                     <br />
 
@@ -586,12 +586,12 @@
                                 <div class="habilidade-item @i">
 
                                     <label for="Habilidades[@i].Id" class="control-label hide">Id</label>
-                                    <input type="text" Name="Habilidades[@i].Id" value="@Model.Habilidades[i].Id" class="form-control hide" readonly />
+                                    <input type="text" Name="Habilidades[@i].Id" value="@Model.Habilidades[i].Id" class="form-control hide"  />
                                     <span asp-validation-for="Habilidades[@i].Id" class="text-danger hide"></span>
                                     <br />
 
                                     <label for="Habilidades[@i].IdCurriculo" class="control-label hide">Id Resume</label>
-                                    <input type="text" Name="Habilidades[@i].IdCurriculo" value="@Model.Habilidades[i].IdCurriculo" class="form-control hide" readonly />
+                                    <input type="text" Name="Habilidades[@i].IdCurriculo" value="@Model.Habilidades[i].IdCurriculo" class="form-control hide"  />
                                     <span asp-validation-for="Habilidades[@i].IdCurriculo" class="text-danger hide"></span>
                                     <br />
 
@@ -650,12 +650,12 @@
                                 <div class="habilidade-item @i">
 
                                     <label for="Habilidades[@i].Id" class="control-label hide">Id</label>
-                                    <input type="text" Name="Habilidades[@i].Id" value="@Model.Habilidades[i].Id" class="form-control hide" readonly />
+                                    <input type="text" Name="Habilidades[@i].Id" value="@Model.Habilidades[i].Id" class="form-control hide"  />
                                     <span asp-validation-for="Habilidades[@i].Id" class="text-danger hide"></span>
                                     <br />
 
                                     <label for="Habilidades[@i].IdCurriculo" class="control-label hide">Id Curriculo</label>
-                                    <input type="text" Name="Habilidades[@i].IdCurriculo" value="@Model.Habilidades[i].IdCurriculo" class="form-control hide" readonly />
+                                    <input type="text" Name="Habilidades[@i].IdCurriculo" value="@Model.Habilidades[i].IdCurriculo" class="form-control hide"  />
                                     <span asp-validation-for="Habilidades[@i].IdCurriculo" class="text-danger hide"></span>
                                     <br />
 

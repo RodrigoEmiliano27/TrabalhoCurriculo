@@ -396,9 +396,16 @@ function removeHabilidade(e) {
     //recupera a div que forma o containerr
     itemToRemove = document.getElementsByClassName(`habilidade-item ${removeId}`)[0]
 
+    console.log(itemToRemove);
     //alterar o id do curriculo
     idCurriculoElement = itemToRemove.getElementsByClassName("form-control hide")[1]
-    idCurriculoElement.value = "-1"
+    idCurriculoElement.setAttribute("value", "-1");
+
+    var items = itemToRemove.getElementsByClassName("form-control");
+
+    for (i = 0; i < items.length; i++) {
+        items[i].setAttribute("class", "form-control hide");
+    }
 
     //esconde a habilidade
     itemToRemove.setAttribute("class", "hide");
@@ -414,7 +421,13 @@ function removeIdioma(e) {
 
     //alterar o id do curriculo
     idCurriculoElement = itemToRemove.getElementsByClassName("form-control hide")[1]
-    idCurriculoElement.value = "-1"
+    idCurriculoElement.setAttribute("value", "-1");
+
+    var items = itemToRemove.getElementsByClassName("form-control");
+
+    for (i = 0; i < items.length; i++) {
+        items[i].setAttribute("class", "form-control hide");
+    }
 
     //esconde o idioma
     itemToRemove.setAttribute("class", "hide");
@@ -430,8 +443,17 @@ function removeFormacao(e) {
 
     //alterar o id do curriculo
     idCurriculoElement = itemToRemove.getElementsByClassName("form-control hide")[1]
-    idCurriculoElement.value = "-1"
+    idCurriculoElement.setAttribute("value", "-1");
 
+    var items = itemToRemove.getElementsByClassName("form-control");
+
+    for (i = 0; i < items.length; i++)
+    {
+        items[i].setAttribute("class", "form-control hide");
+    }
+
+    
+    
     //esconde a formacao
     itemToRemove.setAttribute("class", "hide");
 
