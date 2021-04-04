@@ -20,6 +20,10 @@ namespace TrabalhoCurriculo.Classes
         string cep_vazio;
         string bairro_vazio;
         string estado_vazio;
+        string formacao_intituicao_vazio;
+        string formacao_Descricao_vazio;
+        string formacao_Inicio_vazio;
+        string formacao_Fim_vazio;
         public string Nome_vazio { get => nome_vazio; }
         public string Nascimento_invalido { get => nascimento_invalido; }
         public string Cargo_vazio { get => cargo_vazio; }
@@ -33,6 +37,10 @@ namespace TrabalhoCurriculo.Classes
         public string Cep_vazio { get => cep_vazio; }
         public string Bairro_vazio { get => bairro_vazio; }
         public string Estado_vazio { get => estado_vazio; }
+        public string Formacao_intituicao_vazio { get => formacao_intituicao_vazio; }
+        public string Formacao_Descricao_vazio { get => formacao_Descricao_vazio; }
+        public string Formacao_Inicio_vazio { get => formacao_Inicio_vazio; }
+        public string Formacao_Fim_vazio { get => formacao_Fim_vazio; }
         public TextosValidacoes(string idioma)
         {
             switch (idioma)
@@ -65,6 +73,10 @@ namespace TrabalhoCurriculo.Classes
             cep_vazio="Preencha o CEP";
             bairro_vazio="Preencha o bairro";
             estado_vazio="Preencha o estado!";
+            formacao_intituicao_vazio="Preencha o nome da instiuição!";
+            formacao_Descricao_vazio = "Preencha a descrição do curso!"; ;
+            formacao_Inicio_vazio = "Preencha a data de inicio do curso!" ;
+            formacao_Fim_vazio = "Preencha a data de fim do curso!"; ;
         }
         private void ValidacaoEmIngles()
         {
@@ -81,6 +93,10 @@ namespace TrabalhoCurriculo.Classes
             cep_vazio = "CEP is blank!";
             bairro_vazio = "Neighborhood is blank!";
             estado_vazio = "State is blank!";
+            formacao_intituicao_vazio = "Institution is blank!";
+            formacao_Descricao_vazio = "description is blank!"; ;
+            formacao_Inicio_vazio = "Start date in blank!";
+            formacao_Fim_vazio = "End date is blank!"; ;
         }
 
 

@@ -122,6 +122,9 @@ namespace TrabalhoCurriculo.Classes
 
             }
         }
+        /// <summary>
+        /// Verifica os idiomas, se dados novos foram inseridos, alterados e excluidos e faz as correções necessárias
+        /// </summary>
         private void VerificarIdiomas()
         {
             bool achou = false;
@@ -167,6 +170,9 @@ namespace TrabalhoCurriculo.Classes
             }
 
         }
+        /// <summary>
+        /// Verifica as Habilidades, se dados novos foram inseridos, alterados e excluidos e faz as correções necessárias
+        /// </summary>
         private void VerificarHabilidades()
         {
             bool achou = false;
@@ -211,7 +217,12 @@ namespace TrabalhoCurriculo.Classes
             }
         }
 
-
+        /// <summary>
+        /// Verifica se uma formação academica é diferente
+        /// </summary>
+        /// <param name="fold">formacao antiga</param>
+        /// <param name="fnew"> formacao a ser comparada</param>
+        /// <returns>retorna true se as formações forem diferentes</returns>
         private bool FormacaoChanged(FormacaoViewModel fold, FormacaoViewModel fnew)
         {
             if (fold.Descricao!= fnew.Descricao)
@@ -225,6 +236,12 @@ namespace TrabalhoCurriculo.Classes
 
             return false;
         }
+        /// <summary>
+        /// Verifica se um idioma é diferente de outro
+        /// </summary>
+        /// <param name="Iold">idioma antigo</param>
+        /// <param name="Inew">idioma nova</param>
+        /// <returns> retorna true se os idiomas forem diferentes</returns>
         private bool IdioChanged(IdiomaViewModel Iold, IdiomaViewModel Inew)
         {
             if (Iold.Idioma != Inew.Idioma)
@@ -234,6 +251,12 @@ namespace TrabalhoCurriculo.Classes
 
             return false;
         }
+        /// <summary>
+        /// Verifica se as habilidades são diferentes
+        /// </summary>
+        /// <param name="old"></param>
+        /// <param name="novo"></param>
+        /// <returns></returns>
         private bool HabChanged(HabilidadesViewModel old, HabilidadesViewModel novo)
         {
             if (old.Descricao != novo.Descricao)
