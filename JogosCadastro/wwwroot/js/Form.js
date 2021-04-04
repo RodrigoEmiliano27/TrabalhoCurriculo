@@ -32,7 +32,12 @@ $("#myForm").submit(function (event) {
     $(".form-control").each((id, element) => {
         if ((element.value === "") && !(element.className.includes("hide"))) {
             console.log(element);
-            document.getElementsByClassName("text-danger")[id].innerHTML = "Preencha o campo";
+            if (idiomaSelecionado == "I") {
+                document.getElementsByClassName("text-danger")[id].innerHTML = "Fill in the field";
+            }
+            else {
+                document.getElementsByClassName("text-danger")[id].innerHTML = "Preencha o campo";
+            }
             event.preventDefault();
             return;
         }
