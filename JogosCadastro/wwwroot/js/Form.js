@@ -21,6 +21,24 @@ btHabilidades = document.getElementById("btAddHabilidade");
 
 btHabilidades.onclick = adcionaHabilidade;
 
+
+$("#myForm").submit(function (event) {
+
+    //limpa todos os avisos de erro
+    $(".text-danger").each((id, element) => {
+        element.innerHTML = "";
+    })
+    console.log("clicou!!");
+    $(".form-control").each((id, element) => {
+        if ((element.value === "") && !(element.className.includes("hide"))) {
+            console.log(element);
+            document.getElementsByClassName("text-danger")[id].innerHTML = "Preencha o campo";
+            event.preventDefault();
+            return;
+        }
+    });
+});
+
 function adcionaFormacao() {
 
     formacaoDiv = document.createElement("div");
@@ -38,8 +56,9 @@ function adcionaFormacao() {
 
     //validation
     spanValidation = document.createElement("span");
-    spanValidation.setAttribute("asp-validation-for", `Formacao[${formacoes}].Id`);
-    spanValidation.setAttribute("class", "text-danger");
+    spanValidation.setAttribute("data-valmsg-for", `Formacao[${formacoes}].Id`);
+    spanValidation.setAttribute("data-valmsg-replace", "true");
+    spanValidation.setAttribute("class", "text-danger hide");
 
     formacaoDiv.appendChild(spanValidation);
     formacaoDiv.appendChild(document.createElement("br"));
@@ -54,8 +73,9 @@ function adcionaFormacao() {
 
     //validation
     spanValidation = document.createElement("span");
-    spanValidation.setAttribute("asp-validation-for", `Formacao[${formacoes}].IdCurriculo`);
-    spanValidation.setAttribute("class", "text-danger");
+    spanValidation.setAttribute("data-valmsg-for", `Formacao[${formacoes}].IdCurriculo`);
+    spanValidation.setAttribute("data-valmsg-replace", "true");
+    spanValidation.setAttribute("class", "text-danger hide");
 
     formacaoDiv.appendChild(spanValidation);
     formacaoDiv.appendChild(document.createElement("br"));
@@ -85,7 +105,8 @@ function adcionaFormacao() {
 
     //validation
     spanValidation = document.createElement("span");
-    spanValidation.setAttribute("asp-validation-for", `Formacao[${formacoes}].Instituicao`);
+    spanValidation.setAttribute("data-valmsg-for", `Formacao[${formacoes}].Instituicao`);
+    spanValidation.setAttribute("data-valmsg-replace", "true");
     spanValidation.setAttribute("class", "text-danger");
 
     formacaoDiv.appendChild(spanValidation);
@@ -97,10 +118,10 @@ function adcionaFormacao() {
     descricaoLabel.setAttribute("for", `Formacao[${formacoes}].Descricao`);
 
     if (idiomaSelecionado == "I") {
-        descricaoLabel.innerHTML = "Descrição";
+        descricaoLabel.innerHTML = "Description";
     }
     else {
-        descricaoLabel.innerHTML = "Description";
+        descricaoLabel.innerHTML = "Descrição";
     }
 
     descricaoLabel.setAttribute("class", "control-label");
@@ -115,7 +136,8 @@ function adcionaFormacao() {
 
     //validation
     spanValidation = document.createElement("span");
-    spanValidation.setAttribute("asp-validation-for", `Formacao[${formacoes}].Descricao`);
+    spanValidation.setAttribute("data-valmsg-for", `Formacao[${formacoes}].Descricao`);
+    spanValidation.setAttribute("data-valmsg-replace", "true");
     spanValidation.setAttribute("class", "text-danger");
 
     formacaoDiv.appendChild(spanValidation);
@@ -145,7 +167,8 @@ function adcionaFormacao() {
 
     //validation
     spanValidation = document.createElement("span");
-    spanValidation.setAttribute("asp-validation-for", `Formacao[${formacoes}].Inicio`);
+    spanValidation.setAttribute("data-valmsg-for", `Formacao[${formacoes}].Inicio`);
+    spanValidation.setAttribute("data-valmsg-replace", "true");
     spanValidation.setAttribute("class", "text-danger");
 
     formacaoDiv.appendChild(spanValidation);
@@ -176,7 +199,8 @@ function adcionaFormacao() {
 
     //validation
     spanValidation = document.createElement("span");
-    spanValidation.setAttribute("asp-validation-for", `Formacao[${formacoes}].Fim`);
+    spanValidation.setAttribute("data-valmsg-for", `Formacao[${formacoes}].Fim`);
+    spanValidation.setAttribute("data-valmsg-replace", "true");
     spanValidation.setAttribute("class", "text-danger");
 
     formacaoDiv.appendChild(spanValidation);
@@ -227,8 +251,9 @@ function adcionaIdioma() {
 
     //validation
     spanValidation = document.createElement("span");
-    spanValidation.setAttribute("asp-validation-for", `Idiomas[${idiomas}].Id`);
-    spanValidation.setAttribute("class", "text-danger");
+    spanValidation.setAttribute("data-valmsg-for", `Idiomas[${idiomas}].Id`);
+    spanValidation.setAttribute("data-valmsg-replace", "true");
+    spanValidation.setAttribute("class", "text-danger hide");
 
     idiomaDiv.appendChild(spanValidation);
     idiomaDiv.appendChild(document.createElement("br"));
@@ -245,8 +270,9 @@ function adcionaIdioma() {
 
     //validation
     spanValidation = document.createElement("span");
-    spanValidation.setAttribute("asp-validation-for", `Idiomas[${idiomas}].IdCurriculo`);
-    spanValidation.setAttribute("class", "text-danger");
+    spanValidation.setAttribute("data-valmsg-for", `Idiomas[${idiomas}].IdCurriculo`);
+    spanValidation.setAttribute("data-valmsg-replace", "true");
+    spanValidation.setAttribute("class", "text-danger hide");
 
     idiomaDiv.appendChild(spanValidation);
     idiomaDiv.appendChild(document.createElement("br"));
@@ -276,7 +302,8 @@ function adcionaIdioma() {
 
     //validation
     spanValidation = document.createElement("span");
-    spanValidation.setAttribute("asp-validation-for", `Idiomas[${idiomas}].Idioma`);
+    spanValidation.setAttribute("data-valmsg-for", `Idiomas[${idiomas}].Idioma`);
+    spanValidation.setAttribute("data-valmsg-replace", "true");
     spanValidation.setAttribute("class", "text-danger");
 
     idiomaDiv.appendChild(spanValidation);
@@ -322,7 +349,8 @@ function adcionaIdioma() {
 
     //validation
     spanValidation = document.createElement("span");
-    spanValidation.setAttribute("asp-validation-for", `Idiomas[${idiomas}].Nivel`);
+    spanValidation.setAttribute("data-valmsg-for", `Idiomas[${idiomas}].Nivel`);
+    spanValidation.setAttribute("data-valmsg-replace", "true");
     spanValidation.setAttribute("class", "text-danger");
 
     idiomaDiv.appendChild(spanValidation);
@@ -420,8 +448,9 @@ function adcionaHabilidade() {
 
     //validation
     spanValidation = document.createElement("span");
-    spanValidation.setAttribute("asp-validation-for", `Habilidades[${habilidades}].Id`);
-    spanValidation.setAttribute("class", "text-danger");
+    spanValidation.setAttribute("data-valmsg-for", `Habilidades[${habilidades}].Id`);
+    spanValidation.setAttribute("data-valmsg-replace", "true");
+    spanValidation.setAttribute("class", "text-danger hide");
 
     habilidadeDiv.appendChild(spanValidation);
     habilidadeDiv.appendChild(document.createElement("br"));
@@ -438,8 +467,9 @@ function adcionaHabilidade() {
 
     //validation
     spanValidation = document.createElement("span");
-    spanValidation.setAttribute("asp-validation-for", `Habilidades[${habilidades}].IdCurriculo`);
-    spanValidation.setAttribute("class", "text-danger");
+    spanValidation.setAttribute("data-valmsg-for", `Habilidades[${habilidades}].IdCurriculo`);
+    spanValidation.setAttribute("data-valmsg-replace", "true");
+    spanValidation.setAttribute("class", "text-danger hide");
 
     habilidadeDiv.appendChild(spanValidation);
     habilidadeDiv.appendChild(document.createElement("br"));
@@ -450,7 +480,7 @@ function adcionaHabilidade() {
     descricaoLabel.setAttribute("for", `Habilidades[${habilidades}].Descricao`);
 
     if (idiomaSelecionado == "I") {
-        descricaoLabel.innerHTML = "Description";
+        descricaoLabel.innerHTML = "Descrição";
     }
     else {
         descricaoLabel.innerHTML = "Descrição";
@@ -469,7 +499,8 @@ function adcionaHabilidade() {
 
     //validation
     spanValidation = document.createElement("span");
-    spanValidation.setAttribute("asp-validation-for", `Habilidades[${habilidades}].Descricao`);
+    spanValidation.setAttribute("data-valmsg-for", `Habilidades[${habilidades}].Descricao`);
+    spanValidation.setAttribute("data-valmsg-replace", "true");
     spanValidation.setAttribute("class", "text-danger");
 
     habilidadeDiv.appendChild(spanValidation);
@@ -492,7 +523,8 @@ function adcionaHabilidade() {
     habilidadeDiv.appendChild(nivelLabel);
     //validation
     spanValidation = document.createElement("span");
-    spanValidation.setAttribute("asp-validation-for", `Habilidades[${habilidades}].Nivel`);
+    spanValidation.setAttribute("data-valmsg-for", `Habilidades[${habilidades}].Nivel`);
+    spanValidation.setAttribute("data-valmsg-replace", "true");
     spanValidation.setAttribute("class", "text-danger");
 
     habilidadeDiv.appendChild(spanValidation);
@@ -523,7 +555,8 @@ function adcionaHabilidade() {
 
     //validation
     spanValidation = document.createElement("span");
-    spanValidation.setAttribute("asp-validation-for", `Habilidades[${habilidades}].Nivel`);
+    spanValidation.setAttribute("data-valmsg-for", `Habilidades[${habilidades}].Nivel`);
+    spanValidation.setAttribute("data-valmsg-replace", "true");
     spanValidation.setAttribute("class", "text-danger");
 
     habilidadeDiv.appendChild(spanValidation);

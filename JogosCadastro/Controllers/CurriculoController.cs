@@ -157,11 +157,11 @@ namespace TrabalhoCurriculo.Controllers
             if (string.IsNullOrEmpty(cur.Estado))
                 ModelState.AddModelError("Estado", validacoes.Estado_vazio);
 
-           // validaFormacoes(cur, validacoes);
+            validaFormacoes(cur, validacoes);
 
 
         }
-       /* private void validaFormacoes(CurriculoViewModel cur, TextosValidacoes text)
+        private void validaFormacoes(CurriculoViewModel cur, TextosValidacoes text)
         {
             for (int n = 0; n < cur.Formacao.Count; n++)
             {
@@ -170,7 +170,7 @@ namespace TrabalhoCurriculo.Controllers
                 if (cur.Formacao[n].Descricao == ""|| cur.Formacao[n].Descricao ==null)
                     ModelState.AddModelError($"Formacao[{n}].Descricao", text.Formacao_Descricao_vazio);
             }
-        }*/
+        }
         /// <summary>
         /// Converte a imagem recebida no form em um vetor de bytes
         /// </summary>

@@ -87,7 +87,16 @@
 
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Curriculo" asp-action="Sobre">Sobre</a>
+
+                            @if (ViewBag.Idioma == "I")
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Curriculo" asp-action="Sobre">About</a>
+                            }
+                            else
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Curriculo" asp-action="Sobre">Sobre</a>
+
+                            }
                         </li>
                     </ul>
 
